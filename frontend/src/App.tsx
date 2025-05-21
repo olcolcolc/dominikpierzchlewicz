@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <div style={bgImageStyle} className="fade-in">
-        {/* <Navbar /> */}
+        {/* <Navbar />/> */}
         <NavbarAlt />
         <main
           style={{

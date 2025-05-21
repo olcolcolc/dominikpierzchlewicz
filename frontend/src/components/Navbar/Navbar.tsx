@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Logo } from "./Logo";
-import { NavbarLink } from "./NavbarLink";
+import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
 
 const Wrapper = styled.nav(({ theme }) => ({
   position: "sticky",
@@ -18,25 +18,13 @@ const LogoWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const NavbarLinksWrapper = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing(2)};
-  align-items: center;
-`;
-
 export const Navbar = () => {
   return (
     <Wrapper>
       <LogoWrapper>
         <Logo>Dominik Pierzchlewicz</Logo>
       </LogoWrapper>
-      <NavbarLinksWrapper>
-        <NavbarLink to="/bio">Bio</NavbarLink>
-        <NavbarLink to="/projects">Projekty</NavbarLink>
-        <NavbarLink to="/awards">Nagrody</NavbarLink>
-        {/* <NavbarLink to="/publications">Publikacje</NavbarLink> */}
-        <NavbarLink to="/contact">Kontakt</NavbarLink>
-      </NavbarLinksWrapper>
+      <NavbarLinksWrapper />
     </Wrapper>
   );
 };

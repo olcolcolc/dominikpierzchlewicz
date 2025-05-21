@@ -1,27 +1,33 @@
 import "./App.css";
-import { Navbar } from "./components/Navbar/Navbar";
 import arch_sketch from "./assets/arch_sketch.jpg";
+import { NavbarAlt } from "./components/Navbar_alt/NavbarAlt";
+
+const bgImageStyle = {
+  backgroundImage: `url(${arch_sketch})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  width: "100vw",
+  height: "100vh",
+};
 
 function App() {
   return (
-    <div className="fade-in">
-      <Navbar />
-      <main
-        style={{
-          top: 0,
-          position: "absolute",
-        }}
-      >
-        <img
-          src={arch_sketch}
-          alt="Wallpaper"
+    <>
+      <div style={bgImageStyle} className="fade-in">
+        {/* <Navbar /> */}
+        <NavbarAlt />
+        <main
           style={{
-            height: "100%",
+            top: 0,
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
             width: "100%",
           }}
-        />
-      </main>
-    </div>
+        ></main>
+      </div>
+    </>
   );
 }
 

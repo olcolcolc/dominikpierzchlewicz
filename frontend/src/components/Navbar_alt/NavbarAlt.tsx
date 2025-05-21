@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Logo } from "./Logo";
-import { NavbarLink } from "./NavbarLink";
+import { Logo } from "../Navbar/Logo";
+import { NavbarLink } from "../Navbar/NavbarLink";
 
 const Wrapper = styled.nav(({ theme }) => ({
   position: "sticky",
@@ -24,7 +24,7 @@ export const NavbarLinksWrapper = styled.div`
   align-items: center;
 `;
 
-export const Navbar = () => {
+export const NavbarAlt = () => {
   return (
     <Wrapper>
       <LogoWrapper>

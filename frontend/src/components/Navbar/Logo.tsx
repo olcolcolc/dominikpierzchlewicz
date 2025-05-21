@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 
 const LogoWrapper = styled(Link)(({ theme }) => ({
-  fontSize: "1.5rem",
+  fontSize: "2rem",
   fontWeight: "bold",
   fontFamily: theme.fonts.base,
   color: theme.colors.text,

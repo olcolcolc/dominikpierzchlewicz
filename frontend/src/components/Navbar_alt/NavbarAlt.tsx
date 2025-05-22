@@ -10,6 +10,7 @@ const Wrapper = styled.nav(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  backgroundColor: "inherit",
 }));
 
 export const NavbarAlt = () => {

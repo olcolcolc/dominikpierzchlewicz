@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import sliderImgData from "../../data/sliderImgData";
 
-const CarouselWrapper = styled.div`
+const SliderWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
@@ -28,7 +28,7 @@ const Slide = styled.div`
   background-position: center;
 `;
 
-export const Carousel = () => {
+export const Slider = () => {
   const images = sliderImgData;
   const [index, setIndex] = useState(1);
   const [transition, setTransition] = useState(true);
@@ -62,7 +62,7 @@ export const Carousel = () => {
   console.log("Loaded images:", sliderImgData);
 
   return (
-    <CarouselWrapper>
+    <SliderWrapper>
       <Track translateX={-index * 100} transition={transition}>
         {loopedImages.map((img, i) => (
           <Slide
@@ -73,6 +73,6 @@ export const Carousel = () => {
           />
         ))}
       </Track>
-    </CarouselWrapper>
+    </SliderWrapper>
   );
 };

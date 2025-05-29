@@ -2,6 +2,9 @@ import { CollectionConfig } from 'payload'
 
 export const SliderImages: CollectionConfig = {
   slug: 'slider-images',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'title',
   },
@@ -16,12 +19,12 @@ export const SliderImages: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
-      label: 'Opis zdjęcia - co się na nim znajduje?',
+      label: 'Description',
     },
     {
       name: 'isDark',
       type: 'checkbox',
-      label: 'Czy obrazek jest ciemny?',
+      label: 'Dark mode',
       defaultValue: false,
     },
   ],

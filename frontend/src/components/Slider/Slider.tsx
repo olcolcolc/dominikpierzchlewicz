@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import sliderImgData from "../../data/sliderImgData";
+import type { SliderImage } from "../../types/slider";
+import { fetchSliderImages } from "../../utils/fetchSliderImages";
 
 const SliderWrapper = styled.div`
   top: 0;
@@ -29,21 +30,30 @@ const Slide = styled.div`
 `;
 
 export const Slider = () => {
-  const images = sliderImgData;
+  const [images, setImages] = useState<SliderImage[]>([]);
   const [index, setIndex] = useState(1);
   const [transition, setTransition] = useState(true);
 
-  const loopedImages = [images[images.length - 1], ...images, images[0]];
+  useEffect(() => {
+    fetchSliderImages().then(setImages);
+  }, []);
+
+  const loopedImages = images.length
+    ? [images[images.length - 1], ...images, images[0]]
+    : [];
 
   useEffect(() => {
+    if (!images.length) return;
     const interval = setInterval(() => {
       setIndex((prev) => prev + 1);
       setTransition(true);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images]);
 
   useEffect(() => {
+    if (!images.length) return;
+
     if (index === images.length + 1) {
       const timer = setTimeout(() => {
         setTransition(false);
@@ -58,8 +68,7 @@ export const Slider = () => {
       }, 1000);
       return () => clearTimeout(timer);
     }
-  }, [index]);
-  console.log("Loaded images:", sliderImgData);
+  }, [index, images]);
 
   return (
     <SliderWrapper>
@@ -68,9 +77,10 @@ export const Slider = () => {
           <Slide
             key={i}
             style={{ backgroundImage: `url(${img.url})` }}
-            aria-label={img.alt}
-            title={img.title}
-          />
+            aria-label={img.title}
+          >
+            <img src={img.url} alt={img.title} style={{ display: "none" }} />
+          </Slide>
         ))}
       </Track>
     </SliderWrapper>

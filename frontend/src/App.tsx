@@ -1,6 +1,6 @@
 import "./App.css";
 // import arch_sketch from "./assets/arch_sketch.jpg";
-import { Carousel } from "./components/Carusel/Carusel";
+import { Slider } from "./components/Slider/Slider";
 import { NavbarAlt } from "./components/Navbar_alt/NavbarAlt";
 
 // const bgImageStyle = {
@@ -18,7 +18,7 @@ function App() {
       {/* <div style={bgImageStyle} className="fade-in"> */}
       {/* <Navbar />/> */}
       <NavbarAlt />
-      <Carousel />
+      <Slider />
       <main
         style={{
           top: 0,

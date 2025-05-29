@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import sliderImgData from "../../data/sliderImgData";
+import type { SliderImage } from "../../types/slider";
+import { fetchSliderImages } from "../../utils/fetchSliderImages";
 
-const CarouselWrapper = styled.div`
+const SliderWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
@@ -28,22 +29,31 @@ const Slide = styled.div`
   background-position: center;
 `;
 
-export const Carousel = () => {
-  const images = sliderImgData;
+export const Slider = () => {
+  const [images, setImages] = useState<SliderImage[]>([]);
   const [index, setIndex] = useState(1);
   const [transition, setTransition] = useState(true);
 
-  const loopedImages = [images[images.length - 1], ...images, images[0]];
+  useEffect(() => {
+    fetchSliderImages().then(setImages);
+  }, []);
+
+  const loopedImages = images.length
+    ? [images[images.length - 1], ...images, images[0]]
+    : [];
 
   useEffect(() => {
+    if (!images.length) return;
     const interval = setInterval(() => {
       setIndex((prev) => prev + 1);
       setTransition(true);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images]);
 
   useEffect(() => {
+    if (!images.length) return;
+
     if (index === images.length + 1) {
       const timer = setTimeout(() => {
         setTransition(false);
@@ -58,21 +68,21 @@ export const Carousel = () => {
       }, 1000);
       return () => clearTimeout(timer);
     }
-  }, [index]);
-  console.log("Loaded images:", sliderImgData);
+  }, [index, images]);
 
   return (
-    <CarouselWrapper>
+    <SliderWrapper>
       <Track translateX={-index * 100} transition={transition}>
         {loopedImages.map((img, i) => (
           <Slide
             key={i}
             style={{ backgroundImage: `url(${img.url})` }}
-            aria-label={img.alt}
-            title={img.title}
-          />
+            aria-label={img.title}
+          >
+            <img src={img.url} alt={img.title} style={{ display: "none" }} />
+          </Slide>
         ))}
       </Track>
-    </CarouselWrapper>
+    </SliderWrapper>
   );
 };

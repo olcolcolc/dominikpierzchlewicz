@@ -1,13 +1,12 @@
 {
   "name": "cms",
   "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
-  "license": "MIT",
+  "description": "Payload CMS v4 on Render",
   "type": "module",
+  "license": "MIT",
 "scripts": {
-  "start": "cross-env NODE_OPTIONS=--no-deprecation payload serve --config ./src/payload.config.ts",
-  "build": "echo 'No build step required for Payload CMS.'",
-  "dev": "cross-env NODE_OPTIONS=--no-deprecation payload",
+  "start": "node server.js", 
+  "build": "echo 'No build step required.'",  "dev": "cross-env NODE_OPTIONS=--no-deprecation payload serve --config ./src/payload.config.ts",
   "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
   "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
   "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate"
@@ -18,12 +17,15 @@
     "@payloadcms/richtext-lexical": "3.39.1",
     "@payloadcms/ui": "3.39.1",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "graphql": "^16.8.1",
-    "payload": "3.39.1",
+    "payload": "^3.40.0",
     "sharp": "0.32.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
+    "@types/express": "^5.0.2",
     "@types/node": "^22.5.4",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",

@@ -5,12 +5,15 @@
   "license": "MIT",
   "type": "module",
 "scripts": {
-  "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-  "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+  "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+  "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+  "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
   "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-  "dev": "pnpm payload dev",
-  "build": "pnpm run generate:types && pnpm run generate:importmap"
-},
+  "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+  "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
+  "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint"
+}
+,
   "dependencies": {
     "@payloadcms/db-mongodb": "3.39.1",
     "@payloadcms/payload-cloud": "3.39.1",

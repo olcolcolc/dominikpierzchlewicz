@@ -13,6 +13,11 @@ const start = async () => {
     express: app,
   } as any)
 
+  // DODAJ TO:
+  app.get('/', (req, res) => {
+    res.redirect('/admin')
+  })
+
   const port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
   app.listen(port, () => {

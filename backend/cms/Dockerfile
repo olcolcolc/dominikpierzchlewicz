@@ -24,4 +24,4 @@ COPY --from=builder /app/dist ./dist
 ENV NODE_ENV=production
 EXPOSE 10000
 
-CMD ["node", "dist/server.js"]
+CMD ["node", "--enable-source-maps", "dist/server.js"]

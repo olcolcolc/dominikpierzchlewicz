@@ -3,9 +3,7 @@
   "compilerOptions": {
     "noEmit": false,
     "rootDir": "./src",
-    "outDir": "dist",
-    "module": "ESNext",      
-    "moduleResolution": "node"
+    "outDir": "dist"
   },
   "include": [
     "src/**/*.ts",

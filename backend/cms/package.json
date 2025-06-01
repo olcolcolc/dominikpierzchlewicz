@@ -5,12 +5,12 @@
   "type": "module",
   "license": "MIT",
 "scripts": {
-  "start": "node server.js", 
-  "build": "echo 'No build step required.'",  
-  "dev": "cross-env NODE_OPTIONS=--no-deprecation payload serve --config ./src/payload.config.ts",
-  "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-  "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-  "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate"
+  "build": "tsc --build tsconfig.build.json",
+  "start": "node dist/server.js",
+  "dev": "ts-node-dev --respawn server.ts",
+  "generate:types": "payload generate:types",
+  "generate:importmap": "payload generate:importmap",
+  "migrate": "payload migrate"
 },
   "dependencies": {
     "@payloadcms/db-mongodb": "3.39.1",

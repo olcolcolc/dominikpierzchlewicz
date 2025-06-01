@@ -1,9 +1,8 @@
-// storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import path from 'path'
 import { buildConfig } from 'payload'
+import path from 'path'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
@@ -21,7 +20,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  cors: ['http://localhost:5173'],
+  cors: ['http://localhost:5173'], // zmień na domenę frontu w produkcji!
   collections: [Users, Media, SliderImages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -32,8 +31,5 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
-  plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
-  ],
+  plugins: [payloadCloudPlugin()],
 })

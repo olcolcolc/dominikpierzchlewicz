@@ -1,20 +1,20 @@
+# Base Image
 FROM node:18-alpine
 
+# Create app directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Install app dependencies
 COPY package.json pnpm-lock.yaml ./
 RUN corepack enable && pnpm install --frozen-lockfile
 
-# Copy the rest of the app
+# Bundle app source
 COPY . .
 
-# Set environment
+# Set environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
-
-# Expose port
 EXPOSE 3000
 
-# Start Payload CMS
-CMD ["pnpm", "start"]
+# Start the app
+CMD ["node", "server.js"]

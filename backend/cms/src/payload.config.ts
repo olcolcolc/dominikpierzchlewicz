@@ -20,7 +20,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  cors: ['http://localhost:5173'], // zmień na domenę frontu w produkcji!
+  cors: ['http://localhost:5173'],
   collections: [Users, Media, SliderImages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

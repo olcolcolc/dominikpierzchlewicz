@@ -1,3 +1,4 @@
+
 import config from './src/payload.config.js';
 
 import payload from 'payload';

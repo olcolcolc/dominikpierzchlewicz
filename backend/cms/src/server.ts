@@ -13,7 +13,6 @@ const start = async () => {
     express: app,
   } as any)
 
-  // DODAJ TO:
   app.get('/', (req, res) => {
     res.redirect('/admin')
   })

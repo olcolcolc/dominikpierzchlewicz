@@ -1,6 +1,6 @@
 import payload from 'payload'
 import dotenv from 'dotenv'
-import config from './payload.config'
+import config from './payload.config.js'
 
 dotenv.config()
 

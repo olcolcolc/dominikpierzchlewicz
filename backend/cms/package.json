@@ -5,7 +5,7 @@
   "type": "module",
   "license": "MIT",
 "scripts": {
-  "build": "tsc --build tsconfig.build.json",
+  "build": "tsc --build tsconfig.build.json && payload build",
   "start": "node dist/server.js",
   "dev": "ts-node-dev --respawn server.ts",
   "generate:types": "payload generate:types",

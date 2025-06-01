@@ -1,0 +1,14 @@
+node_modules
+dist
+build
+.git
+.gitignore
+Dockerfile
+pnpm-lock.yaml
+README.md
+.env
+.env.local
+.vscode
+*.log
+*.ts
+src/

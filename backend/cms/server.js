@@ -1,3 +1,4 @@
+
 import config from './src/payload.config.js';
 
 import payload from 'payload';
@@ -12,5 +13,4 @@ const start = async () => {
 
   payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
 };
-
 start();

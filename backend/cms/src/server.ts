@@ -13,6 +13,10 @@ const start = async () => {
     express: app,
   } as any)
 
+  app.get('/healthz', (req, res) => {
+    res.status(200).send('OK')
+  })
+
   app.get('/', (req, res) => {
     res.redirect('/admin')
   })

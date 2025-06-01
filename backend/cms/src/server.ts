@@ -1,11 +1,12 @@
 import payload from 'payload'
 import dotenv from 'dotenv'
+import config from './payload.config'
 
 dotenv.config()
 
 const start = async () => {
   await payload.init({
-    config: require('./src/payload.config').default,
+    config,
   })
 
   payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)

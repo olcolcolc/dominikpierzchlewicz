@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
 "scripts": {
-  "start": "cross-env NODE_OPTIONS=--no-deprecation payload run",
+  "start": "cross-env NODE_OPTIONS=--no-deprecation payload run --config ./src/payload.config.ts",
   "build": "echo 'No build step required for Payload CMS.'",
   "dev": "cross-env NODE_OPTIONS=--no-deprecation payload",
   "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",

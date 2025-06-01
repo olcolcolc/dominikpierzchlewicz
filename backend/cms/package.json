@@ -4,16 +4,15 @@
   "description": "A blank template to get started with Payload 3.0",
   "license": "MIT",
   "type": "module",
-"scripts": {
-  "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-  "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-  "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-  "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-  "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-  "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
-  "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint"
-}
-,
+  "scripts": {
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint"
+  },
   "dependencies": {
     "@payloadcms/db-mongodb": "3.39.1",
     "@payloadcms/payload-cloud": "3.39.1",
@@ -21,7 +20,10 @@
     "@payloadcms/ui": "3.39.1",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
+    "next": "^15.3.3",
     "payload": "3.39.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "sharp": "0.32.6"
   },
   "devDependencies": {

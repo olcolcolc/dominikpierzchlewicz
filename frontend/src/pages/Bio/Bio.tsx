@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import type { ReactNode } from "react";
 import kotek from "../../assets/images/kotek.jpg";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
 

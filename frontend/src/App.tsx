@@ -1,34 +1,14 @@
 import "./App.css";
-// import arch_sketch from "./assets/arch_sketch.jpg";
-import { Slider } from "./components/Slider/Slider";
 import { NavbarAlt } from "./components/Navbar_alt/NavbarAlt";
-
-// const bgImageStyle = {
-//   backgroundImage: `url(${arch_sketch})`,
-//   backgroundPosition: "center",
-//   backgroundSize: "cover",
-//   backgroundRepeat: "no-repeat",
-//   width: "100vw",
-//   height: "100vh",
-// };
+import { Slider } from "./components/Slider/Slider";
+import Bio from "./pages/Bio/Bio";
 
 function App() {
   return (
     <>
-      {/* <div style={bgImageStyle} className="fade-in"> */}
-      {/* <Navbar />/> */}
       <NavbarAlt />
       <Slider />
-      <main
-        style={{
-          top: 0,
-          display: "flex",
-          flexDirection: "column",
-          position: "absolute",
-          width: "100%",
-        }}
-      ></main>
-      {/* </div> */}
+      <Bio />
     </>
   );
 }

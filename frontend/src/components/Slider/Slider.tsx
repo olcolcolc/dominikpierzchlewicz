@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import type { SliderImage } from "../../types/slider";
-import { fetchSliderImages } from "../../utils/fetchSliderImages";
+import sliderImgData from "../../data/sliderImgData";
+// import { fetchSliderImages } from "../../utils/fetchSliderImages";
 
 const SliderWrapper = styled.div`
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   z-index: 0;
+  height: 100vh;
   overflow: hidden;
-  position: absolute;
+  position: relative;
 `;
 
 const Track = styled.div<{ translateX: number; transition: boolean }>`
@@ -23,7 +22,7 @@ const Track = styled.div<{ translateX: number; transition: boolean }>`
 
 const Slide = styled.div`
   flex-shrink: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -35,7 +34,8 @@ export const Slider = () => {
   const [transition, setTransition] = useState(true);
 
   useEffect(() => {
-    fetchSliderImages().then(setImages);
+    setImages(sliderImgData);
+    // fetchSliderImages().then(setImages);
   }, []);
 
   const loopedImages = images.length

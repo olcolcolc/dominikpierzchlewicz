@@ -19,7 +19,6 @@ const HoverText = styled.div(({ theme }) => ({
 
 const TextWrapper = styled.div({
   width: "90%",
-  marginTop: "5rem",
   display: "flex",
   justifyContent: "flex-end",
   gap: "2rem",
@@ -27,7 +26,6 @@ const TextWrapper = styled.div({
 
 const BioText = styled.div(({ theme }) => ({
   textTransform: "uppercase",
-  padding: "2rem",
   fontSize: "2rem",
   fontFamily: theme.fonts.base,
   color: theme.colors.text,

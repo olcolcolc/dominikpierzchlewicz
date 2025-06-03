@@ -4,14 +4,14 @@
   "description": "Payload CMS v4 on Render",
   "type": "module",
   "license": "MIT",
-"scripts": {
-  "build": "tsc --build tsconfig.build.json",
-  "start": "node dist/server.js",
-  "dev": "ts-node-dev --respawn server.ts",
-  "generate:types": "payload generate:types",
-  "generate:importmap": "payload generate:importmap",
-  "migrate": "payload migrate"
-},
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --respawn server.ts",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap",
+    "migrate": "payload migrate"
+  },
   "dependencies": {
     "@payloadcms/db-mongodb": "3.39.1",
     "@payloadcms/payload-cloud": "3.39.1",
@@ -33,6 +33,7 @@
     "eslint": "^9.16.0",
     "eslint-config-next": "15.3.0",
     "prettier": "^3.4.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "5.7.3"
   },
   "engines": {

@@ -3,14 +3,14 @@ import { Logo } from "../Navbar/Logo";
 import { HamburgerMenu } from "./HamburgerMenu";
 
 const Wrapper = styled.nav(({ theme }) => ({
-  position: "sticky",
-  top: 0,
+  position: "fixed",
   zIndex: 1000,
+  width: "100%",
   padding: theme.spacing(2),
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  backgroundColor: "inherit",
+  backgroundColor: "transparent",
 }));
 
 export const NavbarAlt = () => {

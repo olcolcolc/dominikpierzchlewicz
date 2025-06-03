@@ -5,13 +5,10 @@ import sliderImgData from "../../data/sliderImgData";
 // import { fetchSliderImages } from "../../utils/fetchSliderImages";
 
 const SliderWrapper = styled.div`
-  top: 0;
-  left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  z-index: 0;
   overflow: hidden;
-  position: absolute;
+  position: relative;
 `;
 
 const Track = styled.div<{ translateX: number; transition: boolean }>`
@@ -24,7 +21,7 @@ const Track = styled.div<{ translateX: number; transition: boolean }>`
 
 const Slide = styled.div`
   flex-shrink: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-size: cover;
   background-position: center;

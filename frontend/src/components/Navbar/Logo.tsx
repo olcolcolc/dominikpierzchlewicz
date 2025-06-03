@@ -9,6 +9,7 @@ const LogoWrapper = styled(Link)(({ theme }) => ({
   color: theme.colors.text,
   textDecoration: "none",
   ...theme.animations.hoverLift,
+  mixBlendMode: "difference",
 }));
 
 type LogoProps = {

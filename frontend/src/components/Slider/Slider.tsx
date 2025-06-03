@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import type { SliderImage } from "../../types/slider";
-import { fetchSliderImages } from "../../utils/fetchSliderImages";
+import sliderImgData from "../../data/sliderImgData";
+// import { fetchSliderImages } from "../../utils/fetchSliderImages";
 
 const SliderWrapper = styled.div`
   top: 0;
@@ -35,7 +36,8 @@ export const Slider = () => {
   const [transition, setTransition] = useState(true);
 
   useEffect(() => {
-    fetchSliderImages().then(setImages);
+    setImages(sliderImgData);
+    // fetchSliderImages().then(setImages);
   }, []);
 
   const loopedImages = images.length

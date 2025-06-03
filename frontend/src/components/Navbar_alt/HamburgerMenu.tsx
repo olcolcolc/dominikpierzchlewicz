@@ -2,31 +2,36 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { NavbarAltLinksWrapper } from "./NavbarAltLinksWrapper";
 
-const ToggleButton = styled.button(({ theme }) => ({
+const ToggleButton = styled.button({
   background: "none",
   border: "none",
   cursor: "pointer",
-  width: "42px",
-  height: "42px",
+  width: "50px",
+  height: "50px",
   position: "relative",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   transition: "transform 0.3s ease, color 0.3s ease",
   zIndex: 100000,
+  paddingRight: 0,
+  outline: "none",
 
   "&:hover": {
     transform: "scale(1.1)",
-    backgroundColor: theme.colors.hover,
   },
-}));
 
+  "&:focus-visible": {
+    outline: "2px solid currentColor",
+    transform: "scale(1.1)",
+  },
+});
 const Bar = styled.span<{ open: boolean; index: number }>(
   ({ open, index, theme }) => {
     const base = {
       position: "absolute" as const,
-      width: "32px",
-      height: "3px",
+      width: "60px",
+      height: "6px",
       backgroundColor: theme.colors.text,
       transition: "all 0.3s ease",
     };
@@ -50,7 +55,7 @@ const Bar = styled.span<{ open: boolean; index: number }>(
 
     return {
       ...base,
-      bottom: open ? "44%" : "6px",
+      bottom: open ? "40%" : "6px",
       transform: open ? "rotate(-45deg)" : "rotate(0)",
     };
   }

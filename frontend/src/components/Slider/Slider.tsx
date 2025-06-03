@@ -6,6 +6,7 @@ import sliderImgData from "../../data/sliderImgData";
 
 const SliderWrapper = styled.div`
   width: 100%;
+  z-index: 0;
   height: 100vh;
   overflow: hidden;
   position: relative;

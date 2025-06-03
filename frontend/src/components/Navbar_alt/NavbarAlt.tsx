@@ -6,7 +6,7 @@ const Wrapper = styled.nav(({ theme }) => ({
   position: "fixed",
   zIndex: 1000,
   width: "100%",
-  padding: theme.spacing(2),
+  paddingRight: theme.spacing(1.5),
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",

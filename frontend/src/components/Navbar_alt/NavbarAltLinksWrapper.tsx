@@ -8,8 +8,6 @@ const Wrapper = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => ({
   width: "100vw",
   height: "100vh",
   backgroundColor: `${theme.colors.background}`,
-  // backdropFilter: "blur(10px)",
-  // WebkitBackdropFilter: "blur(10px)", // dla Safari
   display: "flex",
   flexDirection: "column",
   alignItems: "center",

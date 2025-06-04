@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { NavbarAltLinksWrapper } from "./NavbarAltLinksWrapper";
 
-const ToggleButton = styled.button({
+const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
   border: "none",
   cursor: "pointer",
@@ -23,9 +23,17 @@ const ToggleButton = styled.button({
 
   "&:focus-visible": {
     outline: "2px solid currentColor",
-    transform: "scale(1.1)",
+    paddingRight: 0,
   },
-});
+
+  [theme.media.tablet]: {
+    marginRight: -5,
+  },
+  [theme.media.mobileL]: {
+    marginRight: -8,
+  },
+}));
+
 const Bar = styled.span<{ open: boolean; index: number }>(
   ({ open, index, theme }) => {
     const base = {
@@ -34,6 +42,10 @@ const Bar = styled.span<{ open: boolean; index: number }>(
       height: "6px",
       backgroundColor: theme.colors.text,
       transition: "all 0.3s ease",
+      [theme.media.tablet]: {
+        width: "45px",
+        height: "5px",
+      },
     };
 
     if (index === 0) {

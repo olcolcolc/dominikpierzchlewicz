@@ -10,6 +10,9 @@ const LogoWrapper = styled(Link)(({ theme }) => ({
   textDecoration: "none",
   ...theme.animations.hoverLift,
   mixBlendMode: "difference",
+  [theme.media.tablet]: {
+    fontSize: "3rem",
+  },
 }));
 
 type LogoProps = {

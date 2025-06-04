@@ -8,8 +8,6 @@ const Wrapper = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => ({
   width: "100vw",
   height: "100vh",
   backgroundColor: `${theme.colors.background}`,
-  // backdropFilter: "blur(10px)",
-  // WebkitBackdropFilter: "blur(10px)", // dla Safari
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -18,21 +16,32 @@ const Wrapper = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => ({
   zIndex: 9999,
 
   opacity: isOpen ? 1 : 0,
-  pointerEvents: isOpen ? "auto" : "none",
-  transition: "opacity 0.5s ease",
+  visibility: isOpen ? "visible" : "hidden", // <--- DODAJ TO!
+  transition: "opacity 0.5s ease, visibility 0.5s ease", // <--- Transition też dla visibility
 }));
 
-type Props = {
+const NavbarList = styled.ul`
+  padding: 0;
+`;
+
+type NavbarAltLinksWrapperProps = {
   isOpen: boolean;
+  links: string[];
 };
 
-export const NavbarAltLinksWrapper = ({ isOpen }: Props) => {
+export const NavbarAltLinksWrapper = ({
+  isOpen,
+  links,
+}: NavbarAltLinksWrapperProps) => {
   return (
     <Wrapper isOpen={isOpen}>
-      <NavbarAltLink to="/bio">Bio</NavbarAltLink>
-      <NavbarAltLink to="/projects">Projekty</NavbarAltLink>
-      <NavbarAltLink to="/awards">Nagrody</NavbarAltLink>
-      <NavbarAltLink to="/contact">Kontakt</NavbarAltLink>
+      <NavbarList>
+        {links.map((link) => (
+          <NavbarAltLink key={link} to={link}>
+            {link}
+          </NavbarAltLink>
+        ))}
+      </NavbarList>
     </Wrapper>
   );
 };

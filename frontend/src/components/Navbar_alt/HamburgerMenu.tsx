@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { NavbarAltLinksWrapper } from "./NavbarAltLinksWrapper";
 
-const ToggleButton = styled.button({
+const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
   border: "none",
   cursor: "pointer",
@@ -23,17 +23,32 @@ const ToggleButton = styled.button({
 
   "&:focus-visible": {
     outline: "2px solid currentColor",
-    transform: "scale(1.1)",
+    paddingRight: 0,
   },
-});
+
+  [theme.media.tablet]: {
+    marginRight: -5,
+  },
+  [theme.media.mobileL]: {
+    marginRight: -8,
+  },
+  [theme.media.mobileS]: {
+    marginRight: -10,
+  },
+}));
+
 const Bar = styled.span<{ open: boolean; index: number }>(
   ({ open, index, theme }) => {
     const base = {
       position: "absolute" as const,
       width: "60px",
       height: "6px",
-      backgroundColor: theme.colors.text,
+      backgroundColor: "black",
       transition: "all 0.3s ease",
+      [theme.media.tablet]: {
+        width: "45px",
+        height: "5px",
+      },
     };
 
     if (index === 0) {
@@ -75,7 +90,10 @@ export const HamburgerMenu = () => {
         ))}
       </ToggleButton>
 
-      <NavbarAltLinksWrapper isOpen={open} />
+      <NavbarAltLinksWrapper
+        isOpen={open}
+        links={["bio", "projects", "awards", "contact"]}
+      />
     </>
   );
 };

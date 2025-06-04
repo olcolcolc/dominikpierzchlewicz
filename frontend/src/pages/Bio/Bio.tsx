@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
+import { theme } from "../../styles/theme";
 
 const Wrapper = styled.section({
   position: "relative",
@@ -11,39 +12,65 @@ const Wrapper = styled.section({
   justifyContent: "flex-start",
 });
 
-const HoverText = styled.div(({ theme }) => ({
-  mixBlendMode: "difference",
+const HoverText = styled.span(({ theme }) => ({
+  display: "inline-block",
   ...theme.animations.hoverLift,
 }));
 
 const TextWrapper = styled.div({
-  width: "90%",
   display: "flex",
-  justifyContent: "flex-end",
-  gap: "2rem",
+  flexDirection: "row",
+  paddingRight: "5rem",
+  gap: 30,
+  height: "50rem",
+
+  ...theme.animations.load,
+  [theme.media.tablet]: {
+    width: "100%",
+    flexDirection: "column",
+    gap: 0,
+    marginTop: "-3rem",
+    paddingRight: "4rem",
+  },
+  [theme.media.mobileL]: {
+    paddingRight: "2.5rem",
+    marginTop: "-1rem",
+  },
 });
 
 const BioText = styled.div(({ theme }) => ({
-  textTransform: "uppercase",
   fontSize: "2rem",
+  width: "90%",
   fontFamily: theme.fonts.base,
   color: theme.colors.text,
-  maxWidth: "600px",
+  ...theme.animations.load,
+  [theme.media.tablet]: {
+    fontSize: "1.5rem",
+    width: "100%",
+    paddingTop: "1rem",
+    paddingLeft: "3rem",
+  },
+  [theme.media.mobileL]: {
+    paddingLeft: "2rem",
+  },
 }));
 
 const ImageWrapper = styled.div({
-  flex: "1",
-  height: "500px",
+  width: "100%",
   backgroundImage: `url("/dominikpierzchlewicz/images/kotek.jpg")`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   transform: "translateX(-90%)",
-  animation: "slideIn 2s forwards",
+  animation: "slideIn 4s forwards",
+
   "@keyframes slideIn": {
     to: {
       transform: "translateX(0)",
     },
+  },
+  [theme.media.tablet]: {
+    height: "200px",
   },
 });
 
@@ -56,10 +83,12 @@ function Bio() {
         <BioText>
           <HoverText>Architekt</HoverText> i doktorant Szkoły Doktorskiej
           Politechniki Wrocławskiej. Doświadczenie zawodowe zdobywał w
-          renomowanych biurach architektonicznych w Polsce, Szwajcarii i
+          renomowanych biurach
+          <HoverText>architektonicznych</HoverText> w Polsce, Szwajcarii i
           Holandii. Jego zainteresowania naukowe i projektowe koncentrują się
-          wokół gospodarki cyrkularnej w architekturze oraz zrównoważonego
-          rozwoju środowiska zbudowanego.
+          wokół&nbsp;
+          <HoverText>gospodarki cyrkularnej</HoverText> w architekturze oraz
+          zrównoważonego rozwoju <HoverText>środowiska zbudowanego.</HoverText>
         </BioText>
       </TextWrapper>
     </Wrapper>

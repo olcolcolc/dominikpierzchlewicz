@@ -1,29 +1,33 @@
+import { Link } from "react-scroll";
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
 
-const StyledNavLink = styled(NavLink)(({ theme }) => ({
-  fontFamily: theme.fonts.base,
-  fontSize: "6rem",
-  color: theme.colors.text,
+const StyledLink = styled(Link)(({ theme }) => ({
+  fontSize: "2rem",
   textDecoration: "none",
-  padding: theme.spacing(1),
-  ...theme.animations.hoverLift,
-
-  "&.active": {
-    color: theme.colors.hover,
-    fontWeight: "bold",
-  },
-
+  color: theme.colors.text,
+  textTransform: "uppercase",
+  cursor: "pointer",
+  transition: "color 0.3s ease",
   "&:hover": {
     color: theme.colors.hover,
   },
 }));
 
-type NavbarLinkProps = {
+type NavbarAltLinkProps = {
   to: string;
   children: React.ReactNode;
 };
 
-export const NavbarAltLink = ({ to, children }: NavbarLinkProps) => {
-  return <StyledNavLink to={to}>{children}</StyledNavLink>;
+export const NavbarAltLink = ({ to, children }: NavbarAltLinkProps) => {
+  return (
+    <StyledLink
+      to={to}
+      spy={true}
+      smooth="easeInOutQuart"
+      offset={-70}
+      duration={1000}
+    >
+      {children}
+    </StyledLink>
+  );
 };

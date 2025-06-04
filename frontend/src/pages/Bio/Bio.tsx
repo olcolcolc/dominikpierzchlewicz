@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import kotek from "../../assets/images/kotek.jpg";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
 
 const Wrapper = styled.section({
@@ -35,7 +34,7 @@ const BioText = styled.div(({ theme }) => ({
 const ImageWrapper = styled.div({
   flex: "1",
   height: "500px",
-  backgroundImage: `url(${kotek})`,
+  backgroundImage: `url("/dominikpierzchlewicz/images/kotek.jpg")`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",

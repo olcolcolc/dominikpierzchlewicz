@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import kotek from "../../assets/images/kotek.jpg";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
 
 const Wrapper = styled.section({
@@ -19,7 +18,6 @@ const HoverText = styled.div(({ theme }) => ({
 
 const TextWrapper = styled.div({
   width: "90%",
-  marginTop: "5rem",
   display: "flex",
   justifyContent: "flex-end",
   gap: "2rem",
@@ -27,7 +25,6 @@ const TextWrapper = styled.div({
 
 const BioText = styled.div(({ theme }) => ({
   textTransform: "uppercase",
-  padding: "2rem",
   fontSize: "2rem",
   fontFamily: theme.fonts.base,
   color: theme.colors.text,
@@ -37,7 +34,7 @@ const BioText = styled.div(({ theme }) => ({
 const ImageWrapper = styled.div({
   flex: "1",
   height: "500px",
-  backgroundImage: `url(${kotek})`,
+  backgroundImage: `url("/dominikpierzchlewicz/images/kotek.jpg")`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",

@@ -6,10 +6,13 @@ const LogoWrapper = styled(Link)(({ theme }) => ({
   fontSize: "4rem",
   fontWeight: "bold",
   fontFamily: theme.fonts.base,
-  color: theme.colors.text,
+  color: "black",
   textDecoration: "none",
   ...theme.animations.hoverLift,
   mixBlendMode: "difference",
+  [theme.media.tablet]: {
+    fontSize: "3rem",
+  },
 }));
 
 type LogoProps = {

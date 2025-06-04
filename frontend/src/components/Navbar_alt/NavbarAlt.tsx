@@ -11,6 +11,9 @@ const Wrapper = styled.nav(({ theme }) => ({
   alignItems: "center",
   justifyContent: "space-between",
   backgroundColor: "transparent",
+  [theme.media.mobileL]: {
+    alignItems: "flex-start",
+  },
 }));
 
 export const NavbarAlt = () => {

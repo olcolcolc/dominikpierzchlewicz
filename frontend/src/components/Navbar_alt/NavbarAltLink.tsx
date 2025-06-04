@@ -17,6 +17,10 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   "&:hover": {
     color: theme.colors.hover,
   },
+
+  [theme.media.mobileL]: {
+    fontSize: "5rem",
+  },
 }));
 
 type NavbarLinkProps = {

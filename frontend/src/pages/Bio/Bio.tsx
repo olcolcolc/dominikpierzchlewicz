@@ -18,25 +18,44 @@ const HoverText = styled.span(({ theme }) => ({
 }));
 
 const TextWrapper = styled.div({
-  width: "90%",
   display: "flex",
-  justifyContent: "flex-end",
-  gap: "2rem",
+  flexDirection: "row",
+  paddingRight: "5rem",
+  gap: 30,
   ...theme.animations.load,
+  [theme.media.tablet]: {
+    width: "100%",
+    flexDirection: "column",
+    gap: 0,
+    marginTop: "-3rem",
+    paddingRight: "4rem",
+  },
+  [theme.media.mobileL]: {
+    paddingRight: "2.5rem",
+    marginTop: "-1rem",
+  },
 });
 
 const BioText = styled.div(({ theme }) => ({
   textTransform: "uppercase",
   fontSize: "2rem",
+  width: "90%",
   fontFamily: theme.fonts.base,
   color: theme.colors.text,
-  maxWidth: "600px",
   ...theme.animations.load,
+  [theme.media.tablet]: {
+    fontSize: "1.5rem",
+    width: "100%",
+    paddingTop: "1rem",
+    paddingLeft: "3rem",
+  },
+  [theme.media.mobileL]: {
+    paddingLeft: "2rem",
+  },
 }));
 
 const ImageWrapper = styled.div({
-  flex: "1",
-  height: "500px",
+  width: "100%",
   backgroundImage: `url("/dominikpierzchlewicz/images/kotek.jpg")`,
   backgroundSize: "cover",
   backgroundPosition: "center",
@@ -47,6 +66,9 @@ const ImageWrapper = styled.div({
     to: {
       transform: "translateX(0)",
     },
+  },
+  [theme.media.tablet]: {
+    height: "200px",
   },
 });
 
@@ -61,7 +83,7 @@ function Bio() {
           Politechniki Wrocławskiej. <br />
           Doświadczenie zawodowe zdobywał w renomowanych biurach
           architektonicznych w Polsce, Szwajcarii i Holandii. <br />
-          Jego zainteresowania naukowe <br />i projektowe koncentrują się wokół
+          Jego zainteresowania naukowe i projektowe koncentrują się wokół
           <HoverText>&nbsp;gospodarki cyrkularnej</HoverText> w architekturze
           oraz zrównoważonego rozwoju środowiska zbudowanego.
         </BioText>

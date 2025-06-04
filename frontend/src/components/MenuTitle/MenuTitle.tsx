@@ -32,9 +32,11 @@ const StyledMenuTitle = styled.div<{ isSticky: boolean }>(
 
     [theme.media.mobileL]: {
       fontSize: "7rem",
+      height: "7rem",
     },
     [theme.media.mobileS]: {
       fontSize: "5rem",
+      height: "5rem",
     },
   })
 );

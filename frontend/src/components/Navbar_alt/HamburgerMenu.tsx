@@ -35,6 +35,7 @@ const ToggleButton = styled.button(({ theme }) => ({
   [theme.media.mobileS]: {
     marginRight: -12,
   },
+
 }));
 
 const Bar = styled.span<{ open: boolean; index: number }>(

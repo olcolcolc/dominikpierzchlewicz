@@ -10,6 +10,9 @@ const Wrapper = styled.nav(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  [theme.media.mobileS]: {
+    top: 10,
+  },
 }));
 
 const LogoWrapper = styled.div`

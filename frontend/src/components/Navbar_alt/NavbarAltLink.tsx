@@ -11,6 +11,10 @@ const StyledLink = styled(Link)(({ theme }) => ({
   "&:hover": {
     color: theme.colors.hover,
   },
+
+  [theme.media.mobileL]: {
+    fontSize: "5rem",
+  },
 }));
 
 type NavbarAltLinkProps = {

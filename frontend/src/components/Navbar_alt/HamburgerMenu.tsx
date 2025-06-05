@@ -33,9 +33,8 @@ const ToggleButton = styled.button(({ theme }) => ({
     marginRight: -8,
   },
   [theme.media.mobileS]: {
-    marginRight: -12,
+    marginRight: -10,
   },
-
 }));
 
 const Bar = styled.span<{ open: boolean; index: number }>(
@@ -80,18 +79,22 @@ const Bar = styled.span<{ open: boolean; index: number }>(
 export const HamburgerMenu = () => {
   const [open, setOpen] = useState(false);
 
+  const handleToggle = () => setOpen((prev) => !prev);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
-      <ToggleButton
-        onClick={() => setOpen((prev) => !prev)}
-        aria-label="Toggle menu"
-      >
+      <ToggleButton onClick={handleToggle} aria-label="Toggle menu">
         {[0, 1, 2].map((i) => (
           <Bar key={i} index={i} open={open} />
         ))}
       </ToggleButton>
 
-      <NavbarAltLinksWrapper isOpen={open} />
+      <NavbarAltLinksWrapper
+        isOpen={open}
+        links={["bio", "projects", "awards", "contact"]}
+        onLinkClick={handleClose}
+      />
     </>
   );
 };

@@ -25,10 +25,9 @@ const StyledMenuTitle = styled.div<{ isSticky: boolean }>(
     fontStyle: "italic",
     zIndex: 100,
     background: "transparent",
-    transform: "translate(50%, -30%)",
+    transform: "translate(50%, 0%)",
     ...theme.animations.load,
     mixBlendMode: isSticky ? "difference" : "normal", // Apply mix-blend-mode when sticky
-    transition: "mix-blend-mode 0.3s ease",
 
     [theme.media.mobileL]: {
       fontSize: "7rem",

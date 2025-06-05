@@ -22,6 +22,8 @@ const TextWrapper = styled.div({
   flexDirection: "row",
   paddingRight: "5rem",
   gap: 30,
+  height: "50rem",
+
   ...theme.animations.load,
   [theme.media.tablet]: {
     width: "100%",
@@ -37,7 +39,6 @@ const TextWrapper = styled.div({
 });
 
 const BioText = styled.div(({ theme }) => ({
-  textTransform: "uppercase",
   fontSize: "2rem",
   width: "90%",
   fontFamily: theme.fonts.base,
@@ -62,6 +63,7 @@ const ImageWrapper = styled.div({
   backgroundRepeat: "no-repeat",
   transform: "translateX(-90%)",
   animation: "slideIn 4s forwards",
+
   "@keyframes slideIn": {
     to: {
       transform: "translateX(0)",
@@ -80,12 +82,13 @@ function Bio() {
         <ImageWrapper />
         <BioText>
           <HoverText>Architekt</HoverText> i doktorant Szkoły Doktorskiej
-          Politechniki Wrocławskiej. <br />
-          Doświadczenie zawodowe zdobywał w renomowanych biurach
-          architektonicznych w Polsce, Szwajcarii i Holandii. <br />
-          Jego zainteresowania naukowe i projektowe koncentrują się wokół
-          <HoverText>&nbsp;gospodarki cyrkularnej</HoverText> w architekturze
-          oraz zrównoważonego rozwoju środowiska zbudowanego.
+          Politechniki Wrocławskiej. Doświadczenie zawodowe zdobywał w
+          renomowanych biurach
+          <HoverText>architektonicznych</HoverText> w Polsce, Szwajcarii i
+          Holandii. Jego zainteresowania naukowe i projektowe koncentrują się
+          wokół&nbsp;
+          <HoverText>gospodarki cyrkularnej</HoverText> w architekturze oraz
+          zrównoważonego rozwoju <HoverText>środowiska zbudowanego.</HoverText>
         </BioText>
       </TextWrapper>
     </Wrapper>

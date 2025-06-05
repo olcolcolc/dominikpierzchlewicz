@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 import { NavbarAltLink } from "./NavbarAltLink";
 
-const Wrapper = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => ({
+const Wrapper = styled.ul<{ isOpen: boolean }>(({ theme, isOpen }) => ({
   position: "fixed",
   top: 0,
   left: 0,
+  margin: 0,
+  padding: 0,
   width: "100vw",
   height: "100vh",
+  fontFamily: `${theme.fonts.base}`,
   backgroundColor: `${theme.colors.background}`,
   display: "flex",
   flexDirection: "column",
@@ -16,21 +19,28 @@ const Wrapper = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => ({
   zIndex: 9999,
 
   opacity: isOpen ? 1 : 0,
-  pointerEvents: isOpen ? "auto" : "none",
-  transition: "opacity 0.5s ease",
+  visibility: isOpen ? "visible" : "hidden",
+  transition: "opacity 0.5s ease, visibility 0.5s ease",
 }));
 
-type Props = {
+type NavbarAltLinksWrapperProps = {
   isOpen: boolean;
+  links: string[];
+  onLinkClick: () => void;
 };
 
-export const NavbarAltLinksWrapper = ({ isOpen }: Props) => {
+export const NavbarAltLinksWrapper = ({
+  isOpen,
+  links,
+  onLinkClick,
+}: NavbarAltLinksWrapperProps) => {
   return (
     <Wrapper isOpen={isOpen}>
-      <NavbarAltLink to="/bio">Bio</NavbarAltLink>
-      <NavbarAltLink to="/projects">Projekty</NavbarAltLink>
-      <NavbarAltLink to="/awards">Nagrody</NavbarAltLink>
-      <NavbarAltLink to="/contact">Kontakt</NavbarAltLink>
+      {links.map((link) => (
+        <NavbarAltLink key={link} to={link} onClick={onLinkClick}>
+          {link}
+        </NavbarAltLink>
+      ))}
     </Wrapper>
   );
 };

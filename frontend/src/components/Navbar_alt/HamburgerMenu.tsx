@@ -79,12 +79,12 @@ const Bar = styled.span<{ open: boolean; index: number }>(
 export const HamburgerMenu = () => {
   const [open, setOpen] = useState(false);
 
+  const handleToggle = () => setOpen((prev) => !prev);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
-      <ToggleButton
-        onClick={() => setOpen((prev) => !prev)}
-        aria-label="Toggle menu"
-      >
+      <ToggleButton onClick={handleToggle} aria-label="Toggle menu">
         {[0, 1, 2].map((i) => (
           <Bar key={i} index={i} open={open} />
         ))}
@@ -93,6 +93,7 @@ export const HamburgerMenu = () => {
       <NavbarAltLinksWrapper
         isOpen={open}
         links={["bio", "projects", "awards", "contact"]}
+        onLinkClick={handleClose}
       />
     </>
   );

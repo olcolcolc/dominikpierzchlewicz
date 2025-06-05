@@ -8,7 +8,9 @@ function App() {
     <>
       <NavbarAlt />
       <Slider />
-      <Bio />
+      <section id="bio">
+        <Bio />
+      </section>
     </>
   );
 }

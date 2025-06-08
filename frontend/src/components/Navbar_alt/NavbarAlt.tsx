@@ -4,11 +4,11 @@ import { HamburgerMenu } from "./HamburgerMenu";
 
 const Wrapper = styled.nav(({ theme }) => ({
   position: "fixed",
-  zIndex: 1000,
+  zIndex: 1002,
   width: "100%",
   paddingRight: theme.spacing(1.5),
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "space-between",
   backgroundColor: "transparent",
   [theme.media.mobileL]: {

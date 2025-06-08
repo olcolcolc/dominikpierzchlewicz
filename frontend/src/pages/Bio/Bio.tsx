@@ -5,11 +5,11 @@ import { theme } from "../../styles/theme";
 const Wrapper = styled.section({
   position: "relative",
   width: "100%",
-  minHeight: "200vh",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "flex-start",
+  paddingBottom: "4rem",
 });
 
 const HoverText = styled.span(({ theme }) => ({
@@ -22,33 +22,33 @@ const TextWrapper = styled.div({
   flexDirection: "row",
   paddingRight: "5rem",
   gap: 30,
-  height: "50rem",
+  maxHeight: "500px",
 
   ...theme.animations.load,
-  [theme.media.tablet]: {
+  [theme.media.mobileL]: {
     width: "100%",
     flexDirection: "column",
     gap: 0,
-    marginTop: "-3rem",
-    paddingRight: "4rem",
+    marginTop: "1rem",
+    paddingRight: "2rem",
   },
-  [theme.media.mobileL]: {
+  [theme.media.mobileM]: {
     paddingRight: "2.5rem",
-    marginTop: "-1rem",
+    marginTop: "0.3rem",
   },
 });
 
 const BioText = styled.div(({ theme }) => ({
   fontSize: "2rem",
   width: "90%",
-  fontFamily: theme.fonts.base,
+  fontFamily: theme.fonts.archia,
   color: theme.colors.text,
   ...theme.animations.load,
   [theme.media.tablet]: {
     fontSize: "1.5rem",
     width: "100%",
     paddingTop: "1rem",
-    paddingLeft: "3rem",
+    paddingLeft: "1rem",
   },
   [theme.media.mobileL]: {
     paddingLeft: "2rem",
@@ -62,7 +62,7 @@ const ImageWrapper = styled.div({
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   transform: "translateX(-90%)",
-  animation: "slideIn 4s forwards",
+  animation: "slideIn 3s ease forwards",
 
   "@keyframes slideIn": {
     to: {
@@ -83,7 +83,7 @@ function Bio() {
         <BioText>
           <HoverText>Architekt</HoverText> i doktorant Szkoły Doktorskiej
           Politechniki Wrocławskiej. Doświadczenie zawodowe zdobywał w
-          renomowanych biurach
+          renomowanych biurach&nbsp;
           <HoverText>architektonicznych</HoverText> w Polsce, Szwajcarii i
           Holandii. Jego zainteresowania naukowe i projektowe koncentrują się
           wokół&nbsp;

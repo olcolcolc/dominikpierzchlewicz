@@ -93,7 +93,7 @@ export const HamburgerMenu = () => {
 
       <NavbarAltLinksWrapper
         isOpen={open}
-        links={["bio", "projects", "awards", "contact"]}
+        links={["bio", "nagrody", "projekty", "kontakt"]}
         onLinkClick={handleClose}
       />
     </>

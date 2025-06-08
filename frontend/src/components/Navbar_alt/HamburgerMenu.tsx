@@ -4,6 +4,7 @@ import { NavbarAltLinksWrapper } from "./NavbarAltLinksWrapper";
 
 const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
+  marginTop: "0.2rem",
   border: "none",
   cursor: "pointer",
   width: "50px",

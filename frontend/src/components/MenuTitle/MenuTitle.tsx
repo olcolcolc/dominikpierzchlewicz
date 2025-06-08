@@ -11,7 +11,7 @@ const StyledMenuTitle = styled.div<{ isSticky: boolean }>(
   ({ theme, isSticky }) => ({
     position: "sticky",
     top: 0,
-    height: "10rem",
+    height: "8rem",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -20,22 +20,41 @@ const StyledMenuTitle = styled.div<{ isSticky: boolean }>(
     fontWeight: "bold",
     color: theme.colors.text,
     whiteSpace: "nowrap",
-    letterSpacing: "0.2rem",
     textTransform: "uppercase",
     fontStyle: "italic",
-    zIndex: 100,
+    zIndex: 1,
     background: "transparent",
-    transform: "translate(50%, 0%)",
+    transform: "translate(47%, 0%)",
     ...theme.animations.load,
     mixBlendMode: isSticky ? "difference" : "normal", // Apply mix-blend-mode when sticky
-
-    [theme.media.mobileL]: {
+    [theme.media.tablet]: {
       fontSize: "7rem",
       height: "7rem",
+      transform: "translate(40%, 0%)",
     },
-    [theme.media.mobileS]: {
+    "@media (max-width: 1100px)": {
       fontSize: "5rem",
       height: "5rem",
+      transform: "translate(55%, 0%)",
+    },
+    "@media (max-width: 945px)": {
+      fontSize: "3rem",
+      height: "4rem",
+      transform: "translate(96%, 0%)",
+    },
+    "@media (max-width: 810px)": {
+      transform: "translate(80%, 0%)",
+    },
+    "@media (max-width: 700px)": {
+      transform: "translate(50%, 0%)",
+    },
+    "@media (max-width: 560px)": {
+      fontSize: "2rem",
+      height: "3rem",
+    },
+    "@media (max-width: 400px)": {
+      fontSize: "1.5rem",
+      height: "3rem",
     },
   })
 );

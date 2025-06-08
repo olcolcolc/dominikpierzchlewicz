@@ -8,6 +8,13 @@
 */
 
 @font-face {
+  font-family: "Archia";
+  src: url("../assets/fonts/archia.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Switzer-Thin";
   src: url("/src/assets/fonts/Switzer/Switzer-Thin.woff2") format("woff2"),
     url("/src/assets/fonts/Switzer/Switzer-Thin.woff") format("woff"),

@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    hover: "#00ff00;",
+    hover: "#00ff00",
     background: "#f5f5f5",
     text: "#333",
   },
@@ -8,18 +8,30 @@ export const theme = {
   fonts: {
     base: "'Switzer-Variable', 'Switzer-Regular', sans-serif",
     heading: "'Switzer-Bold', sans-serif",
+    dmSans: "'DM Sans', sans-serif",
+    archia: "'Archia', sans-serif",
   },
   media: {
     mobileS: `@media (max-width: 380px)`,
-    mobileL: `@media (max-width: 580px)`,
-    tablet: `@media (max-width: 768px)`,
+    mobileM: `@media (max-width: 580px)`,
+    mobileL: `@media (max-width: 780px)`,
+    tablet: `@media (max-width: 1300px)`,
   },
   animations: {
     hoverLift: {
       transition: "transform 0.3s ease",
       "&:hover": {
         transform: "translateY(-4px)",
-        fontColor: "#00ff00",
+      },
+      "&:not(:hover)": {
+        transform: "translateY(0px)",
+      },
+    },
+    hoverLiftGreen: {
+      transition: "transform 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-4px)",
+        color: "#00ff00",
       },
       "&:not(:hover)": {
         transform: "translateY(0px)",

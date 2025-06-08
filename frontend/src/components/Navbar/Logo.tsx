@@ -13,6 +13,9 @@ const LogoWrapper = styled(Link)(({ theme }) => ({
   [theme.media.tablet]: {
     fontSize: "3rem",
   },
+  "@media (max-width: 830px)": {
+    width: "500px",
+  },
 }));
 
 type LogoProps = {

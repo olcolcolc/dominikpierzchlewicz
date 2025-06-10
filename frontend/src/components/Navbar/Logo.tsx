@@ -7,13 +7,14 @@ const LogoWrapper = styled(Link)(({ theme }) => ({
   fontWeight: "bold",
   fontFamily: theme.fonts.base,
   color: "black",
+  zIndex: 2,
   textDecoration: "none",
   ...theme.animations.hoverLift,
   mixBlendMode: "difference",
   [theme.media.tablet]: {
     fontSize: "3rem",
   },
-  "@media (max-width: 830px)": {
+  "@media (max-width: 930px)": {
     width: "500px",
   },
 }));

@@ -78,10 +78,6 @@ const HoverImage = styled.img<{ x: number; y: number }>`
   z-index: 10;
 `;
 
-const PlaceholderDiv = styled.div`
-  height: 10000px;
-`;
-
 function Awards() {
   const [hoveredAward, setHoveredAward] = useState<null | { image: string }>({
     image: "",
@@ -114,7 +110,6 @@ function Awards() {
           y={mousePosition.y}
         />
       )}
-      <PlaceholderDiv />
     </Wrapper>
   );
 }

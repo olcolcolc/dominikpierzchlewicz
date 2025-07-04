@@ -7,19 +7,21 @@ import { Contact } from "./pages/Contact/Contact";
 
 function App() {
   return (
-    <div className="app-container">
+    <>
       <NavbarAlt />
       <Slider />
-      <section id="bio">
-        <Bio />
-      </section>
-      <section id="nagrody">
-        <Awards />
-      </section>
+      <main>
+        <section id="bio">
+          <Bio />
+        </section>
+        <section id="nagrody">
+          <Awards />
+        </section>
+      </main>
       <footer id="kontakt">
         <Contact />
       </footer>
-    </div>
+    </>
   );
 }
 

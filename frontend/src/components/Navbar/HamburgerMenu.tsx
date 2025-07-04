@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { NavbarAltLinksWrapper } from "./NavbarAltLinksWrapper";
+import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
 
 const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
@@ -8,7 +8,7 @@ const ToggleButton = styled.button(({ theme }) => ({
   border: "none",
   cursor: "pointer",
   width: "50px",
-  height: "50px",
+  height: "90%",
   position: "relative",
   display: "flex",
   alignItems: "center",
@@ -19,7 +19,7 @@ const ToggleButton = styled.button(({ theme }) => ({
   outline: "none",
 
   "&:hover": {
-    transform: "scale(1.1)",
+    transform: "scaleX(1.1)",
   },
 
   "&:focus-visible": {
@@ -91,9 +91,9 @@ export const HamburgerMenu = () => {
         ))}
       </ToggleButton>
 
-      <NavbarAltLinksWrapper
+      <NavbarLinksWrapper
         isOpen={open}
-        links={["bio", "nagrody", "projekty", "kontakt"]}
+        links={["projekty", "bio", "nagrody", "kontakt"]}
         onLinkClick={handleClose}
       />
     </>

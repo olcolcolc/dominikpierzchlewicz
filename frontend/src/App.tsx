@@ -16,7 +16,9 @@ function App() {
       <section id="nagrody">
         <Awards />
       </section>
-      <Contact />
+      <footer id="kontakt">
+        <Contact />
+      </footer>
     </div>
   );
 }

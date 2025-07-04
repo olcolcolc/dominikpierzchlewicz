@@ -1,33 +1,30 @@
 import styled from "@emotion/styled";
 import { Logo } from "./Logo";
-import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
+import { HamburgerMenu } from "./HamburgerMenu";
 
 const Wrapper = styled.nav(({ theme }) => ({
-  position: "sticky",
-  top: 0,
-  zIndex: 1000,
-  padding: theme.spacing(2),
+  position: "fixed",
+  height: "4rem",
+  zIndex: 1002,
+  width: "100%",
+  paddingRight: theme.spacing(1.5),
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  [theme.media.mobileS]: {
-    top: 10,
+  backgroundColor: "transparent",
+  [theme.media.tablet]: {
+    height: "3rem",
+  },
+  [theme.media.mobileL]: {
+    alignItems: "flex-start",
   },
 }));
-
-const LogoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
 
 export const Navbar = () => {
   return (
     <Wrapper>
-      <LogoWrapper>
-        <Logo>Dominik Pierzchlewicz</Logo>
-      </LogoWrapper>
-      <NavbarLinksWrapper />
+      <Logo>Dominik Pierzchlewicz</Logo>
+      <HamburgerMenu />
     </Wrapper>
   );
 };

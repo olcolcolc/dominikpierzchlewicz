@@ -37,6 +37,16 @@ export const theme = {
         transform: "translateY(0px)",
       },
     },
+    hoverLetterSpacing: {
+      transition: "letter-spacing 0.3s ease",
+      letterSpacing: "0px",
+      "&:hover": {
+        letterSpacing: "2px",
+      },
+      "&:not(:hover)": {
+        letterSpacing: "0px",
+      },
+    },
     load: {
       opacity: 0,
       animation: "fadeIn 1s ease forwards",

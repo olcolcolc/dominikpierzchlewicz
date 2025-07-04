@@ -36,7 +36,7 @@ const SocialLink = styled.a(({ theme }) => ({
   position: "relative",
   transition: "color 0.3s",
   "&:hover": {
-    color: theme.colors.text, // albo np. "#888" lub jakiś lekki efekt
+    color: theme.colors.text,
   },
 }));
 

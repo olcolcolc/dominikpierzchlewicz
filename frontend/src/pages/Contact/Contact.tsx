@@ -12,7 +12,7 @@ const FooterWrapper = styled.footer({
 
 const Footer = styled.div(({ theme }) => ({
   width: "100%",
-  height: "30rem",
+  height: "34rem",
   padding: "2rem",
   backgroundColor: "black",
   color: "white",

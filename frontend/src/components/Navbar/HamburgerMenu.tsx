@@ -4,14 +4,12 @@ import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
 
 const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
-  marginTop: "0.2rem",
   border: "none",
   cursor: "pointer",
   width: "50px",
   height: "90%",
   position: "relative",
   display: "flex",
-  alignItems: "center",
   justifyContent: "center",
   transition: "transform 0.3s ease, color 0.3s ease",
   zIndex: 100000,

@@ -9,10 +9,9 @@ const Marker = styled.div`
 
 const StyledMenuTitle = styled.div<{
   isSticky: boolean;
-  isDarkBackground?: boolean;
-}>(({ theme, isSticky, isDarkBackground }) => ({
+}>(({ theme, isSticky }) => ({
   position: "sticky",
-  top: 0,
+  top: "-6.5px",
   height: "8rem",
   display: "flex",
   alignItems: "center",
@@ -20,11 +19,11 @@ const StyledMenuTitle = styled.div<{
   fontFamily: theme.fonts.base,
   fontSize: "8rem",
   fontWeight: "bold",
-  color: isSticky && isDarkBackground ? "#fff" : theme.colors.text,
+  color: theme.colors.text,
   whiteSpace: "nowrap",
   textTransform: "uppercase",
   fontStyle: "italic",
-  zIndex: 4,
+  zIndex: 1,
   background: "transparent",
   transform: "translate(47%, 0%)",
   ...theme.animations.load,
@@ -62,10 +61,9 @@ const StyledMenuTitle = styled.div<{
 
 type MenuTitleProps = {
   children: ReactNode;
-  isDarkBackground?: boolean;
 };
 
-export const MenuTitle = ({ children, isDarkBackground }: MenuTitleProps) => {
+export const MenuTitle = ({ children }: MenuTitleProps) => {
   const markerRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -96,9 +94,7 @@ export const MenuTitle = ({ children, isDarkBackground }: MenuTitleProps) => {
     <>
       {/* Marker positioned just before the title to track its sticky state */}
       <Marker ref={markerRef} />
-      <StyledMenuTitle isSticky={isSticky} isDarkBackground={isDarkBackground}>
-        {children}
-      </StyledMenuTitle>
+      <StyledMenuTitle isSticky={isSticky}>{children}</StyledMenuTitle>
     </>
   );
 };

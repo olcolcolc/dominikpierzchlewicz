@@ -24,6 +24,7 @@ const ListWrapper = styled.ul({
   listStyle: "none",
   padding: 0,
   margin: 0,
+  marginTop: "2rem",
   borderTop: "1px solid black",
   borderBottom: "1px solid black",
   transform: "translateX(100%)",

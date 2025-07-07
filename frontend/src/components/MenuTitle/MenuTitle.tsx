@@ -9,10 +9,10 @@ const Marker = styled.div`
 
 const StyledMenuTitle = styled.div<{
   isSticky: boolean;
-  isDarkBackground?: boolean;
-}>(({ theme, isSticky, isDarkBackground }) => ({
+}>(({ theme, isSticky }) => ({
   position: "sticky",
-  top: 0,
+  top: "-6.5px",
+  left: "48%",
   height: "8rem",
   display: "flex",
   alignItems: "center",
@@ -20,52 +20,51 @@ const StyledMenuTitle = styled.div<{
   fontFamily: theme.fonts.base,
   fontSize: "8rem",
   fontWeight: "bold",
-  color: isSticky && isDarkBackground ? "#fff" : theme.colors.text,
+  color: theme.colors.text,
   whiteSpace: "nowrap",
   textTransform: "uppercase",
   fontStyle: "italic",
-  zIndex: 4,
+  zIndex: 1,
   background: "transparent",
-  transform: "translate(47%, 0%)",
   ...theme.animations.load,
   mixBlendMode: isSticky ? "difference" : "normal", // Apply mix-blend-mode when sticky
   [theme.media.tablet]: {
-    fontSize: "7rem",
-    height: "7rem",
-    transform: "translate(40%, 0%)",
+    fontSize: "6rem",
+    height: "6rem",
+    top: "-3px",
   },
   "@media (max-width: 1100px)": {
-    fontSize: "5rem",
-    height: "5rem",
-    transform: "translate(55%, 0%)",
+    fontSize: "4.5rem",
+    height: "4.5rem",
+    left: "55%",
+    top: 0,
   },
-  "@media (max-width: 945px)": {
-    fontSize: "3rem",
+  "@media (max-width: 960px)": {
+    fontSize: "4rem",
     height: "4rem",
-    transform: "translate(96%, 0%)",
+    left: "56%",
   },
-  "@media (max-width: 810px)": {
-    transform: "translate(80%, 0%)",
+  "@media (max-width: 890px)": {
+    left: "50%",
+  },
+  "@media (max-width: 770px)": {
+    left: "45%",
   },
   "@media (max-width: 700px)": {
-    transform: "translate(50%, 0%)",
+    fontSize: "3rem",
+    height: "3rem",
   },
-  "@media (max-width: 560px)": {
+  "@media (max-width: 570px)": {
     fontSize: "2rem",
-    height: "3rem",
-  },
-  "@media (max-width: 400px)": {
-    fontSize: "1.5rem",
-    height: "3rem",
+    height: "2rem",
   },
 }));
 
 type MenuTitleProps = {
   children: ReactNode;
-  isDarkBackground?: boolean;
 };
 
-export const MenuTitle = ({ children, isDarkBackground }: MenuTitleProps) => {
+export const MenuTitle = ({ children }: MenuTitleProps) => {
   const markerRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -96,9 +95,7 @@ export const MenuTitle = ({ children, isDarkBackground }: MenuTitleProps) => {
     <>
       {/* Marker positioned just before the title to track its sticky state */}
       <Marker ref={markerRef} />
-      <StyledMenuTitle isSticky={isSticky} isDarkBackground={isDarkBackground}>
-        {children}
-      </StyledMenuTitle>
+      <StyledMenuTitle isSticky={isSticky}>{children}</StyledMenuTitle>
     </>
   );
 };

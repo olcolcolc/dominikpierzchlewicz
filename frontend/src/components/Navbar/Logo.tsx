@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 const LogoWrapper = styled(Link)(({ theme }) => ({
   fontSize: "4rem",
+  height: "100%",
   fontWeight: "bold",
   fontFamily: theme.fonts.base,
   color: "black",
@@ -16,6 +17,14 @@ const LogoWrapper = styled(Link)(({ theme }) => ({
   },
   "@media (max-width: 930px)": {
     width: "500px",
+  },
+  "@media (max-width: 700px)": {
+    fontSize: "2.5rem",
+    width: "400px",
+  },
+  "@media (max-width: 570px)": {
+    fontSize: "2rem",
+    width: "300px",
   },
 }));
 

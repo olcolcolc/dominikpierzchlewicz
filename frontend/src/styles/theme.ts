@@ -47,6 +47,20 @@ export const theme = {
         letterSpacing: "0px",
       },
     },
+    fadeInOut: {
+      animation: "fadeInOutAnim 0.6s ease",
+      "@keyframes fadeInOutAnim": {
+        "0%": {
+          opacity: 0,
+        },
+        "50%": {
+          opacity: 1,
+        },
+        "100%": {
+          opacity: 0,
+        },
+      },
+    },
     load: {
       opacity: 0,
       animation: "fadeIn 1s ease forwards",

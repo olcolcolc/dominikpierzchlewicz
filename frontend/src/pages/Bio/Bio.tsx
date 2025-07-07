@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
 import { theme } from "../../styles/theme";
@@ -9,22 +10,16 @@ const Wrapper = styled.section({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "flex-start",
-  paddingBottom: "4rem",
+  padding: "4rem 0",
 });
-
-const HoverText = styled.span(({ theme }) => ({
-  display: "inline-block",
-  ...theme.animations.hoverLift,
-}));
 
 const TextWrapper = styled.div({
   display: "flex",
   flexDirection: "row",
   paddingRight: "5rem",
+  paddingTop: "2rem",
   gap: 30,
   maxHeight: "500px",
-
-  ...theme.animations.load,
   [theme.media.mobileL]: {
     width: "100%",
     flexDirection: "column",
@@ -38,12 +33,20 @@ const TextWrapper = styled.div({
   },
 });
 
-const BioText = styled.div(({ theme }) => ({
+const BioText = styled.div({
   fontSize: "2rem",
   width: "90%",
   fontFamily: theme.fonts.archia,
   color: theme.colors.text,
-  ...theme.animations.load,
+  opacity: 0,
+  animation: "fadeIn 1s ease forwards 0.5s",
+
+  "@keyframes fadeIn": {
+    to: {
+      opacity: 1,
+    },
+  },
+
   [theme.media.tablet]: {
     fontSize: "1.5rem",
     width: "100%",
@@ -53,42 +56,42 @@ const BioText = styled.div(({ theme }) => ({
   [theme.media.mobileL]: {
     paddingLeft: "2rem",
   },
-}));
+});
 
-const ImageWrapper = styled.div({
+const StyledImage = styled.img<{ isLoaded: boolean }>(({ isLoaded }) => ({
   width: "100%",
-  backgroundImage: `url("/dominikpierzchlewicz/images/kotek.jpg")`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  transform: "translateX(-90%)",
-  animation: "slideIn 3s ease forwards",
+  maxWidth: "500px",
+  height: "auto",
+  objectFit: "cover",
+  transform: isLoaded ? "translateX(0)" : "translateX(-90%)",
+  transition: "transform 1.5s ease, opacity 0.6s ease",
 
-  "@keyframes slideIn": {
-    to: {
-      transform: "translateX(0)",
-    },
-  },
   [theme.media.tablet]: {
     height: "200px",
   },
-});
+}));
 
 function Bio() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <Wrapper>
       <MenuTitle>Bio</MenuTitle>
       <TextWrapper>
-        <ImageWrapper />
+        <StyledImage
+          src="/dominikpierzchlewicz/images/kotek.jpg"
+          alt="Portret architekta"
+          loading="eager"
+          isLoaded={isLoaded}
+          onLoad={() => setIsLoaded(true)}
+        />
         <BioText>
-          <HoverText>Architekt</HoverText> i doktorant Szkoły Doktorskiej
-          Politechniki Wrocławskiej. Doświadczenie zawodowe zdobywał w
-          renomowanych biurach&nbsp;
-          <HoverText>architektonicznych</HoverText> w Polsce, Szwajcarii i
-          Holandii. Jego zainteresowania naukowe i projektowe koncentrują się
-          wokół&nbsp;
-          <HoverText>gospodarki cyrkularnej</HoverText> w architekturze oraz
-          zrównoważonego rozwoju <HoverText>środowiska zbudowanego.</HoverText>
+          Architekt i doktorant Szkoły Doktorskiej Politechniki Wrocławskiej.
+          Doświadczenie zawodowe zdobywał w renomowanych biurach&nbsp;
+          architektonicznych w Polsce, Szwajcarii i Holandii. Jego
+          zainteresowania naukowe i projektowe koncentrują się wokół&nbsp;
+          gospodarki cyrkularnej w architekturze oraz zrównoważonego rozwoju
+          środowiska zbudowanego.
         </BioText>
       </TextWrapper>
     </Wrapper>

@@ -22,7 +22,7 @@ const Footer = styled.div(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   textAlign: "center",
-  fontFamily: theme.fonts.base,
+  fontFamily: theme.fonts.dmSans,
 }));
 
 const ContactInfo = styled.address({

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import loaderImage from "../../assets/images/loader.png";
+import loaderImage from "../../assets/loader/loader.png";
 
 const LoaderWrapper = styled.div<{ isVisible: boolean }>(
   ({ theme, isVisible }) => ({

@@ -80,13 +80,15 @@ const HoverImage = styled.img<{ x: number; y: number }>`
 `;
 
 function Awards() {
-  const [hoveredAward, setHoveredAward] = useState<null | { image: string }>({
-    image: "",
-  });
+  const [hoveredAward, setHoveredAward] = useState<null | { image: string }>(
+    null
+  );
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [hasMoved, setHasMoved] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
+    if (!hasMoved) setHasMoved(true);
   };
 
   return (
@@ -104,7 +106,7 @@ function Awards() {
           </AwardItem>
         ))}
       </ListWrapper>
-      {hoveredAward?.image && (
+      {hoveredAward?.image && hasMoved && (
         <HoverImage
           src={hoveredAward.image}
           x={mousePosition.x}

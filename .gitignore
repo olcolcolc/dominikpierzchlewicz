@@ -10,3 +10,5 @@ frontend/build
 # system
 .DS_Store
 .env
+.env.production
+.env.development

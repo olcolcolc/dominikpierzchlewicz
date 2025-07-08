@@ -1,5 +1,5 @@
 import { BASE_URL } from "../config/api";
-import type { RawSliderImage, SliderImage } from "../types/slider";
+import type { RawSliderImage, SliderImage } from "../interfaces/slider";
 
 export const fetchSliderImages = async (): Promise<SliderImage[]> => {
   const res = await fetch(`${BASE_URL}/api/slider-images?depth=1`);

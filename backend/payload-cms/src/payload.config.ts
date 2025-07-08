@@ -14,6 +14,8 @@ import SliderImage from './collections/SliderImage'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const corsOrigins = process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : []
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -35,4 +37,5 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
+  cors: corsOrigins,
 })

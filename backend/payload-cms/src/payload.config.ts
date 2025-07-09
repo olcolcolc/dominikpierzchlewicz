@@ -60,7 +60,7 @@ export default buildConfig({
         },
       },
       collections: {
-        [MediaCollection.slug]: true,
+        [MediaCollection.slug]: { type: 'media' },
       },
     }),
   ],

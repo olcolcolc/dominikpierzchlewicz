@@ -6,7 +6,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { Users } from './collections/Users'
-// import { Media as MediaCollection } from './collections/Media'
+import { Media } from './collections/Media'
 import SliderImage from './collections/SliderImage'
 // import { s3Storage } from '@payloadcms/storage-s3'
 
@@ -38,7 +38,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, SliderImage],
+  collections: [Users, SliderImage, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

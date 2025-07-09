@@ -1,5 +1,5 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-// import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
+import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -8,7 +8,7 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import SliderImage from './collections/SliderImage'
-// import { s3Storage } from '@payloadcms/storage-s3'
+import { s3Storage } from '@payloadcms/storage-s3'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -49,20 +49,20 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    // payloadCloudPlugin(),
-    // s3Storage({
-    //   bucket: process.env.S3_BUCKET,
-    //   config: {
-    //     endpoint: process.env.S3_ENDPOINT,
-    //     credentials: {
-    //       accessKeyId: process.env.S3_ACCESS_KEY_ID,
-    //       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-    //     },
-    //   },
-    //   collections: {
-    //     [MediaCollection.slug]: { type: 'media' },
-    //   },
-    // }),
+    payloadCloudPlugin(),
+    s3Storage({
+      bucket: process.env.S3_BUCKET,
+      config: {
+        endpoint: process.env.S3_ENDPOINT,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+      },
+      collections: {
+        [Media.slug]: { type: 'media' },
+      },
+    }),
   ],
   cors: corsOrigins,
 })

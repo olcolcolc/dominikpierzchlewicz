@@ -28,6 +28,9 @@ if (!process.env.S3_ACCESS_KEY_ID) {
 if (!process.env.S3_SECRET_ACCESS_KEY) {
   throw new Error('S3_SECRET_ACCESS_KEY environment variable is not defined.')
 }
+if (!process.env.S3_REGION) {
+  throw new Error('S3_REGION environment variable is not defined.')
+}
 
 const corsOrigins = process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : []
 
@@ -58,6 +61,7 @@ export default buildConfig({
           accessKeyId: process.env.S3_ACCESS_KEY_ID,
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
         },
+        region: process.env.S3_REGION,
       },
       collections: {
         [Media.slug]: { type: 'media' },

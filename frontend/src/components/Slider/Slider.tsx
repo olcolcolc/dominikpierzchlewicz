@@ -106,10 +106,7 @@ export const Slider = () => {
       <Track translateX={-index * 100} transition={transition}>
         {loopedImages.map((img) => (
           <Slide key={img._uniqueKey} aria-label={img.image.alt}>
-            <StyledImg
-              src={`http://localhost:3000${img.image.url}`}
-              alt={img.image.alt}
-            />
+            <StyledImg src={img.image.url} alt={img.image.alt} />
           </Slide>
         ))}
       </Track>

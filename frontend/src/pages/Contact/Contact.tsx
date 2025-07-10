@@ -28,12 +28,16 @@ const Footer = styled.div(({ theme }) => ({
   },
 }));
 
-const ContactInfo = styled.address({
+const ContactInfo = styled.address(({ theme }) => ({
+  color: "white",
   marginBottom: "2rem",
   fontSize: "1.5rem",
   lineHeight: "1.6",
   fontStyle: "normal",
-});
+  [theme.media.mobileM]: {
+    fontSize: "1.2rem",
+  },
+}));
 
 const SocialLinks = styled.nav({
   display: "flex",
@@ -51,6 +55,9 @@ const SocialLink = styled.a(({ theme }) => ({
   transition: "color 0.3s",
   "&:hover": {
     color: theme.colors.text,
+  },
+  [theme.media.mobileM]: {
+    fontSize: "1rem",
   },
 }));
 

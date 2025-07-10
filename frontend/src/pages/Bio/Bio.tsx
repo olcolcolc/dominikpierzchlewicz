@@ -25,11 +25,12 @@ const TextWrapper = styled.div({
     flexDirection: "column",
     gap: 0,
     marginTop: "1rem",
+    paddingTop: "1rem",
     paddingRight: "2rem",
   },
   [theme.media.mobileM]: {
     paddingRight: "2.5rem",
-    marginTop: "0.3rem",
+    paddingTop: "0rem",
   },
 });
 

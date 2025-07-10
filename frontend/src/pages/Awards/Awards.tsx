@@ -37,6 +37,9 @@ const ListWrapper = styled.ul({
       transform: "translateX(0)",
     },
   },
+  [theme.media.mobileM]: {
+    marginTop: "1rem",
+  },
 });
 
 const AwardItem = styled.li({

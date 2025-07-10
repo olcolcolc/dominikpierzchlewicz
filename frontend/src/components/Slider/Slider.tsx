@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import type { PayloadSliderImage } from "../../interfaces/slider";
+import { B2_BUCKET_URL } from "../../config/api";
 
 const SliderWrapper = styled.div`
   width: 100%;
@@ -106,7 +107,10 @@ export const Slider = () => {
       <Track translateX={-index * 100} transition={transition}>
         {loopedImages.map((img) => (
           <Slide key={img._uniqueKey} aria-label={img.image.alt}>
-            <StyledImg src={img.image.url} alt={img.image.alt} />
+            <StyledImg
+              src={`${B2_BUCKET_URL}/${img.image.filename}`}
+              alt={img.image.alt}
+            />
           </Slide>
         ))}
       </Track>

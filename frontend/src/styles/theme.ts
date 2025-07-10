@@ -3,6 +3,7 @@ export const theme = {
     hover: "#00ff00",
     background: "#f5f5f5",
     text: "#333",
+    textLight: "#656565",
   },
   spacing: (factor: number) => `${factor * 8}px`,
   fonts: {

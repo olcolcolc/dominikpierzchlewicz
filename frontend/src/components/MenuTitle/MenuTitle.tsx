@@ -20,7 +20,7 @@ const StyledMenuTitle = styled.div<{
   fontFamily: theme.fonts.base,
   fontSize: "8rem",
   fontWeight: "bold",
-  color: theme.colors.text,
+  color: isSticky ? theme.colors.textLight : theme.colors.text,
   whiteSpace: "nowrap",
   textTransform: "uppercase",
   fontStyle: "italic",

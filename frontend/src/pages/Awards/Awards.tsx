@@ -28,8 +28,8 @@ const ListWrapper = styled.ul({
   padding: 0,
   margin: 0,
   marginTop: "2rem",
-  borderTop: "1px solid black",
-  borderBottom: "1px solid black",
+  borderTop: "1px solid #A2A3A4",
+  borderBottom: "1px solid #A2A3A4",
   transform: "translateX(100%)",
   animation: "slideIn 3s ease forwards",
   "@keyframes slideIn": {
@@ -52,7 +52,7 @@ const AwardItem = styled.li({
   justifyContent: "center",
   cursor: "cell",
   transition: "background-color 0.3s ease",
-  borderBottom: "1px solid black",
+  borderBottom: "1px solid #A2A3A4",
   "&:last-of-type": {
     borderBottom: "none",
   },

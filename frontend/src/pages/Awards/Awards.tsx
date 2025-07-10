@@ -13,6 +13,9 @@ const Wrapper = styled.section({
   alignItems: "center",
   justifyContent: "flex-start",
   paddingBottom: "4rem",
+  [theme.media.mobileM]: {
+    paddingBottom: "6rem",
+  },
 });
 
 const ListWrapper = styled.ul({
@@ -50,6 +53,13 @@ const AwardItem = styled.li({
   "&:last-of-type": {
     borderBottom: "none",
   },
+  [theme.media.mobileM]: {
+    padding: "0.5rem 1rem",
+    lineHeight: "1rem",
+  },
+  [theme.media.mobileS]: {
+    lineHeight: "0.8rem",
+  },
 });
 
 const AwardTitle = styled.div({
@@ -58,6 +68,14 @@ const AwardTitle = styled.div({
   width: "100%",
   color: "black",
   textAlign: "left",
+  [theme.media.mobileM]: {
+    fontSize: "1.2rem",
+    lineHeight: "1.2rem",
+  },
+  [theme.media.mobileS]: {
+    fontSize: "1rem",
+    lineHeight: "1rem",
+  },
 });
 
 const AwardDistinction = styled.div({
@@ -66,6 +84,12 @@ const AwardDistinction = styled.div({
   opacity: 0.7,
   textAlign: "left",
   marginTop: "0.5rem",
+  [theme.media.mobileM]: {
+    fontSize: "1rem",
+  },
+  [theme.media.mobileS]: {
+    fontSize: "0.8rem",
+  },
 });
 
 const HoverImage = styled.img<{ x: number; y: number }>`

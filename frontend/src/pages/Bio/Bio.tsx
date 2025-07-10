@@ -58,7 +58,7 @@ const BioText = styled.div({
     fontSize: "1.5rem",
   },
   [theme.media.mobileM]: {
-    paddingLeft: "1.2rem",
+    paddingLeft: "1rem",
     fontSize: "1rem",
   },
 });

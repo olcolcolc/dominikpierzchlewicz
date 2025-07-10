@@ -23,6 +23,9 @@ const Footer = styled.div(({ theme }) => ({
   justifyContent: "center",
   textAlign: "center",
   fontFamily: theme.fonts.dmSans,
+  "@media (max-width: 930px)": {
+    height: "28rem",
+  },
 }));
 
 const ContactInfo = styled.address({

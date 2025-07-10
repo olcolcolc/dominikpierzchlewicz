@@ -2,10 +2,11 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Loader } from "./components/Loader/Loader";
 import { Navbar } from "./components/Navbar/Navbar";
-import { Slider } from "./components/Slider/Slider";
+// import { Slider } from "./components/Slider/Slider";
 import Awards from "./pages/Awards/Awards";
 import Bio from "./pages/Bio/Bio";
 import { Contact } from "./pages/Contact/Contact";
+import { SliderStatic } from "./components/Slider/SliderStatic";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,7 @@ function App() {
       <Navbar />
       <div>
         <Loader isVisible={isLoading} />
-        <Slider />
+        <SliderStatic />
         <main>
           <section id="projekty">{/* <Projects /> */}</section>
           <section id="bio">

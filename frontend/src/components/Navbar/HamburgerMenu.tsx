@@ -34,6 +34,10 @@ const ToggleButton = styled.button(({ theme }) => ({
   [theme.media.mobileS]: {
     marginRight: -10,
   },
+  "@media (max-width: 570px)": {
+    marginRight: -13,
+    height: "85%",
+  },
 }));
 
 const Bar = styled.span<{ open: boolean; index: number }>(
@@ -47,6 +51,10 @@ const Bar = styled.span<{ open: boolean; index: number }>(
       [theme.media.tablet]: {
         width: "45px",
         height: "5px",
+      },
+      "@media (max-width: 570px)": {
+        width: "36px",
+        height: "4px",
       },
     };
 

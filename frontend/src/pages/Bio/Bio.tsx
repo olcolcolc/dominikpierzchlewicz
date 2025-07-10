@@ -25,11 +25,12 @@ const TextWrapper = styled.div({
     flexDirection: "column",
     gap: 0,
     marginTop: "1rem",
+    paddingTop: "1rem",
     paddingRight: "2rem",
   },
   [theme.media.mobileM]: {
     paddingRight: "2.5rem",
-    marginTop: "0.3rem",
+    paddingTop: "0rem",
   },
 });
 
@@ -58,7 +59,7 @@ const BioText = styled.div({
     fontSize: "1.5rem",
   },
   [theme.media.mobileM]: {
-    paddingLeft: "1.2rem",
+    paddingLeft: "1rem",
     fontSize: "1rem",
   },
 });

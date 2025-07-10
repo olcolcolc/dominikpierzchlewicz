@@ -64,6 +64,7 @@ export default buildConfig({
         region: process.env.S3_REGION!,
         forcePathStyle: true,
       },
+      clientUploads: true,
       collections: {
         [Media.slug]: { type: 'media' },
       },

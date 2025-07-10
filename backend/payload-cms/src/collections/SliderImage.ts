@@ -13,7 +13,7 @@ const SliderImage: CollectionConfig = {
     {
       name: 'title', // The name of the field in the database and in the admin panel.
       type: 'text', // The data type for this field is plain text.
-      required: true, // This field must always be filled.
+      required: false, // This field must always be filled.
       label: 'Image Title', // The label visible in the admin panel. The client enters the image description here.
     },
     {
@@ -21,7 +21,7 @@ const SliderImage: CollectionConfig = {
       type: 'upload', // This field is used for uploading files.
       relationTo: 'media', // Automatically linked to Payload CMS's built-in 'media' collection, where files are actually stored.
       required: true, // This field must be filled (an image must be uploaded).
-      label: 'Slider Image File', // The label in the admin panel.
+      // label: 'Slider Image File', // The label in the admin panel.
     },
     {
       name: 'order', // The name of the field.

@@ -57,10 +57,11 @@ const StyledMenuTitle = styled.div<{
   },
   "@media (max-width: 570px)": {
     fontSize: "2rem",
-    height: "2.3rem",
+    height: "2rem",
   },
   "@media (max-width: 370px)": {
     fontSize: "1.6rem",
+    height: "1.6rem",
   },
 }));
 

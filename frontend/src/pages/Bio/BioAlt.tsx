@@ -41,8 +41,8 @@ const StyledImage = styled.img({
   },
   [theme.media.mobileS]: {
     float: "none",
-    width: "100%",
     maxWidth: "100%",
+    height: "300px",
     marginRight: 0,
   },
 });

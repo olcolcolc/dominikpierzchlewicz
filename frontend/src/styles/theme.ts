@@ -11,6 +11,7 @@ export const theme = {
     heading: "'Switzer-Bold', sans-serif",
     dmSans: "'DM Sans', sans-serif",
     archia: "'Archia', sans-serif",
+    inter: '"Inter", sans-serif',
   },
   media: {
     mobileS: `@media (max-width: 380px)`,

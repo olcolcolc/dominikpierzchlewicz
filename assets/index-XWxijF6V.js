@@ -161,8 +161,9 @@ Please change the parent <Route path="${T}"> to <Route path="${T==="/"?"*":`${T}
     position: static;
     margin-top: 2rem;
     opacity: 1;
+    width: 100%;
     max-width: 100%;
-    height: 100%;
+    height: auto;
   }
 `,zb=Se.ul`
   width: 100%;

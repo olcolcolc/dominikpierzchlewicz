@@ -1,17 +1,17 @@
-/**
-* @license
-*
-* Font Family: Switzer
-* Designed by: Jérémie Hornus
-* URL: https://www.fontshare.com/fonts/switzer
-* © 2025 Indian Type Foundry
-*/
-
 @font-face {
   font-family: "Archia";
   src: url("../assets/fonts/archia.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/fonts/Inter/Inter-Regular.woff2") format("woff2"),
+    url("/src/assets/fonts/Inter/Inter-Regular.woff") format("woff"),
+    url("/src/assets/fonts/Inter/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {

@@ -2,11 +2,10 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Loader } from "./components/Loader/Loader";
 import { Navbar } from "./components/Navbar/Navbar";
-// import { Slider } from "./components/Slider/Slider";
 import Awards from "./pages/Awards/Awards";
-import Bio from "./pages/Bio/Bio";
 import { Contact } from "./pages/Contact/Contact";
 import { SliderStatic } from "./components/Slider/SliderStatic";
+import BioAlt2 from "./pages/Bio/BioAlt2";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +27,7 @@ function App() {
         <main>
           <section id="projekty">{/* <Projects /> */}</section>
           <section id="bio">
-            <Bio />
+            <BioAlt2 />
           </section>
           <section id="nagrody">
             <Awards />

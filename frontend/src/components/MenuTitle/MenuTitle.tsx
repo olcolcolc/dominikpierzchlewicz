@@ -14,6 +14,7 @@ const StyledMenuTitle = styled.div<{
   top: "-6.5px",
   left: "48%",
   height: "8rem",
+  width: "auto",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

@@ -7,7 +7,7 @@ const SliderWrapper = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
 `;
 
 const Track = styled.div<{ translateX: number; transition: boolean }>`

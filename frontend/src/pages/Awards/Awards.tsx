@@ -48,7 +48,7 @@ const AwardItem = styled.li({
   flexDirection: "column",
   fontFamily: theme.fonts.dmSans,
   width: "100%",
-  lineHeight: "1.5rem",
+  lineHeight: "1.8rem",
   justifyContent: "center",
   cursor: "cell",
   transition: "background-color 0.3s ease",
@@ -58,10 +58,6 @@ const AwardItem = styled.li({
   },
   [theme.media.mobileM]: {
     padding: "0.5rem 1rem",
-    lineHeight: "1rem",
-  },
-  [theme.media.mobileS]: {
-    lineHeight: "0.8rem",
   },
 });
 
@@ -73,11 +69,11 @@ const AwardTitle = styled.div({
   textAlign: "left",
   [theme.media.mobileM]: {
     fontSize: "1.2rem",
-    lineHeight: "1.2rem",
+    lineHeight: "1.4rem",
   },
   [theme.media.mobileS]: {
     fontSize: "1rem",
-    lineHeight: "1rem",
+    lineHeight: "1.2rem",
   },
 });
 
@@ -85,14 +81,22 @@ const AwardDistinction = styled.div({
   fontSize: "1.4rem",
   width: "100%",
   opacity: 0.7,
+  whiteSpace: "pre-line",
   textAlign: "left",
   marginTop: "0.5rem",
+
   [theme.media.mobileM]: {
     fontSize: "1rem",
+    lineHeight: "1.2rem",
   },
   [theme.media.mobileS]: {
     fontSize: "0.8rem",
+    lineHeight: "1rem",
   },
+});
+
+const Collaboration = styled(AwardDistinction)({
+  fontStyle: "italic",
 });
 
 const HoverImage = styled.img<{ x: number; y: number }>`
@@ -106,7 +110,7 @@ const HoverImage = styled.img<{ x: number; y: number }>`
   z-index: 10;
 `;
 
-function Awards() {
+const Awards = () => {
   const [hoveredAward, setHoveredAward] = useState<null | { image: string }>(
     null
   );
@@ -121,27 +125,40 @@ function Awards() {
   return (
     <Wrapper onMouseMove={handleMouseMove}>
       <MenuTitle>Nagrody</MenuTitle>
-      <ListWrapper>
+      <ListWrapper role="list" aria-label="Lista nagród i wyróżnień">
         {awardsData.map((award, index) => (
           <AwardItem
             key={index}
-            onMouseEnter={() => setHoveredAward({ image: award.imageUrl })}
+            role="listitem"
+            aria-label={`${award.title}. ${award.distinction}`}
+            onMouseEnter={() =>
+              award.imageUrl && setHoveredAward({ image: award.imageUrl })
+            }
             onMouseLeave={() => setHoveredAward(null)}
           >
             <AwardTitle>{award.title}</AwardTitle>
             <AwardDistinction>{award.distinction}</AwardDistinction>
+            {award.collaboration && (
+              <Collaboration>Współpraca: {award.collaboration}</Collaboration>
+            )}
           </AwardItem>
         ))}
       </ListWrapper>
+
       {hoveredAward?.image && hasMoved && (
         <HoverImage
           src={hoveredAward.image}
           x={mousePosition.x}
           y={mousePosition.y}
+          alt={
+            awardsData.find((a) => a.imageUrl === hoveredAward.image)?.title ||
+            ""
+          }
+          aria-hidden="true"
         />
       )}
     </Wrapper>
   );
-}
+};
 
 export default Awards;

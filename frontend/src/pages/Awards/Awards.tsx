@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
 import { awardsData } from "../../data/awardsData";
 import { theme } from "../../styles/theme";
+import { useParallax } from "../../hooks/useParallax";
 
 const Wrapper = styled.section({
   position: "relative",
@@ -13,12 +14,13 @@ const Wrapper = styled.section({
   alignItems: "center",
   justifyContent: "flex-start",
   paddingBottom: "4rem",
+
   [theme.media.mobileM]: {
     paddingBottom: "6rem",
   },
 });
 
-const ListWrapper = styled.ul({
+const ListWrapper = styled.ul<{ yOffset: number }>(({ yOffset }) => ({
   display: "flex",
   flexDirection: "column",
   width: "100%",
@@ -27,20 +29,21 @@ const ListWrapper = styled.ul({
   listStyle: "none",
   padding: 0,
   margin: 0,
-  marginTop: "2rem",
+  marginTop: "10rem",
   borderTop: "1px solid #A2A3A4",
   borderBottom: "1px solid #A2A3A4",
-  transform: "translateX(100%)",
+  transform: `translateY(${yOffset * -1}px)`,
+  transition: "transform 0.2s ease-out",
   animation: "slideIn 3s ease forwards",
   "@keyframes slideIn": {
     to: {
-      transform: "translateX(0)",
+      transform: `translateY(${yOffset * -1}px)`,
     },
   },
   [theme.media.mobileM]: {
-    marginTop: "1rem",
+    marginTop: "6.5rem",
   },
-});
+}));
 
 const AwardItem = styled.li({
   display: "flex",
@@ -116,6 +119,7 @@ const Awards = () => {
   );
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hasMoved, setHasMoved] = useState(false);
+  const yOffset = useParallax(0.05);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
@@ -125,7 +129,11 @@ const Awards = () => {
   return (
     <Wrapper onMouseMove={handleMouseMove}>
       <MenuTitle>Nagrody</MenuTitle>
-      <ListWrapper role="list" aria-label="Lista nagród i wyróżnień">
+      <ListWrapper
+        yOffset={yOffset}
+        role="list"
+        aria-label="Lista nagród i wyróżnień"
+      >
         {awardsData.map((award, index) => (
           <AwardItem
             key={index}

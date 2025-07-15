@@ -31,7 +31,7 @@ const StyledImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: bottom;
 `;
 
 const imageModules = import.meta.glob(

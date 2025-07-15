@@ -29,7 +29,7 @@ const ListWrapper = styled.ul<{ yOffset: number }>(({ yOffset }) => ({
   listStyle: "none",
   padding: 0,
   margin: 0,
-  marginTop: "10rem",
+  marginTop: "15rem",
   borderTop: "1px solid #A2A3A4",
   borderBottom: "1px solid #A2A3A4",
   transform: `translateY(${yOffset * -1}px)`,
@@ -40,8 +40,17 @@ const ListWrapper = styled.ul<{ yOffset: number }>(({ yOffset }) => ({
       transform: `translateY(${yOffset * -1}px)`,
     },
   },
+  [theme.media.tablet]: {
+    marginTop: "12rem",
+  },
+  [theme.media.mobileL]: {
+    marginTop: "10rem",
+  },
   [theme.media.mobileM]: {
-    marginTop: "6.5rem",
+    marginTop: "8rem",
+  },
+  [theme.media.mobileM]: {
+    marginTop: "11.5rem",
   },
 }));
 
@@ -60,7 +69,7 @@ const AwardItem = styled.li({
     borderBottom: "none",
   },
   [theme.media.mobileM]: {
-    padding: "0.5rem 1rem",
+    padding: "0.8rem 1rem",
   },
 });
 
@@ -119,7 +128,7 @@ const Awards = () => {
   );
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hasMoved, setHasMoved] = useState(false);
-  const yOffset = useParallax(0.05);
+  const yOffset = useParallax(0.1);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });

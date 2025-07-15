@@ -14,7 +14,7 @@ export const theme = {
     inter: '"Inter", sans-serif',
   },
   media: {
-    mobileS: `@media (max-width: 380px)`,
+    mobileS: `@media (max-width: 440px)`,
     mobileM: `@media (max-width: 580px)`,
     mobileL: `@media (max-width: 780px)`,
     tablet: `@media (max-width: 1300px)`,

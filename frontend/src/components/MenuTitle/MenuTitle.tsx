@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 // Invisible marker element to track when the title becomes sticky
 const Marker = styled.div`
   height: 1px;
+  margin-bottom: 2rem;
 `;
 
 const StyledMenuTitle = styled.div<{
@@ -25,7 +26,7 @@ const StyledMenuTitle = styled.div<{
   whiteSpace: "nowrap",
   textTransform: "uppercase",
   fontStyle: "italic",
-  zIndex: 1,
+  zIndex: 10,
   background: "transparent",
   ...theme.animations.load,
   mixBlendMode: isSticky ? "difference" : "normal", // Apply mix-blend-mode when sticky

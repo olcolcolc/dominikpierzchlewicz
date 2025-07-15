@@ -5,7 +5,8 @@ import { Navbar } from "./components/Navbar/Navbar";
 import Awards from "./pages/Awards/Awards";
 import { Contact } from "./pages/Contact/Contact";
 import { SliderStatic } from "./components/Slider/SliderStatic";
-import BioAlt2 from "./pages/Bio/BioAlt2";
+import BioAlt2 from "./pages/Bio/Bio";
+import Projects from "./pages/Projects/Projects";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,10 +26,13 @@ function App() {
         <Loader isVisible={isLoading} />
         <SliderStatic />
         <main>
-          <section id="projekty">{/* <Projects /> */}</section>
           <section id="bio">
             <BioAlt2 />
           </section>
+          <section id="projekty">
+            <Projects />
+          </section>
+
           <section id="nagrody">
             <Awards />
           </section>

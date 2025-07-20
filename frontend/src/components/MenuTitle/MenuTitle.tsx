@@ -1,19 +1,10 @@
-import { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import type { ReactNode } from "react";
 
-// Invisible marker element to track when the title becomes sticky
-const Marker = styled.div`
-  height: 1px;
-  margin-bottom: 2rem;
-`;
-
-const StyledMenuTitle = styled.div<{
-  isSticky: boolean;
-}>(({ theme, isSticky }) => ({
-  position: "sticky",
-  top: "-6.5px",
-  left: "48%",
+const StyledMenuTitle = styled.div(({ theme }) => ({
+  fontColor: "grey",
+  position: "relative",
+  left: "20%",
   height: "8rem",
   width: "auto",
   display: "flex",
@@ -22,14 +13,12 @@ const StyledMenuTitle = styled.div<{
   fontFamily: theme.fonts.base,
   fontSize: "8rem",
   fontWeight: "bold",
-  color: isSticky ? theme.colors.textLight : theme.colors.text,
+  color: theme.colors.text,
   whiteSpace: "nowrap",
   textTransform: "uppercase",
-  fontStyle: "italic",
   zIndex: 10,
   background: "transparent",
   ...theme.animations.load,
-  mixBlendMode: isSticky ? "difference" : "normal", // Apply mix-blend-mode when sticky
   [theme.media.tablet]: {
     fontSize: "6rem",
     height: "6rem",
@@ -71,37 +60,5 @@ type MenuTitleProps = {
 };
 
 export const MenuTitle = ({ children }: MenuTitleProps) => {
-  const markerRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const currentMarker = markerRef.current;
-
-    if (!currentMarker) return;
-
-    // Create an IntersectionObserver to track the marker visibility
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsSticky(!entry.isIntersecting); // If the marker is not visible, the title is sticky
-      },
-      {
-        root: null,
-        threshold: 0,
-      }
-    );
-
-    observer.observe(currentMarker);
-
-    return () => {
-      observer.disconnect(); // Clean up the observer on unmount
-    };
-  }, []);
-
-  return (
-    <>
-      {/* Marker positioned just before the title to track its sticky state */}
-      <Marker ref={markerRef} />
-      <StyledMenuTitle isSticky={isSticky}>{children}</StyledMenuTitle>
-    </>
-  );
+  return <StyledMenuTitle>{children}</StyledMenuTitle>;
 };

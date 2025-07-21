@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
 import { theme } from "../../styles/theme";
+import { useParallax } from "../../hooks/useParallax";
 
 const Wrapper = styled.div({
   position: "relative",
@@ -68,7 +68,7 @@ const Text = styled.div<{ yOffset: number }>(({ yOffset }) => ({
   },
   [theme.media.mobileL]: {
     fontSize: "1.5rem",
-    marginTop: "2rem",
+    marginTop: "4rem",
   },
   [theme.media.mobileM]: {
     fontSize: "1.2rem",
@@ -80,7 +80,6 @@ const Text = styled.div<{ yOffset: number }>(({ yOffset }) => ({
 
 const ImageTop = styled.img({
   position: "absolute",
-  top: "-3rem",
   left: "0rem",
   maxWidth: "40%",
   objectPosition: "center",
@@ -137,22 +136,8 @@ const StyledLinkItem = styled.a({
   },
 });
 
-function useScrollParallax(intensity: number = 0.2) {
-  const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.scrollY * intensity);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [intensity]);
-
-  return offset;
-}
-
 export default function Bio() {
-  const yOffset = useScrollParallax(0.05);
-
+  const yOffset = useParallax(0.05);
   return (
     <Wrapper>
       <MenuTitle>Bio</MenuTitle>

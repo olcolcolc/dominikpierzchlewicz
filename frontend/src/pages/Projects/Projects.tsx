@@ -22,16 +22,16 @@ const ListWrapper = styled.div({
   maxWidth: "1300px",
   marginTop: "19rem",
   [theme.media.tablet]: {
-    marginTop: "12rem",
+    marginTop: "13rem",
   },
   [theme.media.mobileL]: {
-    marginTop: "10rem",
+    marginTop: "11rem",
   },
   [theme.media.mobileM]: {
-    marginTop: "9rem",
+    marginTop: "10rem",
   },
   [theme.media.mobileS]: {
-    marginTop: "11rem",
+    marginTop: "12rem",
   },
 });
 

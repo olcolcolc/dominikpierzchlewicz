@@ -6,25 +6,23 @@ const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
   border: "none",
   cursor: "pointer",
-  width: "60px",
-  padding: "0 !important",
-  height: "100%",
-  marginTop: "10px",
+  width: "50px",
+  height: "90%",
   position: "relative",
   display: "flex",
   justifyContent: "center",
   transition: "transform 0.3s ease, color 0.3s ease",
   zIndex: 100000,
+  paddingRight: 0,
   outline: "none",
 
   "&:hover": {
-    "& span": {
-      backgroundColor: theme.colors.hover,
-    },
+    transform: "scaleX(1.1)",
   },
 
   "&:focus-visible": {
     outline: "2px solid currentColor",
+    paddingRight: 0,
   },
 
   [theme.media.tablet]: {
@@ -46,8 +44,8 @@ const Bar = styled.span<{ open: boolean; index: number }>(
   ({ open, index, theme }) => {
     const base = {
       position: "absolute" as const,
-      height: "6px !important",
-      width: "100%",
+      width: "60px",
+      height: "6px",
       backgroundColor: "black",
       transition: "all 0.3s ease",
       [theme.media.tablet]: {
@@ -63,7 +61,7 @@ const Bar = styled.span<{ open: boolean; index: number }>(
     if (index === 0) {
       return {
         ...base,
-        top: open ? "48%" : "6px",
+        top: open ? "50%" : "6px",
         transform: open ? "rotate(45deg)" : "rotate(0)",
       };
     }
@@ -101,7 +99,7 @@ export const HamburgerMenu = () => {
 
       <NavbarLinksWrapper
         isOpen={open}
-        links={["bio", "projekty", "nagrody", "kontakt"]}
+        links={["projekty", "bio", "nagrody", "kontakt"]}
         onLinkClick={handleClose}
       />
     </>

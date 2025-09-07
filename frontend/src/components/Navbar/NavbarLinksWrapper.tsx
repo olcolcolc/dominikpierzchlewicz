@@ -9,6 +9,7 @@ const Wrapper = styled.ul<{ isOpen: boolean }>(({ theme, isOpen }) => ({
   padding: 0,
   width: "100vw",
   height: "100vh",
+  fontFamily: `${theme.fonts.base}`,
   backgroundColor: `${theme.colors.background}`,
   display: "flex",
   flexDirection: "column",
@@ -35,13 +36,8 @@ export const NavbarLinksWrapper = ({
 }: NavbarAltLinksWrapperProps) => {
   return (
     <Wrapper isOpen={isOpen}>
-      {links.map((link, index) => (
-        <NavbarLink
-          key={link}
-          to={link}
-          onClick={onLinkClick}
-          index={index + 1}
-        >
+      {links.map((link) => (
+        <NavbarLink key={link} to={link} onClick={onLinkClick}>
           {link}
         </NavbarLink>
       ))}

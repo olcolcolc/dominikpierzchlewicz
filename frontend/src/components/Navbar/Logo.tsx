@@ -6,8 +6,7 @@ import React from "react";
 const LogoLink = styled(Link)(({ theme }) => ({
   fontSize: "4rem",
   height: "100%",
-  fontWeight: "bold",
-  fontFamily: theme.fonts.base,
+  fontFamily: theme.fonts.inter,
   color: "black",
   zIndex: 2,
   textDecoration: "none",
@@ -31,14 +30,23 @@ const LogoLink = styled(Link)(({ theme }) => ({
   },
 }));
 
+const LastName = styled.span({
+  fontStyle: "italic",
+  fontWeight: "bold",
+});
+
 type LogoProps = {
-  children: ReactNode;
+  firstName: string;
+  lastName: string;
+  children?: ReactNode;
 } & LinkProps;
 
 export const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
-  ({ children, ...props }, ref) => {
+  ({ firstName, lastName, children, ...props }, ref) => {
     return (
       <LogoLink {...props} ref={ref}>
+        {firstName}
+        <LastName>{lastName}</LastName>
         {children}
       </LogoLink>
     );

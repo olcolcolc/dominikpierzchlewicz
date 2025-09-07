@@ -6,37 +6,41 @@ const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
   border: "none",
   cursor: "pointer",
-  width: "50px",
-  height: "90%",
+  width: "60px",
+  padding: "0 !important",
+  height: "60px",
   position: "relative",
   display: "flex",
   justifyContent: "center",
   transition: "transform 0.3s ease, color 0.3s ease",
   zIndex: 100000,
-  paddingRight: 0,
   outline: "none",
 
   "&:hover": {
-    transform: "scaleX(1.1)",
+    "& span": {
+      backgroundColor: theme.colors.hover,
+    },
   },
 
   "&:focus-visible": {
     outline: "2px solid currentColor",
-    paddingRight: 0,
   },
 
   [theme.media.tablet]: {
-    marginRight: -5,
+    width: "45px",
+    height: "50px",
   },
   [theme.media.mobileL]: {
-    marginRight: -8,
+    marginTop: "6px",
+    height: "45px",
+  },
+  [theme.media.mobileM]: {
+    width: "36px",
+    height: "38px",
+    marginTop: "0px",
   },
   [theme.media.mobileS]: {
-    marginRight: -10,
-  },
-  "@media (max-width: 570px)": {
-    marginRight: -13,
-    height: "85%",
+    marginTop: "-5px",
   },
 }));
 
@@ -44,24 +48,25 @@ const Bar = styled.span<{ open: boolean; index: number }>(
   ({ open, index, theme }) => {
     const base = {
       position: "absolute" as const,
-      width: "60px",
-      height: "6px",
+      height: "8px !important",
+      width: "100%",
       backgroundColor: "black",
       transition: "all 0.3s ease",
       [theme.media.tablet]: {
-        width: "45px",
-        height: "5px",
+        height: "6px !important",
       },
-      "@media (max-width: 570px)": {
-        width: "36px",
-        height: "4px",
+      [theme.media.mobileL]: {
+        height: "5.5px !important",
+      },
+      [theme.media.mobileM]: {
+        height: "4.7px !important",
       },
     };
 
     if (index === 0) {
       return {
         ...base,
-        top: open ? "50%" : "6px",
+        top: open ? "46%" : "6px",
         transform: open ? "rotate(45deg)" : "rotate(0)",
       };
     }
@@ -99,7 +104,7 @@ export const HamburgerMenu = () => {
 
       <NavbarLinksWrapper
         isOpen={open}
-        links={["projekty", "bio", "nagrody", "kontakt"]}
+        links={["bio", "projekty", "nagrody", "kontakt"]}
         onLinkClick={handleClose}
       />
     </>

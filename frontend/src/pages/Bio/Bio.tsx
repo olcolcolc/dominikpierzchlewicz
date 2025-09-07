@@ -1,126 +1,190 @@
 import styled from "@emotion/styled";
 import { MenuTitle } from "../../components/MenuTitle/MenuTitle";
 import { theme } from "../../styles/theme";
-import { useParallax } from "../../hooks/useParallax";
+
+const textDownWidth = "450px";
 
 const Wrapper = styled.div({
   position: "relative",
   width: "100%",
-  backgroundColor: "white",
-  padding: "8rem 2rem",
+  padding: "8rem 3rem 0 3rem",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  marginBottom: "8rem",
 
   [theme.media.tablet]: {
     padding: "2rem 2rem",
     marginBottom: "0rem",
   },
-  [theme.media.mobileL]: {
-    marginBottom: "8rem",
-  },
   [theme.media.mobileM]: {
-    marginBottom: "0rem",
-  },
-  [theme.media.mobileS]: {
-    padding: "4rem 2rem",
+    padding: "1.5rem 1rem",
   },
 });
 
-const BioRow = styled.div({
-  position: "relative",
+const BioTextRow = styled.div({
   display: "flex",
-  alignItems: "flex-start",
-  maxWidth: "1300px",
+  gap: "1rem",
+  alignItems: "flex-end",
   width: "100%",
-  margin: "6rem 0",
-  justifyContent: "flex-start",
-  [theme.media.tablet]: {
-    margin: "5rem 0",
-  },
+  justifyContent: "flex-end",
   [theme.media.mobileL]: {
     flexDirection: "column",
-    marginBottom: "0rem",
-  },
-
-  [theme.media.mobileS]: {
-    marginTop: "2rem",
   },
 });
 
-const Text = styled.div<{ yOffset: number }>(({ yOffset }) => ({
-  zIndex: 2,
-  width: "65%",
-  marginLeft: "auto",
-  marginRight: "1rem",
-  fontFamily: theme.fonts.dmSans,
-  fontSize: "2.7rem",
-  lineHeight: 1.2,
-  opacity: 0,
-  animation: "fadeIn 1s ease forwards 0.3s",
-  marginTop: "6rem",
-  transform: `translateY(${yOffset * -1}px)`,
-  transition: "transform 0.2s ease-out",
+const BioImgRow = styled.div({
+  paddingTop: "2rem",
+  display: "flex",
+  alignItems: "flex-start",
+  width: "100%",
+  justifyContent: "flex-end",
+});
 
+const TextUpper = styled.div({
+  position: "relative",
+  top: "-8.5rem",
+  width: "390px",
+  fontFamily: theme.fonts.dmSans,
+  textAlign: "justify",
+  fontSize: "1.3rem",
+  lineHeight: 1.2,
+  animation: "fadeIn 1s ease forwards 0.3s",
+  transition: "transform 0.2s ease-out",
+  "@media (max-width: 1300px)": {
+    paddingTop: "10rem",
+  },
   [theme.media.tablet]: {
-    fontSize: "1.9rem",
+    width: "270px",
   },
   [theme.media.mobileL]: {
-    fontSize: "1.5rem",
-    marginTop: "4rem",
+    width: "100%",
+    top: "0rem",
+    paddingTop: "1.5rem",
   },
   [theme.media.mobileM]: {
+    width: "100%",
+    top: "0rem",
+    fontSize: "1rem",
+  },
+});
+
+const TextDown = styled.div({
+  position: "relative",
+  top: "-1rem",
+  width: textDownWidth,
+  fontFamily: theme.fonts.dmSans,
+  textAlign: "justify",
+  flexDirection: "column",
+  fontSize: "1.8rem",
+  animation: "fadeIn 1s ease forwards 0.3s",
+  transition: "transform 0.2s ease-out",
+  "@media (max-width: 1300px)": {
+    top: "-16rem",
+  },
+  [theme.media.tablet]: {
+    top: "-20rem",
+    width: "400px",
+    fontSize: "1.5rem",
+  },
+  [theme.media.mobileL]: {
+    width: "100%",
+    top: "0rem",
+    fontSize: "1.3rem",
+  },
+  [theme.media.mobileM]: {
+    width: "100%",
+    top: "0rem",
     fontSize: "1.2rem",
   },
-  [theme.media.mobileS]: {
-    width: "100%",
-  },
-}));
+});
 
-const ImageTop = styled.img({
-  position: "absolute",
-  left: "0rem",
-  maxWidth: "40%",
+const ImageWork = styled.img({
+  opacity: 0.9,
+  width: "320px",
+  overflow: "hidden",
+  zIndex: 1,
+  filter: "saturate(60%)",
+
+  "@media (max-width: 1300px)": {
+    display: "none",
+  },
+});
+
+const ImagePortrait = styled.img({
+  width: "300px",
+  paddingTop: "10rem",
   objectPosition: "center",
-  opacity: 0.8,
+  opacity: 0.9,
+  overflow: "hidden",
+  zIndex: 1,
+  filter: "saturate(60%)",
+
+  "@media (max-width: 1300px)": {
+    paddingTop: "9rem",
+  },
+  [theme.media.tablet]: {
+    width: "260px",
+    paddingTop: "5rem",
+  },
+  [theme.media.mobileL]: {
+    display: "none",
+  },
+});
+
+const ImageHorizontal = styled.img({
+  width: "565px",
+  opacity: 0.9,
+  filter: "saturate(60%)",
   overflow: "hidden",
   zIndex: 1,
 
-  [theme.media.mobileS]: {
-    position: "static",
-    opacity: 1,
+  [theme.media.tablet]: {
+    width: "460px",
+  },
+  [theme.media.mobileL]: {
+    height: "300px",
     width: "100%",
-    maxWidth: "100%",
-    height: "auto",
+    objectFit: "cover",
+    objectPosition: "bottom",
+  },
+  [theme.media.mobileM]: {
+    height: "250px",
+  },
+  [theme.media.mobileS]: {
+    height: "200px",
   },
 });
 
 const StyledLinksWrapper = styled.nav({
-  width: "100%",
-  fontSize: "1.4rem",
-  maxWidth: "1200px",
-  paddingTop: "3rem",
+  width: textDownWidth,
+  letterSpacing: "0.2em",
+  fontSize: "1rem",
+  paddingTop: "2rem",
+  textTransform: "uppercase",
   display: "flex",
-  textAlign: "center",
-  justifyContent: "center",
+  textAlign: "flex-end",
+  justifyContent: "flex-end",
   flexDirection: "row",
-  gap: "2rem",
-  flexWrap: "wrap",
-
-  [theme.media.tablet]: {
-    fontSize: "1.2rem",
+  gap: "1.3rem",
+  "@media (max-width: 1300px)": {
+    position: "relative",
+    top: "-7rem",
   },
+
   [theme.media.mobileL]: {
-    fontSize: "1rem",
-    gap: "0.5rem",
+    top: "-0",
+    fontSize: "0.9rem",
+    letterSpacing: "0em",
   },
   [theme.media.mobileM]: {
     paddingTop: "2rem",
     fontSize: "0.8rem",
+    gap: "1rem",
   },
   [theme.media.mobileS]: {
-    width: "100%",
+    paddingTop: "1.5rem",
+    gap: "0.5rem",
+    fontSize: "0.8rem",
   },
 });
 
@@ -128,7 +192,6 @@ const StyledLinkItem = styled.a({
   color: "black",
   textDecoration: "none",
   fontFamily: theme.fonts.inter,
-  position: "relative",
   transition: "color 0.3s ease",
 
   "&:hover": {
@@ -137,56 +200,78 @@ const StyledLinkItem = styled.a({
 });
 
 export default function Bio() {
-  const yOffset = useParallax(0.05);
   return (
     <Wrapper>
-      <MenuTitle>Bio</MenuTitle>
-
-      <BioRow>
-        <Text yOffset={yOffset}>
-          Architekt i doktorant Szkoły Doktorskiej Politechniki Wrocławskiej.
-          Doświadczenie zawodowe zdobywał w renomowanych biurach
-          architektonicznych w Polsce, Szwajcarii i Holandii. Założyciel
-          pracowni projektowej Obieg. Jego zainteresowania naukowe i projektowe
-          koncentrują się wokół zrównoważonego rozwoju oraz gospodarki
-          cyrkularnej w architekturze.
-          <StyledLinksWrapper aria-label="Linki do publikacji">
-            <StyledLinkItem
-              href="https://www.vogue.pl/a/konkurs-projekt-lazienki-dla-wspolnego-dobra"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Artykuł w Vogue"
-              aria-label="Artykuł w Vogue – otwiera się w nowej karcie"
-            >
-              VOGUE
-            </StyledLinkItem>
-            |
-            <StyledLinkItem
-              href="https://afasiaarchzine.com/2025/04/house-staniszow-piotr-brzoza-xm-architekten-karol-lacki-dominik-pierzchlewicz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Publikacja w Afasia"
-              aria-label="Afasia – otwiera się w nowej karcie"
-            >
-              afasia
-            </StyledLinkItem>
-            |
-            <StyledLinkItem
-              href="https://www.propertydesign.pl/wywiady/109/zwyciezcy_konkursu_kolo_zatriumfowala_prostota_i_subtelny_dialog_z_historia,40142.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Wywiad w PropertyDesign"
-              aria-label="PropertyDesign – otwiera się w nowej karcie"
-            >
-              propertydesign
-            </StyledLinkItem>
-          </StyledLinksWrapper>
-        </Text>
-        <ImageTop
+      <MenuTitle>01 / bio</MenuTitle>
+      <BioImgRow>
+        <ImagePortrait
+          src="/dominikpierzchlewicz/images/kotek2.png"
+          alt="Portret architekta"
+        />
+        <ImageHorizontal
+          src="/dominikpierzchlewicz/images/IMG_9099.jpg"
+          alt="Portret architekta"
+        />
+        <ImageWork
           src="/dominikpierzchlewicz/images/kotek.jpg"
           alt="Portret architekta"
         />
-      </BioRow>
+      </BioImgRow>
+      <BioTextRow>
+        <TextUpper>
+          Architekt i doktorant Szkoły Doktorskiej Politechniki Wrocławskiej.
+          Doświadczenie zawodowe zdobywał w renomowanych biurach
+          architektonicznych w Polsce, Szwajcarii i Holandii. Założyciel
+          pracowni projektowej Obieg.
+        </TextUpper>
+        <TextDown>
+          Jego zainteresowania naukowe i projektowe koncentrują się wokół
+          zrównoważonego rozwoju oraz gospodarki cyrkularnej w architekturze.
+        </TextDown>
+      </BioTextRow>
+      <BioTextRow>
+        <StyledLinksWrapper aria-label="Linki do publikacji">
+          <StyledLinkItem
+            href="https://www.mdpi.com/2071-1050/17/17/7580"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Praca naukowa"
+            aria-label="mdpi – otwiera się w nowej karcie"
+          >
+            mdpi
+          </StyledLinkItem>
+          /
+          <StyledLinkItem
+            href="https://www.vogue.pl/a/konkurs-projekt-lazienki-dla-wspolnego-dobra"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Artykuł w Vogue"
+            aria-label="Artykuł w Vogue – otwiera się w nowej karcie"
+          >
+            VOGUE
+          </StyledLinkItem>
+          /
+          <StyledLinkItem
+            href="https://afasiaarchzine.com/2025/04/house-staniszow-piotr-brzoza-xm-architekten-karol-lacki-dominik-pierzchlewicz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Publikacja w Afasia"
+            aria-label="Afasia – otwiera się w nowej karcie"
+          >
+            afasia
+          </StyledLinkItem>
+          /
+          <StyledLinkItem
+            href="https://www.propertydesign.pl/wywiady/109/zwyciezcy_konkursu_kolo_zatriumfowala_prostota_i_subtelny_dialog_z_historia,40142.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Wywiad w PropertyDesign"
+            aria-label="PropertyDesign – otwiera się w nowej karcie"
+          >
+            propertydesign
+          </StyledLinkItem>
+        </StyledLinksWrapper>
+      </BioTextRow>
     </Wrapper>
   );
 }

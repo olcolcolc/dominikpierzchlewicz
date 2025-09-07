@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
+import { sections } from "../../data/sections";
 
 const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
@@ -104,7 +105,7 @@ export const HamburgerMenu = () => {
 
       <NavbarLinksWrapper
         isOpen={open}
-        links={["bio", "projekty", "nagrody", "kontakt"]}
+        links={sections}
         onLinkClick={handleClose}
       />
     </>

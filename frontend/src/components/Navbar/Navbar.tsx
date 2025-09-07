@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Logo } from "./Logo";
 import { HamburgerMenu } from "./HamburgerMenu";
-import { useEffect, useRef } from "react";
 
 const Wrapper = styled.nav(({ theme }) => ({
   position: "fixed",
@@ -26,27 +25,7 @@ const Wrapper = styled.nav(({ theme }) => ({
   },
 }));
 
-type NavbarProps = {
-  onLogoWidthMeasured: (width: number) => void;
-};
-
-export const Navbar = ({ onLogoWidthMeasured }: NavbarProps) => {
-  const logoRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    const updateLogoWidth = () => {
-      if (logoRef.current) {
-        onLogoWidthMeasured(logoRef.current.offsetWidth);
-      }
-    };
-
-    updateLogoWidth();
-
-    window.addEventListener("resize", updateLogoWidth);
-
-    return () => window.removeEventListener("resize", updateLogoWidth);
-  }, [onLogoWidthMeasured]);
-
+export const Navbar = () => {
   return (
     <Wrapper>
       <Logo to="/" firstName="Dominik" lastName="Pierzchlewicz" />

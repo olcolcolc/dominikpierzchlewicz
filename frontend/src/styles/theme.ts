@@ -17,7 +17,7 @@ export const theme = {
     mobileS: `@media (max-width: 440px)`,
     mobileM: `@media (max-width: 580px)`,
     mobileL: `@media (max-width: 780px)`,
-    tablet: `@media (max-width: 1300px)`,
+    tablet: `@media (max-width: 1000px)`,
   },
   animations: {
     hoverLift: {

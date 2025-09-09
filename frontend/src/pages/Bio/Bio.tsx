@@ -162,7 +162,6 @@ const StyledLinksWrapper = styled.nav({
   paddingTop: "2rem",
   textTransform: "uppercase",
   display: "flex",
-  textAlign: "flex-end",
   justifyContent: "flex-end",
   flexDirection: "row",
   gap: "1.3rem",

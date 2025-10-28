@@ -6,20 +6,23 @@ const StyledLink = styled(Link)(({ theme }) => ({
   fontSize: "5rem",
   display: "inline-flex",
   alignItems: "flex-end",
+  gridTemplateColumns: "3.5ch 1fr",
+  columnGap: "0.75rem",
   textDecoration: "none",
   color: "black",
+  gap: "0.75rem",
   minHeight: "44px",
   width: "100%",
   fontFamily: theme.fonts.dmSans,
   cursor: "pointer",
   position: "relative",
-  transition: "color 0.3s ease, font-family 0.3s ease, outline-color 0.2s ease",
+  transition: "color 0.3s ease, font-family 0.8s ease, outline-color 0.2s ease",
   "&:focus-visible": {
     outline: "none",
   },
   "&:hover [data-title], &:focus-visible [data-title]": {
     fontFamily: theme.fonts.pixel,
-    transition: "opacity 0.3s ease",
+    transition: "opacity 0.8s ease",
   },
   "&:hover [data-title]::after, &:focus-visible [data-title]::after": {
     content: '"?"',
@@ -31,18 +34,17 @@ const StyledLink = styled(Link)(({ theme }) => ({
 const NumberSpan = styled.span(({ theme }) => ({
   fontWeight: 600,
   fontSize: "1rem",
-  paddingBottom: "0.8rem",
-  paddingRight: "1rem",
+  minWidth: "3rem",
+  paddingBottom: "0.9rem",
   [theme.media.mobileL]: { paddingBottom: "0.5rem" },
 }));
 
 const Title = styled.span(({ theme }) => ({
   letterSpacing: "-0.05em",
   lineHeight: "5.5rem",
-  transition: "font-family 0.8s ease, opacity 0.8s ease",
+  transition: "font-family 1s ease, opacity 0.8s ease",
   "&:hover, &:focus-visible": {
     fontFamily: theme.fonts.pixel,
-    transition: "opacity 0.3s ease",
   },
   "&::after": {
     content: '""',

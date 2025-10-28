@@ -134,7 +134,6 @@ export const HamburgerMenu = () => {
           <Bar key={i} index={i} open={open} aria-hidden="true" />
         ))}
       </ToggleButton>
-
       <NavbarLinksWrapper
         isOpen={open}
         links={sections}

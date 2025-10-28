@@ -1,1 +1,1 @@
-export const sections = ["bio", "projekty", "nagrody", "kontakt"];
+export const sections = ["bio", "projekty", "wzmianki", "kontakt"];

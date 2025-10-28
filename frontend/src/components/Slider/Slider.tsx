@@ -9,7 +9,6 @@ const SliderWrapper = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
-  margin-bottom: 10rem;
 `;
 
 const Track = styled.div<{ translateX: number; transition: boolean }>`
@@ -103,7 +102,7 @@ export const Slider = () => {
   }, [index, images]);
 
   return (
-    <SliderWrapper>
+    <SliderWrapper id="hero-slider">
       <Track translateX={-index * 100} transition={transition}>
         {loopedImages.map((img) => (
           <Slide key={img._uniqueKey} aria-label={img.image.alt}>

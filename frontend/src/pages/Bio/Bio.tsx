@@ -5,7 +5,7 @@ import { theme } from "../../styles/theme";
 const Wrapper = styled.div({
   position: "relative",
   width: "100%",
-  padding: "8rem 3rem 0 3rem",
+  paddingTop: "8rem",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -22,7 +22,13 @@ const Wrapper = styled.div({
   },
 });
 
+const MenuTitleWrapper = styled.div({
+  padding: "0rem 2rem 0rem 2rem",
+  width: "100%",
+});
+
 const ImageFrame = styled.div({
+  zIndex: -10,
   position: "relative",
   width: "100%",
   overflow: "hidden",
@@ -71,7 +77,8 @@ const ImageHorizontal = styled.img({
   filter:
     "saturate(1.1) contrast(0.95) brightness(1.02) invert(10%) sepia(10%)",
   display: "block",
-  zIndex: 1,
+  opacity: "0.8",
+  zIndex: -10,
   [theme.media.mobileL]: {
     height: "380px",
     objectPosition: "center",
@@ -87,7 +94,7 @@ const ImageHorizontal = styled.img({
 const OverlayText = styled.div({
   position: "absolute",
   bottom: "5rem",
-  left: "1rem",
+  left: "2rem",
   width: "100%",
   color: "black",
   textAlign: "justify",
@@ -116,7 +123,6 @@ const OverlayUpper = styled.p({
   marginBottom: "1rem",
   width: "470px",
   textAlign: "justify",
-  fontFamily: "Georgia, serif",
   filter: "contrast(0.95) brightness(1.05)",
 
   [theme.media.tablet]: {
@@ -179,14 +185,16 @@ const StyledLinkItem = styled.a({
   filter: "contrast(0.95) brightness(1.05)",
   transition: "color 0.3s ease",
   "&:hover": {
-    color: "grey",
+    color: theme.colors.hover,
   },
 });
 
 export default function Bio() {
   return (
     <Wrapper>
-      <MenuTitle>01 / bio</MenuTitle>
+      <MenuTitleWrapper>
+        <MenuTitle>01 / bio</MenuTitle>
+      </MenuTitleWrapper>
 
       <ImageFrame>
         <ImageHorizontal

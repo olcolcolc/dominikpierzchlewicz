@@ -1,17 +1,21 @@
 export const theme = {
   colors: {
     hover: "#00ff00",
+    // hover: "#57DB0A",
     background: "#f5f5f5",
     text: "#333",
     textLight: "#656565",
   },
   spacing: (factor: number) => `${factor * 8}px`,
+  shadow: "1px 1px 2px rgba(0, 0, 0, 0.25)",
   fonts: {
     base: "'Switzer-Variable', 'Switzer-Regular', sans-serif",
     heading: "'Switzer-Bold', sans-serif",
+    pixel: '"Invasion2000", system-ui, sans-serif',
     dmSans: "'DM Sans', sans-serif",
     archia: "'Archia', sans-serif",
     inter: '"Inter", sans-serif',
+    garamond: "'EB Garamond', Garamond, serif",
   },
   media: {
     mobileS: `@media (max-width: 440px)`,

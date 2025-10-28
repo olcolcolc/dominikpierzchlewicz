@@ -5,9 +5,11 @@ import { HamburgerMenu } from "./HamburgerMenu";
 const Wrapper = styled.nav(({ theme }) => ({
   position: "fixed",
   height: "5rem",
-  padding: "0rem 1rem 0 1rem",
+  // maxWidth: "1600px",
+  padding: "4rem 3rem",
   zIndex: 1002,
   width: "100%",
+  // border: "black solid",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",

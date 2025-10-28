@@ -38,7 +38,7 @@ const ListWrapper = styled.div({
 const Projects = () => {
   return (
     <Wrapper>
-      <MenuTitle>Projekty</MenuTitle>
+      <MenuTitle>02 / projekty</MenuTitle>
       <ListWrapper>
         <ListDisplay data={projectsData} />
       </ListWrapper>

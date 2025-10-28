@@ -13,7 +13,16 @@
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: "EB Garamond";
+  src: url("/src/assets/fonts/Garamond/EBGaramond-Regular.woff2")
+      format("woff2"),
+    url("/src/assets/fonts/Garamond/EBGaramond-Regular.woff") format("woff"),
+    url("/src/assets/fonts/Garamond/EBGaramond-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
 @font-face {
   font-family: "Switzer-Thin";
   src: url("/src/assets/fonts/Switzer/Switzer-Thin.woff2") format("woff2"),
@@ -205,4 +214,20 @@
   font-weight: 100 900;
   font-display: swap;
   font-style: italic;
+}
+@font-face {
+  font-family: "EASVHS";
+  src: url("../assets/fonts/easvhs/easvhs.woff2") format("woff2"),
+    url("../assets/fonts/easvhs/easvhs.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Invasion2000";
+  src: url("../assets/fonts/Invasion2000/INVASION2000.woff2") format("woff2"),
+    url("../assets/fonts/Invasion2000/INVASION2000.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }

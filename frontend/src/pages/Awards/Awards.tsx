@@ -6,17 +6,14 @@ import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
 
 const Wrapper = styled.div({
-  position: "relative",
   width: "100%",
-  minHeight: "100vh",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  height: "100rem",
+  padding: "4rem 2rem",
   justifyContent: "flex-start",
-  marginTop: "-6rem",
   [theme.media.tablet]: {
-    marginTop: "-6rem",
+    padding: "0",
   },
 });
 
@@ -39,9 +36,9 @@ const ListWrapper = styled.div({
 const Awards = () => {
   return (
     <Wrapper>
-      <MenuTitle>Nagrody</MenuTitle>
+      <MenuTitle>03 / nagrody</MenuTitle>
       <ListWrapper>
-        <ListDisplay data={awardsData} />;
+        <ListDisplay data={awardsData} />
       </ListWrapper>
     </Wrapper>
   );

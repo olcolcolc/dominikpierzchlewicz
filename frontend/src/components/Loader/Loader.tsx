@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import loaderImage from "../../assets/loader/loader.png";
-
 const LoaderWrapper = styled.div<{ isVisible: boolean }>(
   ({ theme, isVisible }) => ({
     position: "fixed",
@@ -16,15 +14,18 @@ const LoaderWrapper = styled.div<{ isVisible: boolean }>(
   })
 );
 
-const SpinnerImg = styled.img({
-  width: "80px",
-  height: "80px",
+const Spinner = styled.div(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontFamily: theme.fonts.pixel,
+  fontSize: "5rem",
   animation: "spin 1.2s linear infinite reverse",
   "@keyframes spin": {
-    "0%": { transform: "rotate(0deg)" },
-    "100%": { transform: "rotate(360deg)" },
+    "0%": { transform: "rotate(360deg)" },
+    "100%": { transform: "rotate(0deg)" },
   },
-});
+}));
 
 type LoaderProps = {
   isVisible: boolean;
@@ -33,7 +34,7 @@ type LoaderProps = {
 export const Loader = ({ isVisible }: LoaderProps) => {
   return (
     <LoaderWrapper isVisible={isVisible}>
-      <SpinnerImg src={loaderImage} alt="Loading..." />
+      <Spinner aria-label="Loading...">?</Spinner>
     </LoaderWrapper>
   );
 };

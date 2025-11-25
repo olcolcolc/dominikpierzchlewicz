@@ -61,6 +61,7 @@ const ItemTitle = styled.div({
   width: "100%",
   color: "black",
   textAlign: "left",
+  fontFamily: "Georgia, serif",
   [theme.media.mobileM]: {
     fontSize: "1.2rem",
     lineHeight: "1.4rem",

@@ -1,30 +1,34 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
-import { sections } from "../../data/sections";
+import { useEffect, useRef } from "react";
+
+const MENU_ID = "primary-navigation";
 
 const ToggleButton = styled.button(({ theme }) => ({
   background: "none",
   border: "none",
   cursor: "pointer",
   width: "60px",
-  padding: "0 !important",
-  height: "60px",
+  height: "50px",
   position: "relative",
   display: "flex",
   justifyContent: "center",
+  alignItems: "center",
+  padding: 0,
   transition: "transform 0.3s ease, color 0.3s ease",
   zIndex: 100000,
   outline: "none",
+  color: "#000",
 
-  "&:hover": {
-    "& span": {
-      backgroundColor: theme.colors.hover,
-    },
+  "&:hover span, &:focus-visible span": {
+    backgroundColor: theme.colors.hover,
   },
 
   "&:focus-visible": {
-    outline: "2px solid currentColor",
+    outlineOffset: "4px",
+  },
+
+  "@media (prefers-reduced-motion: reduce)": {
+    transition: "none",
   },
 
   [theme.media.tablet]: {
@@ -51,17 +55,15 @@ const Bar = styled.span<{ open: boolean; index: number }>(
       position: "absolute" as const,
       height: "8px !important",
       width: "100%",
-      backgroundColor: "black",
+      backgroundColor: "currentColor",
       transition: "all 0.3s ease",
-      [theme.media.tablet]: {
-        height: "6px !important",
+      borderRadius: "2px",
+      "@media (prefers-reduced-motion: reduce)": {
+        transition: "none",
       },
-      [theme.media.mobileL]: {
-        height: "5.5px !important",
-      },
-      [theme.media.mobileM]: {
-        height: "4.7px !important",
-      },
+      [theme.media.tablet]: { height: "6px !important" },
+      [theme.media.mobileL]: { height: "5.5px !important" },
+      [theme.media.mobileM]: { height: "4.7px !important" },
     };
 
     if (index === 0) {
@@ -71,7 +73,6 @@ const Bar = styled.span<{ open: boolean; index: number }>(
         transform: open ? "rotate(45deg)" : "rotate(0)",
       };
     }
-
     if (index === 1) {
       return {
         ...base,
@@ -80,7 +81,6 @@ const Bar = styled.span<{ open: boolean; index: number }>(
         transform: "translateY(-50%)",
       };
     }
-
     return {
       ...base,
       bottom: open ? "40%" : "6px",
@@ -89,25 +89,49 @@ const Bar = styled.span<{ open: boolean; index: number }>(
   }
 );
 
-export const HamburgerMenu = () => {
-  const [open, setOpen] = useState(false);
+type HamburgerMenuProps = {
+  open: boolean;
+  onToggle: () => void;
+};
 
-  const handleToggle = () => setOpen((prev) => !prev);
-  const handleClose = () => setOpen(false);
+export const HamburgerMenu = ({ open, onToggle }: HamburgerMenuProps) => {
+  const btnRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) {
+        onToggle();
+        btnRef.current?.focus();
+      }
+    };
+
+    if (open) window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open, onToggle]);
+
+  useEffect(() => {
+    if (!open) return;
+    const navEl = document.getElementById(MENU_ID);
+    const firstFocusable = navEl?.querySelector<HTMLElement>(
+      'a, button, [tabindex]:not([tabindex="-1"]), input, select, textarea'
+    );
+    firstFocusable?.focus();
+  }, [open]);
+
+  const label = open ? "Close menu" : "Open menu";
 
   return (
-    <>
-      <ToggleButton onClick={handleToggle} aria-label="Toggle menu">
-        {[0, 1, 2].map((i) => (
-          <Bar key={i} index={i} open={open} />
-        ))}
-      </ToggleButton>
-
-      <NavbarLinksWrapper
-        isOpen={open}
-        links={sections}
-        onLinkClick={handleClose}
-      />
-    </>
+    <ToggleButton
+      ref={btnRef}
+      type="button"
+      onClick={onToggle}
+      aria-label={label}
+      aria-controls={MENU_ID}
+      aria-expanded={open}
+    >
+      {[0, 1, 2].map((i) => (
+        <Bar key={i} index={i} open={open} aria-hidden="true" />
+      ))}
+    </ToggleButton>
   );
 };

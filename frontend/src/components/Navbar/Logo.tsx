@@ -35,6 +35,7 @@ const LogoLink = styled(Link)(({ theme }) => ({
 
 const FirstName = styled.span(({ theme }) => ({
   letterSpacing: "-0.05em",
+  marginBottom: "1rem",
   [theme.media.mobileS]: {
     marginLeft: "-2px",
   },
@@ -43,7 +44,9 @@ const FirstName = styled.span(({ theme }) => ({
 const LastName = styled.span(({ theme }) => ({
   fontStyle: "italic",
   fontWeight: "bold",
-  marginLeft: "-0.5rem",
+  fontFamily: "'Invasion2000', sans-serif",
+  fontSize: "4.4rem",
+  marginTop: "-0.1rem",
   [theme.media.mobileL]: {
     marginLeft: "-0.3rem",
   },

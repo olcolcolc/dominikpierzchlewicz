@@ -1,50 +1,115 @@
 import styled from "@emotion/styled";
 import { NavbarLink } from "./NavbarLink";
 
-const Wrapper = styled.ul<{ isOpen: boolean }>(({ theme, isOpen }) => ({
-  position: "fixed",
-  top: 0,
-  left: 0,
-  margin: 0,
-  padding: 0,
-  width: "100vw",
-  height: "100vh",
-  backgroundColor: `${theme.colors.background}`,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: theme.spacing(2),
-  zIndex: 9999,
+type Variant = "overlay" | "side";
 
-  opacity: isOpen ? 1 : 0,
-  visibility: isOpen ? "visible" : "hidden",
-  transition: "opacity 0.5s ease, visibility 0.5s ease",
-}));
-
-type NavbarAltLinksWrapperProps = {
-  isOpen: boolean;
+type NavbarLinksWrapperProps = {
+  isOpen?: boolean;
   links: string[];
-  onLinkClick: () => void;
+  onLinkClick?: () => void;
+  ariaLabel?: string;
+  menuId?: string;
+  variant?: Variant;
+  align?: "left" | "right";
+  sideWidth?: string;
 };
 
+const Wrapper = styled.nav<{
+  variant: Variant;
+  isOpen?: boolean;
+  sideWidth: string;
+  align: "left" | "right";
+}>(({ theme, variant, isOpen, sideWidth, align }) => {
+  const isOverlay = variant === "overlay";
+
+  if (isOverlay) {
+    return {
+      position: "fixed",
+      inset: 0,
+      margin: 0,
+      padding: 0,
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: theme.colors.background,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      zIndex: 9999,
+      opacity: isOpen ? 1 : 0,
+      visibility: isOpen ? "visible" : "hidden",
+      pointerEvents: isOpen ? "auto" : "none",
+      transition: "opacity 0.5s ease, visibility 0.5s ease",
+      "@media (prefers-reduced-motion: reduce)": {
+        transition: "none",
+      },
+    };
+  }
+
+  return {
+    top: 0,
+    height: "100vh",
+    width: sideWidth,
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    zIndex: 20,
+    opacity: 1,
+    visibility: "visible",
+    ...(align === "right" ? { marginLeft: "auto" } : {}),
+  };
+});
+
+export const Ul = styled.ul<{ variant: Variant }>(({ variant }) => ({
+  listStyle: "none",
+  margin: 0,
+  padding: variant === "overlay" ? 0 : "1rem 0 1rem 1rem",
+  marginLeft: variant === "overlay" ? "30%" : 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: "1.25rem",
+  width: "100%",
+}));
+
+const noop = () => {};
+
 export const NavbarLinksWrapper = ({
-  isOpen,
+  variant = "overlay",
+  align = "left",
+  sideWidth = "400px",
+  isOpen = false,
   links,
-  onLinkClick,
-}: NavbarAltLinksWrapperProps) => {
+  onLinkClick = noop,
+  ariaLabel = "Primary",
+  menuId = "primary-navigation",
+}: NavbarLinksWrapperProps) => {
+  const isOverlay = variant === "overlay";
+
+  const ariaHidden = isOverlay ? !isOpen : false;
+  const hidden = isOverlay ? !isOpen : false;
+
   return (
-    <Wrapper isOpen={isOpen}>
-      {links.map((link, index) => (
-        <NavbarLink
-          key={link}
-          to={link}
-          onClick={onLinkClick}
-          index={index + 1}
-        >
-          {link}
-        </NavbarLink>
-      ))}
+    <Wrapper
+      id={menuId}
+      variant={variant}
+      isOpen={isOpen}
+      sideWidth={sideWidth}
+      align={align}
+      role="navigation"
+      aria-label={ariaLabel}
+      aria-hidden={ariaHidden}
+      hidden={hidden}
+    >
+      {(!isOverlay || isOpen) && (
+        <Ul variant={variant}>
+          {links.map((link, index) => (
+            <li key={link}>
+              <NavbarLink to={link} onClick={onLinkClick} index={index + 1}>
+                {link}
+              </NavbarLink>
+            </li>
+          ))}
+        </Ul>
+      )}
     </Wrapper>
   );
 };

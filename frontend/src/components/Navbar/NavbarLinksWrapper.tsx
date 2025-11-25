@@ -78,7 +78,7 @@ export const NavbarLinksWrapper = ({
   sideWidth = "400px",
   isOpen = false,
   links,
-  onLinkClick = (linkName) => {},
+  onLinkClick = () => {},
   activeLink = sections[0],
   ariaLabel = "Primary",
   menuId = "primary-navigation",

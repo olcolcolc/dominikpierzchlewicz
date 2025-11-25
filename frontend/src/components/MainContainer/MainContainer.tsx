@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { theme } from "../../styles/theme";
+import { getNavbarHeightStyles, theme, type Theme } from "../../styles/theme";
 import { sections } from "../../data/sections";
 import { NavbarLinksWrapper } from "../Navbar/NavbarLinksWrapper";
 import Bio from "../../pages/Bio/Bio";
@@ -11,16 +11,59 @@ import React from "react";
 
 const Wrapper = styled.div({
   width: "100%",
-  height: "900px",
   display: "flex",
-  marginTop: "5rem",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "center",
+  flexDirection: "column",
+  padding: "0 2rem",
+  height: "100hv",
   [theme.media.tablet]: {
-    padding: "0",
+    padding: "0 1rem",
+    flexDirection: "column",
+    marginTop: "2rem",
   },
 });
+
+const Content = styled.div({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "flex-start",
+  paddingTop: "2rem",
+  [theme.media.tablet]: {
+    padding: "0 1rem",
+    flexDirection: "column",
+    marginTop: "2rem",
+  },
+});
+
+const LeftContent = styled.div({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  height: "auto",
+  paddingRight: "10rem",
+  [theme.media.tablet]: {
+    padding: "0 1rem",
+    flexDirection: "column",
+    marginTop: "2rem",
+  },
+});
+
+const RightContent = styled.div({
+  position: "relative",
+  top: 0,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  height: "100%",
+  [theme.media.tablet]: {
+    padding: "0 1rem",
+    flexDirection: "column",
+    marginTop: "2rem",
+  },
+});
+
+const NavbarPlaceholder = styled.div(({ theme }: { theme: Theme }) => ({
+  ...getNavbarHeightStyles(theme),
+}));
 
 const SectionWrapper = styled.div({
   width: "100%",
@@ -47,17 +90,23 @@ const MainContainer = () => {
     <>
       <main>
         <Wrapper>
-          <NavbarLinksWrapper
-            variant="side"
-            align="left"
-            sideWidth="50rem"
-            links={sections}
-            onLinkClick={handleLinkClick}
-            activeLink={activeSection}
-          />
-          <SectionWrapper>
-            {sectionComponents[activeSection] || <Bio />}
-          </SectionWrapper>
+          <NavbarPlaceholder />
+          <Content>
+            <LeftContent>
+              <NavbarLinksWrapper
+                variant="side"
+                align="left"
+                links={sections}
+                onLinkClick={handleLinkClick}
+                activeLink={activeSection}
+              />
+            </LeftContent>
+            <RightContent>
+              <SectionWrapper>
+                {sectionComponents[activeSection] || <Bio />}
+              </SectionWrapper>
+            </RightContent>
+          </Content>
         </Wrapper>
       </main>
     </>

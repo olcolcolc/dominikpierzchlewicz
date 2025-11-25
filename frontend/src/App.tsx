@@ -9,6 +9,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Symulacja ładowania danych/zasobów przez 1 sekundę
     const timeout = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -18,13 +19,14 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <div>
-        <Loader isVisible={isLoading} />
-        <SliderStatic />
-
-        <MainContainer></MainContainer>
-      </div>
+      <Loader isVisible={isLoading} />
+      {!isLoading && (
+        <>
+          <Navbar />
+          <SliderStatic />
+          <MainContainer></MainContainer>
+        </>
+      )}
     </>
   );
 }

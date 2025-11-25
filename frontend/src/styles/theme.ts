@@ -83,3 +83,12 @@ export const theme = {
 };
 
 export type Theme = typeof theme;
+
+export const getNavbarHeightStyles = (theme: Theme) => ({
+  width: "100%",
+  padding: "4rem 3rem",
+  height: "5rem",
+  [theme.media.tablet]: { height: "4rem" },
+  [theme.media.mobileL]: { height: "3rem" },
+  [theme.media.mobileS]: { height: "3rem" },
+});

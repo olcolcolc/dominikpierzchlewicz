@@ -9,20 +9,29 @@ const Wrapper = styled.div({
   justifyContent: "space-evenly",
   alignItems: "flex-start",
   animation: "fadeIn 1s ease forwards",
+
   [theme.media.tablet]: {
     padding: "2rem",
   },
   [theme.media.mobileM]: {
     padding: "1.5rem 1rem",
   },
+
   "@keyframes fadeIn": {
     from: { opacity: 0 },
     to: { opacity: 1 },
   },
 });
+
 const BioImage = styled.img({
   zIndex: -10,
-  height: "380px",
+  height: "350px",
+  width: "290px",
+  transition: "transform 0.5s ease, filter 0.4s ease",
+
+  "&:hover": {
+    content: 'url("/dominikpierzchlewicz/images/kotek2.png")',
+  },
 
   [theme.media.mobileL]: {
     height: "380px",
@@ -98,24 +107,22 @@ const OverlayDown = styled.p({
 export default function Bio() {
   return (
     <Wrapper>
-      <>
-        <BioImage
-          src="/dominikpierzchlewicz/images/kotek2 — kopia.png"
-          alt="Portret architekta"
-        />
-        <BioText>
-          <OverlayUpper>
-            Architekt i doktorant Szkoły Doktorskiej Politechniki Wrocławskiej.
-            Doświadczenie zawodowe zdobywał w renomowanych biurach
-            architektonicznych w Polsce, Szwajcarii i Holandii. Założyciel
-            pracowni projektowej Obieg.
-          </OverlayUpper>
-          <OverlayDown>
-            Jego zainteresowania naukowe i projektowe koncentrują się wokół
-            zrównoważonego rozwoju oraz gospodarki cyrkularnej w architekturze.
-          </OverlayDown>
-        </BioText>
-      </>
+      <BioImage
+        src="/dominikpierzchlewicz/images/kotek2 — kopia.png"
+        alt="Portret architekta"
+      />
+      <BioText>
+        <OverlayUpper>
+          Architekt i doktorant Szkoły Doktorskiej Politechniki Wrocławskiej.
+          Doświadczenie zawodowe zdobywał w renomowanych biurach
+          architektonicznych w Polsce, Szwajcarii i Holandii. Założyciel
+          pracowni projektowej Obieg.
+        </OverlayUpper>
+        <OverlayDown>
+          Jego zainteresowania naukowe i projektowe koncentrują się wokół
+          zrównoważonego rozwoju oraz gospodarki cyrkularnej w architekturze.
+        </OverlayDown>
+      </BioText>
     </Wrapper>
   );
 }

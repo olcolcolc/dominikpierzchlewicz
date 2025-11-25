@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useRef, useState } from "react";
-import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
-import { sections } from "../../data/sections";
+import { useEffect, useRef } from "react";
 
 const MENU_ID = "primary-navigation";
 
@@ -91,23 +89,25 @@ const Bar = styled.span<{ open: boolean; index: number }>(
   }
 );
 
-export const HamburgerMenu = () => {
-  const [open, setOpen] = useState(false);
-  const btnRef = useRef<HTMLButtonElement | null>(null);
+type HamburgerMenuProps = {
+  open: boolean;
+  onToggle: () => void;
+};
 
-  const handleToggle = () => setOpen((prev) => !prev);
-  const handleClose = () => setOpen(false);
+export const HamburgerMenu = ({ open, onToggle }: HamburgerMenuProps) => {
+  const btnRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
+      if (e.key === "Escape" && open) {
+        onToggle();
         btnRef.current?.focus();
       }
     };
+
     if (open) window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [open, onToggle]);
 
   useEffect(() => {
     if (!open) return;
@@ -121,25 +121,17 @@ export const HamburgerMenu = () => {
   const label = open ? "Close menu" : "Open menu";
 
   return (
-    <>
-      <ToggleButton
-        ref={btnRef}
-        type="button"
-        onClick={handleToggle}
-        aria-label={label}
-        aria-controls={MENU_ID}
-        aria-expanded={open}
-      >
-        {[0, 1, 2].map((i) => (
-          <Bar key={i} index={i} open={open} aria-hidden="true" />
-        ))}
-      </ToggleButton>
-      <NavbarLinksWrapper
-        isOpen={open}
-        links={sections}
-        onLinkClick={handleClose}
-        ariaLabel="Navbar menu links"
-      />
-    </>
+    <ToggleButton
+      ref={btnRef}
+      type="button"
+      onClick={onToggle}
+      aria-label={label}
+      aria-controls={MENU_ID}
+      aria-expanded={open}
+    >
+      {[0, 1, 2].map((i) => (
+        <Bar key={i} index={i} open={open} aria-hidden="true" />
+      ))}
+    </ToggleButton>
   );
 };

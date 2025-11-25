@@ -28,13 +28,10 @@ function App() {
       <div>
         <Loader isVisible={isLoading} />
         <SliderStatic />
-        {/* <NavbarLinksWrapper
-            isOpen={true}
-            links={sections}
-            onLinkClick={() => {}}
-            ariaLabel="Navbar menu links"
-          /> */}
-        <MainContainer></MainContainer>
+
+        <>
+          <MainContainer></MainContainer>
+        </>
         {/* <section id="bio">
             <BioAlt2 />
           </section>

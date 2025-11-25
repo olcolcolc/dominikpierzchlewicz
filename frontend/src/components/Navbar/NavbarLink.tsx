@@ -1,8 +1,8 @@
-import { Link } from "react-scroll";
 import styled from "@emotion/styled";
-import { useState } from "react";
+// import { Link } from "react-scroll";
+import React from "react";
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const StyledLink = styled.div<{ $isActive: boolean }>(({ theme }) => ({
   fontSize: "5rem",
   display: "inline-flex",
   alignItems: "flex-end",
@@ -20,14 +20,16 @@ const StyledLink = styled(Link)(({ theme }) => ({
   "&:focus-visible": {
     outline: "none",
   },
-  "&:hover [data-title], &:focus-visible [data-title]": {
+
+  "&:hover [data-title], &:focus-visible [data-title], &>span.active-title": {
     fontFamily: theme.fonts.pixel,
     transition: "opacity 0.8s ease",
   },
-  "&:hover [data-title]::after, &:focus-visible [data-title]::after": {
-    content: '"?"',
-    opacity: 1,
-  },
+  "&:hover [data-title]::after, &:focus-visible [data-title]::after, &>span.active-title::after":
+    {
+      content: '"?"',
+      opacity: 1,
+    },
   "@media (prefers-reduced-motion: reduce)": { transition: "none" },
 }));
 
@@ -62,15 +64,15 @@ type NavbarAltLinkProps = {
   children: React.ReactNode;
   onClick?: () => void;
   index: number;
+  isActiveProp: boolean;
 };
 
 export const NavbarLink = ({
-  to,
   children,
   onClick,
   index,
+  isActiveProp,
 }: NavbarAltLinkProps) => {
-  const [isActive, setIsActive] = useState(false);
   const formattedIndex = String(index).padStart(2, "0");
 
   const onKeyDown: React.KeyboardEventHandler = (e) => {
@@ -82,21 +84,16 @@ export const NavbarLink = ({
 
   return (
     <StyledLink
-      to={to}
-      spy={true}
-      smooth="easeInOutQuart"
-      offset={0}
-      duration={500}
-      onClick={onClick}
+      $isActive={isActiveProp}
       tabIndex={0}
-      role="link"
-      aria-current={isActive ? "location" : undefined}
-      onSetActive={() => setIsActive(true)}
-      onSetInactive={() => setIsActive(false)}
+      role="button"
+      onClick={onClick}
       onKeyDown={onKeyDown}
     >
       <NumberSpan aria-hidden="true">{formattedIndex} /</NumberSpan>
-      <Title data-title>{children}</Title>
+      <Title data-title className={isActiveProp ? "active-title" : ""}>
+        {children}
+      </Title>
     </StyledLink>
   );
 };

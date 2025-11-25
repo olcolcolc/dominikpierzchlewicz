@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import { NavbarLink } from "./NavbarLink";
+import { sections } from "../../data/sections";
 
 type Variant = "overlay" | "side";
 
 type NavbarLinksWrapperProps = {
   isOpen?: boolean;
   links: string[];
-  onLinkClick?: () => void;
+  onLinkClick?: (linkName: string) => void;
+  activeLink?: string;
   ariaLabel?: string;
   menuId?: string;
   variant?: Variant;
@@ -70,15 +72,14 @@ export const Ul = styled.ul<{ variant: Variant }>(({ variant }) => ({
   width: "100%",
 }));
 
-const noop = () => {};
-
 export const NavbarLinksWrapper = ({
   variant = "overlay",
   align = "left",
   sideWidth = "400px",
   isOpen = false,
   links,
-  onLinkClick = noop,
+  onLinkClick = (linkName) => {},
+  activeLink = sections[0],
   ariaLabel = "Primary",
   menuId = "primary-navigation",
 }: NavbarLinksWrapperProps) => {
@@ -103,7 +104,12 @@ export const NavbarLinksWrapper = ({
         <Ul variant={variant}>
           {links.map((link, index) => (
             <li key={link}>
-              <NavbarLink to={link} onClick={onLinkClick} index={index + 1}>
+              <NavbarLink
+                to={link}
+                onClick={() => onLinkClick(link)}
+                index={index + 1}
+                isActiveProp={activeLink === link}
+              >
                 {link}
               </NavbarLink>
             </li>

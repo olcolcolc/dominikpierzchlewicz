@@ -14,7 +14,8 @@ const Wrapper = styled.div({
   display: "flex",
   flexDirection: "column",
   padding: "0 2rem",
-  height: "100hv",
+  height: "100vh",
+  overflow: "hidden",
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -38,7 +39,6 @@ const LeftContent = styled.div({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  height: "auto",
   paddingRight: "10rem",
   [theme.media.tablet]: {
     padding: "0 1rem",

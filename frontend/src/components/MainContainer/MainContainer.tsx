@@ -13,7 +13,6 @@ const Wrapper = styled.div({
   width: "100%",
   display: "flex",
   flexDirection: "column",
-  padding: "0 2rem",
   height: "100vh",
   overflow: "hidden",
   [theme.media.tablet]: {
@@ -25,7 +24,9 @@ const Wrapper = styled.div({
 
 const Content = styled.div({
   display: "flex",
+  maxWidth: "1600px",
   flexDirection: "row",
+  padding: "0 2rem",
   alignItems: "flex-start",
   paddingTop: "2rem",
   [theme.media.tablet]: {
@@ -63,6 +64,7 @@ const RightContent = styled.div({
 
 const NavbarPlaceholder = styled.div(({ theme }: { theme: Theme }) => ({
   ...getNavbarHeightStyles(theme),
+  borderBottom: "2px solid black",
 }));
 
 const SectionWrapper = styled.div({
@@ -80,7 +82,7 @@ const sectionComponents: Record<string, React.ReactNode> = {
 };
 
 const MainContainer = () => {
-  const [activeSection, setActiveSection] = useState(sections[0]);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   const handleLinkClick = (linkName: string) => {
     setActiveSection(linkName);
@@ -103,7 +105,7 @@ const MainContainer = () => {
             </LeftContent>
             <RightContent>
               <SectionWrapper>
-                {sectionComponents[activeSection] || <Bio />}
+                {activeSection ? sectionComponents[activeSection] : <Bio />}
               </SectionWrapper>
             </RightContent>
           </Content>

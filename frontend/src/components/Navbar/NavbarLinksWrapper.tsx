@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { NavbarLink } from "./NavbarLink";
-import { sections } from "../../data/sections";
 
 type Variant = "overlay" | "side";
 
@@ -8,7 +7,7 @@ type NavbarLinksWrapperProps = {
   isOpen?: boolean;
   links: string[];
   onLinkClick?: (linkName: string) => void;
-  activeLink?: string;
+  activeLink?: string | null;
   ariaLabel?: string;
   menuId?: string;
   variant?: Variant;
@@ -79,7 +78,7 @@ export const NavbarLinksWrapper = ({
   isOpen = false,
   links,
   onLinkClick = () => {},
-  activeLink = sections[0],
+  activeLink = null,
   ariaLabel = "Primary",
   menuId = "primary-navigation",
 }: NavbarLinksWrapperProps) => {

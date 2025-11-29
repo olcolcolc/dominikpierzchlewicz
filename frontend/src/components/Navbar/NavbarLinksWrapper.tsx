@@ -6,7 +6,8 @@ type Variant = "overlay" | "side";
 type NavbarLinksWrapperProps = {
   isOpen?: boolean;
   links: string[];
-  onLinkClick?: () => void;
+  onLinkClick?: (linkName: string) => void;
+  activeLink?: string | null;
   ariaLabel?: string;
   menuId?: string;
   variant?: Variant;
@@ -47,10 +48,9 @@ const Wrapper = styled.nav<{
 
   return {
     top: 0,
-    height: "100vh",
     width: sideWidth,
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     zIndex: 20,
     opacity: 1,
@@ -66,11 +66,9 @@ export const Ul = styled.ul<{ variant: Variant }>(({ variant }) => ({
   marginLeft: variant === "overlay" ? "30%" : 0,
   display: "flex",
   flexDirection: "column",
-  gap: "1.25rem",
+  gap: "0.5rem",
   width: "100%",
 }));
-
-const noop = () => {};
 
 export const NavbarLinksWrapper = ({
   variant = "overlay",
@@ -78,7 +76,8 @@ export const NavbarLinksWrapper = ({
   sideWidth = "400px",
   isOpen = false,
   links,
-  onLinkClick = noop,
+  onLinkClick = () => {},
+  activeLink = null,
   ariaLabel = "Primary",
   menuId = "primary-navigation",
 }: NavbarLinksWrapperProps) => {
@@ -103,7 +102,12 @@ export const NavbarLinksWrapper = ({
         <Ul variant={variant}>
           {links.map((link, index) => (
             <li key={link}>
-              <NavbarLink to={link} onClick={onLinkClick} index={index + 1}>
+              <NavbarLink
+                to={link}
+                onClick={() => onLinkClick(link)}
+                index={index + 1}
+                isActiveProp={activeLink === link}
+              >
                 {link}
               </NavbarLink>
             </li>

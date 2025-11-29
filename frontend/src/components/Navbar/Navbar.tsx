@@ -5,19 +5,17 @@ import { HamburgerMenu } from "./HamburgerMenu";
 import { useHideOnHalfOf } from "../../hooks/useHideOnHalfOf";
 import { NavbarLinksWrapper } from "./NavbarLinksWrapper";
 import { sections } from "../../data/sections";
+import { getNavbarHeightStyles } from "../../styles/theme";
 
 const Wrapper = styled.nav(({ theme }) => ({
+  ...getNavbarHeightStyles(theme),
   position: "fixed",
-  height: "5rem",
-  padding: "4rem 3rem",
   zIndex: 100000,
-  width: "100%",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   backgroundColor: "transparent",
-  [theme.media.tablet]: { height: "4rem" },
-  [theme.media.mobileL]: { height: "3rem", padding: "0 0.7rem" },
+  [theme.media.mobileL]: { padding: "0 0.7rem" },
   [theme.media.mobileS]: {
     padding: "0.5rem 0.5rem 0 0.5rem",
     alignItems: "flex-start",

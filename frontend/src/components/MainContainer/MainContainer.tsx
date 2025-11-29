@@ -64,7 +64,7 @@ const RightContent = styled.div({
 const NavbarPlaceholder = styled.div(() => ({
   width: "100%",
   padding: "3rem",
-  borderBottom: "2px solid black",
+  // borderBottom: "2px solid black",
 }));
 
 const SectionWrapper = styled.div({

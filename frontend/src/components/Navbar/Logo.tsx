@@ -7,9 +7,6 @@ const MIN_FONT_SIZE = 2; // rem
 const MAX_FONT_SIZE = 4; // rem
 const MAX_SCROLL = 1400; // px, po tylu scrolla mamy MIN_FONT_SIZE
 
-const MIN_PADDING_TOP = 3; // rem end
-const MAX_PADDING_TOP = 6; // rem start
-
 const LogoLink = styled(Link)<{ $fontSize: number }>(
   ({ theme, $fontSize }) => ({
     fontSize: `${$fontSize}rem`,

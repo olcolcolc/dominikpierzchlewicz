@@ -26,11 +26,13 @@ const Wrapper = styled.div({
 const Content = styled.div({
   display: "flex",
   maxWidth: "1600px",
-  height: "100%",
+  width: "100%",
+  flex: 1,
+  minHeight: 0,
   flexDirection: "row",
   padding: "0 2rem",
   alignItems: "flex-start",
-  paddingTop: "10rem",
+  paddingTop: "8rem",
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -41,7 +43,7 @@ const Content = styled.div({
 const LeftContent = styled.div({
   display: "flex",
   flexDirection: "row",
-  alignItems: "center",
+  alignItems: "flex-start",
   paddingRight: "10rem",
   [theme.media.tablet]: {
     padding: "0 1rem",
@@ -52,8 +54,20 @@ const LeftContent = styled.div({
 
 const RightContent = styled.div({
   display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  height: "100%",
+  flex: 1,
+  minHeight: 0,
+  overflowY: "auto",
+  overflowX: "hidden",
+
+  scrollbarWidth: "none",
+  msOverflowStyle: "none",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -64,11 +78,11 @@ const RightContent = styled.div({
 const NavbarPlaceholder = styled.div(() => ({
   width: "100%",
   padding: "3rem",
-  // borderBottom: "2px solid black",
 }));
 
 const SectionWrapper = styled.div({
   width: "100%",
+  flex: 1,
   [theme.media.tablet]: {
     padding: "0",
   },

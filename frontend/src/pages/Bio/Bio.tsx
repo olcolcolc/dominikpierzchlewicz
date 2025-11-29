@@ -1,13 +1,14 @@
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
 
 const Wrapper = styled.div({
   width: "100%",
-  display: "flex",
   height: "100%",
+  display: "flex",
   flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
+  justifyContent: "space-around",
+  alignItems: "center",
   animation: "fadeIn 1s ease forwards",
 
   [theme.media.tablet]: {
@@ -23,34 +24,42 @@ const Wrapper = styled.div({
   },
 });
 
+const BioImageWrapper = styled.div<{ $isVisible: boolean }>(
+  ({ $isVisible }) => ({
+    position: "relative",
+    width: "290px",
+    overflow: "hidden",
+
+    clipPath: $isVisible ? "inset(0 0 0 0)" : "inset(100% 0 0 0)",
+
+    transition: "clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+
+    [theme.media.mobileL]: {
+      height: "380px",
+    },
+    [theme.media.mobileM]: {
+      height: "300px",
+    },
+    [theme.media.mobileS]: {
+      height: "240px",
+    },
+  })
+);
+
 const BioImage = styled.img({
-  zIndex: -10,
-  height: "350px",
-  width: "290px",
-  transition: "transform 0.5s ease, filter 0.4s ease",
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
 
   "&:hover": {
     content: 'url("/dominikpierzchlewicz/images/kotek2.png")',
-  },
-
-  [theme.media.mobileL]: {
-    height: "380px",
-    objectPosition: "center",
-  },
-  [theme.media.mobileM]: {
-    height: "300px",
-  },
-  [theme.media.mobileS]: {
-    height: "240px",
   },
 });
 
 const BioText = styled.div({
   color: "black",
-  fontFamily: theme.fonts.archia,
-  lineHeight: 1.3,
-  animation: "fadeIn 1.5s ease forwards 0.5s",
-  zIndex: 2,
+  fontFamily: theme.fonts.dmSans,
+  width: "50%",
 
   [theme.media.tablet]: {
     right: "2rem",
@@ -67,8 +76,6 @@ const BioText = styled.div({
 const TextUpper = styled.p({
   fontSize: "1.3rem",
   lineHeight: 1.4,
-  width: "470px",
-  filter: "contrast(0.95) brightness(1.05)",
 
   [theme.media.tablet]: {
     fontSize: "1rem",
@@ -87,9 +94,6 @@ const TextUpper = styled.p({
 const TextDown = styled.p({
   fontSize: "1.6rem",
   lineHeight: 1.4,
-  width: "470px",
-  fontFamily: "Georgia, serif",
-  filter: "contrast(0.95) brightness(1.05)",
 
   [theme.media.tablet]: {
     fontSize: "1.3rem",
@@ -105,12 +109,21 @@ const TextDown = styled.p({
 });
 
 export default function Bio() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <Wrapper>
-      <BioImage
-        src="/dominikpierzchlewicz/images/kotek2 — kopia.png"
-        alt="Portret architekta"
-      />
+      <BioImageWrapper $isVisible={isVisible}>
+        <BioImage
+          src="/dominikpierzchlewicz/images/kotek2 — kopia.png"
+          alt="Portret architekta"
+        />
+      </BioImageWrapper>
       <BioText>
         <TextUpper>
           Architekt i doktorant Szkoły Doktorskiej Politechniki Wrocławskiej.
@@ -119,7 +132,7 @@ export default function Bio() {
           pracowni projektowej Obieg.
         </TextUpper>
         <TextDown>
-          Jego zainteresowania naukowe i projektowe koncentrują się wokół
+          Jego zainteresowania naukowe <br />i projektowe koncentrują się wokół
           zrównoważonego rozwoju oraz gospodarki cyrkularnej w architekturze.
         </TextDown>
       </BioText>

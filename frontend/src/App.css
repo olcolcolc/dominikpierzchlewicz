@@ -11,18 +11,12 @@ body {
   overflow-x: clip;
 }
 
-main {
-  margin: 0 auto;
-}
-
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   height: 100%;
   width: 100%;
 }

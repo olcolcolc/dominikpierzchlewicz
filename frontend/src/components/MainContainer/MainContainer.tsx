@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { getNavbarHeightStyles, theme, type Theme } from "../../styles/theme";
+import { theme } from "../../styles/theme";
 import { sections } from "../../data/sections";
 import { NavbarLinksWrapper } from "../Navbar/NavbarLinksWrapper";
 import Bio from "../../pages/Bio/Bio";
@@ -15,6 +15,7 @@ const Wrapper = styled.div({
   flexDirection: "column",
   height: "100vh",
   overflow: "hidden",
+  alignItems: "center",
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -25,10 +26,11 @@ const Wrapper = styled.div({
 const Content = styled.div({
   display: "flex",
   maxWidth: "1600px",
+  height: "100%",
   flexDirection: "row",
   padding: "0 2rem",
   alignItems: "flex-start",
-  paddingTop: "2rem",
+  paddingTop: "10rem",
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -49,12 +51,9 @@ const LeftContent = styled.div({
 });
 
 const RightContent = styled.div({
-  position: "relative",
-  top: 0,
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  height: "100%",
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -62,8 +61,9 @@ const RightContent = styled.div({
   },
 });
 
-const NavbarPlaceholder = styled.div(({ theme }: { theme: Theme }) => ({
-  ...getNavbarHeightStyles(theme),
+const NavbarPlaceholder = styled.div(() => ({
+  width: "100%",
+  padding: "3rem",
   borderBottom: "2px solid black",
 }));
 

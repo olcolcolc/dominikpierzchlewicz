@@ -4,9 +4,9 @@ import { theme } from "../../styles/theme";
 const Wrapper = styled.div({
   width: "100%",
   display: "flex",
-  height: "100vh",
+  height: "100%",
   flexDirection: "row",
-  justifyContent: "space-evenly",
+  justifyContent: "space-between",
   alignItems: "flex-start",
   animation: "fadeIn 1s ease forwards",
 
@@ -64,7 +64,7 @@ const BioText = styled.div({
   },
 });
 
-const OverlayUpper = styled.p({
+const TextUpper = styled.p({
   fontSize: "1.3rem",
   lineHeight: 1.4,
   width: "470px",
@@ -84,7 +84,7 @@ const OverlayUpper = styled.p({
   },
 });
 
-const OverlayDown = styled.p({
+const TextDown = styled.p({
   fontSize: "1.6rem",
   lineHeight: 1.4,
   width: "470px",
@@ -112,16 +112,16 @@ export default function Bio() {
         alt="Portret architekta"
       />
       <BioText>
-        <OverlayUpper>
+        <TextUpper>
           Architekt i doktorant Szkoły Doktorskiej Politechniki Wrocławskiej.
           Doświadczenie zawodowe zdobywał w renomowanych biurach
           architektonicznych w Polsce, Szwajcarii i Holandii. Założyciel
           pracowni projektowej Obieg.
-        </OverlayUpper>
-        <OverlayDown>
+        </TextUpper>
+        <TextDown>
           Jego zainteresowania naukowe i projektowe koncentrują się wokół
           zrównoważonego rozwoju oraz gospodarki cyrkularnej w architekturze.
-        </OverlayDown>
+        </TextDown>
       </BioText>
     </Wrapper>
   );

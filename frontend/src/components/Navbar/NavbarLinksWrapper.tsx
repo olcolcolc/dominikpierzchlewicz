@@ -48,10 +48,9 @@ const Wrapper = styled.nav<{
 
   return {
     top: 0,
-    height: "100vh",
     width: sideWidth,
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     zIndex: 20,
     opacity: 1,
@@ -67,7 +66,7 @@ export const Ul = styled.ul<{ variant: Variant }>(({ variant }) => ({
   marginLeft: variant === "overlay" ? "30%" : 0,
   display: "flex",
   flexDirection: "column",
-  gap: "1.25rem",
+  gap: "0.5rem",
   width: "100%",
 }));
 

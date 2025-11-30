@@ -17,6 +17,7 @@ export const theme = {
     archia: "'Archia', sans-serif",
     inter: '"Inter", sans-serif',
     garamond: "'EB Garamond', Garamond, serif",
+    martian: "'Martian Mono', monospace",
   },
   media: {
     mobileS: `@media (max-width: 440px)`,

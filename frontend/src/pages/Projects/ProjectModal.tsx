@@ -124,13 +124,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     }
   };
 
-  const handleOverlayWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    // nie pozwól wheelowi iść w górę do RightContent
-    e.stopPropagation();
-  };
-
   return (
-    <ModalOverlay onClick={handleOverlayClick} onWheel={handleOverlayWheel}>
+    <ModalOverlay onClick={handleOverlayClick}>
       <ModalCard>
         <CloseButton onClick={onClose} aria-label="Zamknij modal">
           ×

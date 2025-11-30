@@ -1,10 +1,11 @@
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { projectsData } from "../../data/projectsData";
 import { theme } from "../../styles/theme";
+import { ProjectModal } from "./ProjectModal";
 
 const OVERLAY_TITLE = "2rem";
 const GAP = "0.7rem";
-// const BORDER = `4px solid ${theme.colors.hover}`;
 
 const Wrapper = styled.div({
   display: "block",
@@ -49,15 +50,6 @@ const Card = styled.div({
   overflow: "hidden",
   cursor: "pointer",
 
-  // "&:hover": {
-  //   borderTop: BORDER,
-  // },
-
-  // "&:hover img": {
-  //   transition: "transform 0.6s ease",
-  //   transform: `translateY(-${OVERLAY_TITLE})`,
-  // },
-
   "&:hover .title": {
     opacity: 1,
   },
@@ -79,10 +71,10 @@ const TitleInside = styled.div({
   left: "50%",
   transform: "translate(-50%, -50%)",
   color: theme.colors.hover,
-  fontFamily: theme.fonts.dmSans,
+  fontFamily: theme.fonts.martian,
   fontStyle: "italic",
   fontWeight: "bold",
-  fontSize: "5.2rem",
+  fontSize: "4rem",
   letterSpacing: "0.00001em",
   opacity: 0,
   pointerEvents: "none",
@@ -90,42 +82,64 @@ const TitleInside = styled.div({
   zIndex: 5,
 });
 
+type Project = (typeof projectsData)[number];
+
 const Projects = () => {
   const leftProjects = projectsData.filter((_, index) => index % 2 === 0);
   const rightProjects = projectsData.filter((_, index) => index % 2 !== 0);
 
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+
+  const handleCardClick = (project: Project) => {
+    setActiveProject(project);
+  };
+
+  const handleCloseModal = () => setActiveProject(null);
+
   return (
-    <Wrapper>
-      <ColumnsWrapper>
-        <LeftColumn>
-          {leftProjects.map((project) => {
-            const cover = project.gallery[0];
-            if (!cover) return null;
+    <>
+      <Wrapper>
+        <ColumnsWrapper>
+          <LeftColumn>
+            {leftProjects.map((project) => {
+              const cover = project.gallery[0];
+              if (!cover) return null;
 
-            return (
-              <Card key={project.title}>
-                <Image src={cover} alt={project.title} />
-                <TitleInside className="title">{project.title}</TitleInside>
-              </Card>
-            );
-          })}
-        </LeftColumn>
+              return (
+                <Card
+                  key={project.title}
+                  onClick={() => handleCardClick(project)}
+                >
+                  <Image src={cover} alt={project.title} />
+                  <TitleInside className="title">{project.title}</TitleInside>
+                </Card>
+              );
+            })}
+          </LeftColumn>
 
-        <RightColumn>
-          {rightProjects.map((project) => {
-            const cover = project.gallery[0];
-            if (!cover) return null;
+          <RightColumn>
+            {rightProjects.map((project) => {
+              const cover = project.gallery[0];
+              if (!cover) return null;
 
-            return (
-              <Card key={project.title}>
-                <Image src={cover} alt={project.title} />
-                <TitleInside className="title">{project.title}</TitleInside>
-              </Card>
-            );
-          })}
-        </RightColumn>
-      </ColumnsWrapper>
-    </Wrapper>
+              return (
+                <Card
+                  key={project.title}
+                  onClick={() => handleCardClick(project)}
+                >
+                  <Image src={cover} alt={project.title} />
+                  <TitleInside className="title">{project.title}</TitleInside>
+                </Card>
+              );
+            })}
+          </RightColumn>
+        </ColumnsWrapper>
+      </Wrapper>
+
+      {activeProject && (
+        <ProjectModal project={activeProject} onClose={handleCloseModal} />
+      )}
+    </>
   );
 };
 

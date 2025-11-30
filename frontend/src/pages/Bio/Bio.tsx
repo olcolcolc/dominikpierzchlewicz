@@ -31,8 +31,7 @@ const BioImageWrapper = styled.div<{ $isVisible: boolean }>(
     overflow: "hidden",
 
     clipPath: $isVisible ? "inset(0 0 0 0)" : "inset(100% 0 0 0)",
-
-    transition: "clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+    transition: "clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
 
     [theme.media.mobileL]: {
       height: "380px",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { projectsData } from "../../data/projectsData";
 import { theme } from "../../styles/theme";

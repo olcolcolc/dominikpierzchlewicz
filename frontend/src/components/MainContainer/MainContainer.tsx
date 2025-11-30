@@ -35,8 +35,7 @@ const Content = styled.div({
   flexDirection: "row",
   padding: "0 2rem",
   alignItems: "center",
-  marginTop: `-${NAVBAR_HEIGHT}`, // ← tu poprawiony template string
-
+  marginTop: `-${NAVBAR_HEIGHT}`,
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -64,7 +63,7 @@ const RightContent = styled.div<{ $isProjects?: boolean }>(
     height: "100%",
     flex: 1,
     minHeight: 0,
-    overflowY: $isProjects ? "auto" : "auto", // możesz tu kiedyś dać "hidden" dla innych sekcji
+    overflowY: $isProjects ? "auto" : "auto",
     overflowX: "hidden",
     zIndex: 100000,
     scrollbarWidth: "none",
@@ -114,15 +113,15 @@ const MainContainer = () => {
     const onWheel = (event: WheelEvent) => {
       const target = event.target as HTMLElement | null;
 
-      // 🛑 jeśli event pochodzi z modala, to NIE ruszamy RightContent
+      // if event is from modal, don't touch RightContent
       if (target?.closest("[data-modal-root]")) {
         return;
       }
 
-      // tylko gdy myszka jest nad prawą kolumną
+      // when coursor is above RightContent
       if (!isRightHovered) return;
 
-      // scroll tylko w RightContent, nie całą stroną
+      // scroll only in RightContent, not whole page
       event.preventDefault();
       el.scrollTop += event.deltaY;
     };

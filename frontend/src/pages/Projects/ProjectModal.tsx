@@ -118,7 +118,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   project,
   onClose,
 }) => {
-  // blokujemy scroll całej strony pod spodem
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;

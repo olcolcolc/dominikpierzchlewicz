@@ -6,8 +6,8 @@ const OVERLAY_TITLE = "2rem";
 const GAP = "0.7rem";
 
 const Wrapper = styled.div({
-  width: "100%",
   display: "block",
+  overflow: "hidden",
   [theme.media.tablet]: {
     padding: "0",
   },
@@ -18,6 +18,7 @@ const ColumnsWrapper = styled.div({
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
   columnGap: GAP,
+  marginBottom: "-2rem",
   [theme.media.mobileM]: {
     gridTemplateColumns: "1fr",
     rowGap: "1.2rem",
@@ -31,6 +32,9 @@ const LeftColumn = styled.div({
   "& > div:last-child": {
     height: `calc(22rem - ${OVERLAY_TITLE})`,
   },
+  "& > div:last-child .overlay": {
+    padding: `${GAP} 0`,
+  },
 });
 
 const RightColumn = styled.div({
@@ -38,6 +42,9 @@ const RightColumn = styled.div({
   flexDirection: "column",
   gap: GAP,
   transform: `translateY(-${OVERLAY_TITLE})`,
+  "& > div:last-child .overlay": {
+    padding: `${GAP} 0`,
+  },
 });
 
 const Card = styled.div({

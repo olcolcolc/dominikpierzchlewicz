@@ -43,7 +43,7 @@ const Content = styled.div({
     marginTop: "2rem",
   },
 });
-
+//ja zrobić ze jak myszka jest na project wrapper to niech scroll bedzie tylko tej sekcji a nie calej strony, a jak poza tą sekcją to żeby scrollowalo strone
 const LeftContent = styled.div({
   display: "flex",
   flexDirection: "row",

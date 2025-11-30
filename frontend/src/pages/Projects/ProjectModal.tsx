@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
 
@@ -118,6 +118,22 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   project,
   onClose,
 }) => {
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    return () => {
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
+    };
+  }, []);
+
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -125,7 +141,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   };
 
   return (
-    <ModalOverlay onClick={handleOverlayClick}>
+    <ModalOverlay data-modal-root onClick={handleOverlayClick}>
       <ModalCard>
         <CloseButton onClick={onClose} aria-label="Zamknij modal">
           ×

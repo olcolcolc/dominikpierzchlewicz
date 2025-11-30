@@ -1,157 +1,169 @@
-import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
+import { sections } from "../../data/sections";
+import { NavbarLinksWrapper } from "../Navbar/NavbarLinksWrapper";
+import Bio from "../../pages/Bio/Bio";
+import { Contact } from "../../pages/Contact/Contact";
+import Projects from "../../pages/Projects/Projects";
+import Awards from "../../pages/Awards/Awards";
+import { useState, useEffect, useRef } from "react";
+import React from "react";
 
-type Project = {
-  title: string;
-  gallery: string[];
-  location?: string;
-  description?: string;
-};
+const NAVBAR_HEIGHT = "5rem";
 
-type ProjectModalProps = {
-  project: Project;
-  onClose: () => void;
-};
-
-const ModalOverlay = styled.div({
-  position: "fixed",
-  inset: 0,
-  zIndex: 2000,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-
-  backgroundImage: `
-    linear-gradient(rgba(0, 255, 0, 0.25) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(0, 255, 0, 0.25) 2px, transparent 2px)
-  `,
-  backgroundSize: "4px 4px",
-
-  padding: "3rem 4rem",
-
-  [theme.media.tablet]: {
-    padding: "2rem 1.5rem",
-  },
-  [theme.media.mobileM]: {
-    padding: "1.5rem 1rem",
-  },
-});
-
-const ModalCard = styled.div({
-  backgroundColor: "#ffffff",
-  border: "6px solid #000",
-  boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
-  maxWidth: "1120px",
+const Wrapper = styled.div({
   width: "100%",
-  maxHeight: "80vh",
-  display: "grid",
-  gridTemplateColumns: "minmax(260px, 1fr) minmax(360px, 1.5fr)",
+  display: "flex",
+  flexDirection: "column",
+  height: "100vh",
   overflow: "hidden",
-  position: "relative",
-  paddingRight: "5rem",
+  alignItems: "center",
+  [theme.media.tablet]: {
+    padding: "0 1rem",
+    flexDirection: "column",
+    marginTop: "2rem",
+  },
+});
+
+const Content = styled.div({
+  display: "flex",
+  maxWidth: "1600px",
+  zIndex: "100000",
+  width: "100%",
+  flex: 1,
+  minHeight: 0,
+  flexDirection: "row",
+  padding: "0 2rem",
+  alignItems: "center",
+  marginTop: `-${NAVBAR_HEIGHT}`,
 
   [theme.media.tablet]: {
-    gridTemplateColumns: "1fr",
-    maxHeight: "90vh",
+    padding: "0 1rem",
+    flexDirection: "column",
+    marginTop: "2rem",
   },
 });
 
-const ModalTextColumn = styled.div({
-  padding: "2.5rem 2.5rem 2.5rem 3rem",
+const LeftContent = styled.div({
   display: "flex",
-  flexDirection: "column",
-  gap: "0.8rem",
+  flexDirection: "row",
+  alignItems: "flex-start",
+  paddingRight: "8rem",
+  [theme.media.tablet]: {
+    padding: "0 1rem",
+    flexDirection: "column",
+    marginTop: "2rem",
+  },
 });
 
-const ModalTitle = styled.h2({
-  fontFamily: theme.fonts.martian,
-  fontSize: "2rem",
-  letterSpacing: "0.08em",
-  textTransform: "uppercase",
-  margin: 0,
-});
+const RightContent = styled.div<{ $isProjects?: boolean }>(
+  ({ $isProjects }) => ({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    height: "100%",
+    flex: 1,
+    minHeight: 0,
+    overflowY: $isProjects ? "auto" : "auto",
+    overflowX: "hidden",
+    zIndex: 100000,
 
-const ModalSubtitle = styled.p({
-  fontFamily: theme.fonts.martian,
-  fontSize: "0.9rem",
-  textTransform: "uppercase",
-  opacity: 0.7,
-  margin: 0,
-});
+    scrollbarWidth: "none",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  })
+);
 
-const ModalDescription = styled.p({
-  fontFamily: theme.fonts.dmSans,
-  fontSize: "0.95rem",
-  lineHeight: 1.5,
-  margin: "1rem 0 0",
-  whiteSpace: "pre-line",
-});
-
-const ModalImagesColumn = styled.div({
-  display: "flex",
-  flexDirection: "column",
-  overflowY: "auto",
-  maxHeight: "80vh",
-});
-
-const ModalImage = styled.img({
+const NavbarPlaceholder = styled.div(() => ({
   width: "100%",
-  display: "block",
-  objectFit: "cover",
-});
+  height: NAVBAR_HEIGHT,
+  zIndex: "-1",
+}));
 
-const CloseButton = styled.button({
-  position: "absolute",
-  right: "1.3rem",
-  background: "none",
-  border: "none",
-  cursor: "pointer",
-  fontSize: "6rem",
-  padding: 0,
-  "&:hover": {
-    color: theme.colors.hover,
+const SectionWrapper = styled.div({
+  width: "100%",
+  flex: 1,
+  [theme.media.tablet]: {
+    padding: "0",
   },
 });
 
-export const ProjectModal: React.FC<ProjectModalProps> = ({
-  project,
-  onClose,
-}) => {
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+const sectionComponents: Record<string, React.ReactNode> = {
+  bio: <Bio />,
+  projekty: <Projects />,
+  wzmianki: <Awards />,
+  kontakt: <Contact />,
+};
+
+const MainContainer = () => {
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [isRightHovered, setIsRightHovered] = useState(false);
+  const rightRef = useRef<HTMLDivElement | null>(null);
+
+  const handleLinkClick = (linkName: string) => {
+    setActiveSection(linkName);
   };
 
-  const handleOverlayWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    // nie pozwól wheelowi iść w górę do RightContent
-    e.stopPropagation();
-  };
+  const isProjects = activeSection === "projekty";
+
+  // SCROLL FIX: prawy panel przewija się tylko, gdy event NIE pochodzi z modala
+  useEffect(() => {
+    const el = rightRef.current;
+    if (!el || !isProjects) return;
+
+    const onWheel = (event: WheelEvent) => {
+      const target = event.target as HTMLElement | null;
+
+      // 🔒 jeśli event pochodzi z modala → NIE scrollujemy RightContent
+      if (target?.closest("[data-modal-root]")) {
+        return;
+      }
+
+      // tylko gdy mycha jest nad prawą kolumną
+      if (!isRightHovered) return;
+
+      event.preventDefault();
+      el.scrollTop += event.deltaY;
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+    };
+  }, [isProjects, isRightHovered]);
 
   return (
-    <ModalOverlay onClick={handleOverlayClick} onWheel={handleOverlayWheel}>
-      <ModalCard>
-        <CloseButton onClick={onClose} aria-label="Zamknij modal">
-          ×
-        </CloseButton>
+    <main>
+      <Wrapper>
+        <NavbarPlaceholder />
+        <Content>
+          <LeftContent>
+            <NavbarLinksWrapper
+              variant="side"
+              align="left"
+              links={sections}
+              onLinkClick={handleLinkClick}
+              activeLink={activeSection}
+            />
+          </LeftContent>
 
-        <ModalTextColumn>
-          <ModalTitle>{project.title}</ModalTitle>
-          {project.location && (
-            <ModalSubtitle>{project.location}</ModalSubtitle>
-          )}
-          {project.description && (
-            <ModalDescription>{project.description}</ModalDescription>
-          )}
-        </ModalTextColumn>
-
-        <ModalImagesColumn>
-          {project.gallery.map((src) => (
-            <ModalImage key={src} src={src} alt={project.title} />
-          ))}
-        </ModalImagesColumn>
-      </ModalCard>
-    </ModalOverlay>
+          <RightContent
+            ref={rightRef}
+            $isProjects={isProjects}
+            onMouseEnter={() => setIsRightHovered(true)}
+            onMouseLeave={() => setIsRightHovered(false)}
+          >
+            <SectionWrapper>
+              {activeSection ? sectionComponents[activeSection] : <Bio />}
+            </SectionWrapper>
+          </RightContent>
+        </Content>
+      </Wrapper>
+    </main>
   );
 };
+
+export default MainContainer;

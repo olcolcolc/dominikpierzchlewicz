@@ -103,7 +103,7 @@ const ModalImage = styled.img({
 
 const CloseButton = styled.button({
   position: "absolute",
-  right: "1.3rem",
+  right: "1rem",
   background: "none",
   border: "none",
   cursor: "pointer",

@@ -9,7 +9,7 @@ import Awards from "../../pages/Awards/Awards";
 import { useState } from "react";
 import React from "react";
 
-const NAVBAR_HEIGHT = "5rem"; // dopasuj do realnej wysokości Twojego Navbara
+const NAVBAR_HEIGHT = "5rem";
 
 const Wrapper = styled.div({
   width: "100%",
@@ -35,14 +35,12 @@ const Content = styled.div({
   flexDirection: "row",
   padding: "0 2rem",
   alignItems: "center",
-
-  // KLUCZ: przesuwamy całość do góry, żeby nachodziła na placeholder
   marginTop: `-${NAVBAR_HEIGHT}`,
 
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
-    marginTop: "2rem", // na mobile możesz chcieć normalny odstęp
+    marginTop: "2rem",
   },
 });
 
@@ -82,7 +80,6 @@ const RightContent = styled.div({
   },
 });
 
-// Tu zmiana – zamiast paddingu tylko wysokość
 const NavbarPlaceholder = styled.div(() => ({
   width: "100%",
   height: NAVBAR_HEIGHT,

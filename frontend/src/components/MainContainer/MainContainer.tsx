@@ -35,7 +35,7 @@ const Content = styled.div({
   flexDirection: "row",
   padding: "0 2rem",
   alignItems: "center",
-  marginTop: `-${NAVBAR_HEIGHT}`,
+  marginTop: `-${NAVBAR_HEIGHT}`, // ← tu poprawiony template string
 
   [theme.media.tablet]: {
     padding: "0 1rem",
@@ -64,10 +64,9 @@ const RightContent = styled.div<{ $isProjects?: boolean }>(
     height: "100%",
     flex: 1,
     minHeight: 0,
-    overflowY: $isProjects ? "auto" : "auto",
+    overflowY: $isProjects ? "auto" : "auto", // możesz tu kiedyś dać "hidden" dla innych sekcji
     overflowX: "hidden",
     zIndex: 100000,
-
     scrollbarWidth: "none",
     msOverflowStyle: "none",
     "&::-webkit-scrollbar": {
@@ -108,22 +107,22 @@ const MainContainer = () => {
 
   const isProjects = activeSection === "projekty";
 
-  // SCROLL FIX: prawy panel przewija się tylko, gdy event NIE pochodzi z modala
   useEffect(() => {
     const el = rightRef.current;
-    if (!el || !isProjects) return;
+    if (!el) return;
 
     const onWheel = (event: WheelEvent) => {
       const target = event.target as HTMLElement | null;
 
-      // 🔒 jeśli event pochodzi z modala → NIE scrollujemy RightContent
+      // 🛑 jeśli event pochodzi z modala, to NIE ruszamy RightContent
       if (target?.closest("[data-modal-root]")) {
         return;
       }
 
-      // tylko gdy mycha jest nad prawą kolumną
+      // tylko gdy myszka jest nad prawą kolumną
       if (!isRightHovered) return;
 
+      // scroll tylko w RightContent, nie całą stroną
       event.preventDefault();
       el.scrollTop += event.deltaY;
     };
@@ -133,7 +132,7 @@ const MainContainer = () => {
     return () => {
       el.removeEventListener("wheel", onWheel);
     };
-  }, [isProjects, isRightHovered]);
+  }, [isRightHovered]);
 
   return (
     <main>

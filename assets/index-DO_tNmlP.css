@@ -1,0 +1,1 @@
+*,*:before,*:after{box-sizing:inherit}html,body{margin:0;padding:0;overflow-x:clip}html{box-sizing:border-box;scroll-behavior:smooth}body{height:100%;width:100%}.fade-in{animation:fadeIn ease .6s;animation-iteration-count:1;animation-fill-mode:both}

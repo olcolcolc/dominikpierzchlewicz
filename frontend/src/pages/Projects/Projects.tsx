@@ -4,6 +4,7 @@ import { theme } from "../../styles/theme";
 
 const OVERLAY_TITLE = "2rem";
 const GAP = "0.7rem";
+// const BORDER = `4px solid ${theme.colors.hover}`;
 
 const Wrapper = styled.div({
   display: "block",
@@ -32,9 +33,6 @@ const LeftColumn = styled.div({
   "& > div:last-child": {
     height: `calc(22rem - ${OVERLAY_TITLE})`,
   },
-  "& > div:last-child .overlay": {
-    padding: `${GAP} 0`,
-  },
 });
 
 const RightColumn = styled.div({
@@ -42,9 +40,6 @@ const RightColumn = styled.div({
   flexDirection: "column",
   gap: GAP,
   transform: `translateY(-${OVERLAY_TITLE})`,
-  "& > div:last-child .overlay": {
-    padding: `${GAP} 0`,
-  },
 });
 
 const Card = styled.div({
@@ -54,13 +49,17 @@ const Card = styled.div({
   overflow: "hidden",
   cursor: "pointer",
 
-  "&:hover img": {
-    transition: "transform 0.6s ease",
-    transform: `translateY(-${OVERLAY_TITLE})`,
-  },
+  // "&:hover": {
+  //   borderTop: BORDER,
+  // },
 
-  "&:hover .overlay": {
-    transform: "translateY(0)",
+  // "&:hover img": {
+  //   transition: "transform 0.6s ease",
+  //   transform: `translateY(-${OVERLAY_TITLE})`,
+  // },
+
+  "&:hover .title": {
+    opacity: 1,
   },
 });
 
@@ -70,29 +69,25 @@ const Image = styled.img({
   objectFit: "cover",
   display: "block",
   transition: "transform 0.6s ease",
-  "&:hover ": {
-    border: "red solid 2px",
-  },
+  position: "relative",
+  zIndex: 2,
 });
 
-const Overlay = styled.div({
+const TitleInside = styled.div({
   position: "absolute",
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: "white",
-  transform: "translateY(100%)",
-  transition: "transform 0.6s ease",
-  display: "flex",
-  flexDirection: "column",
-  textTransform: "uppercase",
-  letterSpacing: "0.08em",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  color: theme.colors.hover,
   fontFamily: theme.fonts.dmSans,
-  fontSize: "1rem",
-});
-
-const Title = styled.span({
-  fontWeight: 600,
+  fontStyle: "italic",
+  fontWeight: "bold",
+  fontSize: "5.2rem",
+  letterSpacing: "0.00001em",
+  opacity: 0,
+  pointerEvents: "none",
+  transition: "opacity",
+  zIndex: 5,
 });
 
 const Projects = () => {
@@ -110,9 +105,7 @@ const Projects = () => {
             return (
               <Card key={project.title}>
                 <Image src={cover} alt={project.title} />
-                <Overlay className="overlay">
-                  <Title>{project.title}</Title>
-                </Overlay>
+                <TitleInside className="title">{project.title}</TitleInside>
               </Card>
             );
           })}
@@ -126,9 +119,7 @@ const Projects = () => {
             return (
               <Card key={project.title}>
                 <Image src={cover} alt={project.title} />
-                <Overlay className="overlay">
-                  <Title>{project.title}</Title>
-                </Overlay>
+                <TitleInside className="title">{project.title}</TitleInside>
               </Card>
             );
           })}

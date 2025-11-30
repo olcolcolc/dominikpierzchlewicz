@@ -3,6 +3,7 @@ import { projectsData } from "../../data/projectsData";
 import { theme } from "../../styles/theme";
 
 const OVERLAY_TITLE = "2rem";
+const GAP = "0.7rem";
 
 const Wrapper = styled.div({
   width: "100%",
@@ -16,8 +17,7 @@ const ColumnsWrapper = styled.div({
   width: "100%",
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  columnGap: "1rem",
-  rowGap: "1rem",
+  columnGap: GAP,
   [theme.media.mobileM]: {
     gridTemplateColumns: "1fr",
     rowGap: "1.2rem",
@@ -27,19 +27,16 @@ const ColumnsWrapper = styled.div({
 const LeftColumn = styled.div({
   display: "flex",
   flexDirection: "column",
-  gap: "1rem",
+  gap: GAP,
   "& > div:last-child": {
     height: `calc(22rem - ${OVERLAY_TITLE})`,
-  },
-  "& > div:last-child .overlay": {
-    paddingBottom: OVERLAY_TITLE,
   },
 });
 
 const RightColumn = styled.div({
   display: "flex",
   flexDirection: "column",
-  gap: "1rem",
+  gap: GAP,
   transform: `translateY(-${OVERLAY_TITLE})`,
 });
 
@@ -73,7 +70,6 @@ const Overlay = styled.div({
   left: 0,
   right: 0,
   bottom: 0,
-  padding: "0 1rem",
   backgroundColor: "white",
   transform: "translateY(100%)",
   transition: "transform 0.6s ease",
@@ -81,8 +77,8 @@ const Overlay = styled.div({
   flexDirection: "column",
   textTransform: "uppercase",
   letterSpacing: "0.08em",
-  fontFamily: theme.fonts.inter,
-  fontSize: "0.8rem",
+  fontFamily: theme.fonts.dmSans,
+  fontSize: "1rem",
 });
 
 const Title = styled.span({

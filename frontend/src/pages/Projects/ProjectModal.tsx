@@ -93,6 +93,11 @@ const ModalImagesColumn = styled.div({
   flexDirection: "column",
   overflowY: "auto",
   maxHeight: "80vh",
+  scrollbarWidth: "none",
+  msOverflowStyle: "none",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
 });
 
 const ModalImage = styled.img({

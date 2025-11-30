@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { projectsData } from "../../data/projectsData";
 import { theme } from "../../styles/theme";
 
+const OVERLAY_TITLE = "2rem";
+
 const Wrapper = styled.div({
   width: "100%",
   display: "block",
@@ -10,27 +12,47 @@ const Wrapper = styled.div({
   },
 });
 
-const Grid = styled.div({
+const ColumnsWrapper = styled.div({
   width: "100%",
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "1rem",
-
+  columnGap: "1rem",
+  rowGap: "1rem",
   [theme.media.mobileM]: {
     gridTemplateColumns: "1fr",
-    gap: "1.2rem",
+    rowGap: "1.2rem",
   },
+});
+
+const LeftColumn = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  gap: "1rem",
+  "& > div:last-child": {
+    height: `calc(22rem - ${OVERLAY_TITLE})`,
+  },
+  "& > div:last-child .overlay": {
+    paddingBottom: OVERLAY_TITLE,
+  },
+});
+
+const RightColumn = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  gap: "1rem",
+  transform: `translateY(-${OVERLAY_TITLE})`,
 });
 
 const Card = styled.div({
   position: "relative",
-  width: "100%",
+  height: "22rem",
   aspectRatio: "1 / 1",
   overflow: "hidden",
   cursor: "pointer",
+
   "&:hover img": {
     transition: "transform 0.6s ease",
-    transform: "translateY(-3rem) ",
+    transform: `translateY(-${OVERLAY_TITLE})`,
   },
 
   "&:hover .overlay": {
@@ -51,7 +73,7 @@ const Overlay = styled.div({
   left: 0,
   right: 0,
   bottom: 0,
-  padding: "0.8rem 1rem",
+  padding: "0 1rem",
   backgroundColor: "white",
   transform: "translateY(100%)",
   transition: "transform 0.6s ease",
@@ -68,26 +90,44 @@ const Title = styled.span({
 });
 
 const Projects = () => {
-  console.log("projectsData:", projectsData);
+  const leftProjects = projectsData.filter((_, index) => index % 2 === 0);
+  const rightProjects = projectsData.filter((_, index) => index % 2 !== 0);
 
   return (
     <Wrapper>
-      <Grid>
-        {projectsData.map((project) => {
-          const cover = project.gallery[0];
+      <ColumnsWrapper>
+        <LeftColumn>
+          {leftProjects.map((project) => {
+            const cover = project.gallery[0];
+            if (!cover) return null;
 
-          if (!cover) return null;
+            return (
+              <Card key={project.title}>
+                <Image src={cover} alt={project.title} />
+                <Overlay className="overlay">
+                  <Title>{project.title}</Title>
+                </Overlay>
+              </Card>
+            );
+          })}
+        </LeftColumn>
 
-          return (
-            <Card key={project.title}>
-              <Image src={cover} alt={project.title} />
-              <Overlay className="overlay">
-                <Title>{project.title}</Title>
-              </Overlay>
-            </Card>
-          );
-        })}
-      </Grid>
+        <RightColumn>
+          {rightProjects.map((project) => {
+            const cover = project.gallery[0];
+            if (!cover) return null;
+
+            return (
+              <Card key={project.title}>
+                <Image src={cover} alt={project.title} />
+                <Overlay className="overlay">
+                  <Title>{project.title}</Title>
+                </Overlay>
+              </Card>
+            );
+          })}
+        </RightColumn>
+      </ColumnsWrapper>
     </Wrapper>
   );
 };

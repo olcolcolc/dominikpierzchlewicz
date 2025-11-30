@@ -70,6 +70,9 @@ const Image = styled.img({
   objectFit: "cover",
   display: "block",
   transition: "transform 0.6s ease",
+  "&:hover ": {
+    border: "red solid 2px",
+  },
 });
 
 const Overlay = styled.div({

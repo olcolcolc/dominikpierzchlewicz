@@ -14,7 +14,7 @@ const Grid = styled.div({
   width: "100%",
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "2rem",
+  gap: "1rem",
 
   [theme.media.mobileM]: {
     gridTemplateColumns: "1fr",
@@ -28,7 +28,6 @@ const Card = styled.div({
   aspectRatio: "1 / 1",
   overflow: "hidden",
   cursor: "pointer",
-
   "&:hover img": {
     transition: "transform 0.6s ease",
     transform: "translateY(-3rem) ",

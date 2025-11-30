@@ -9,6 +9,8 @@ import Awards from "../../pages/Awards/Awards";
 import { useState } from "react";
 import React from "react";
 
+const NAVBAR_HEIGHT = "5rem"; // dopasuj do realnej wysokości Twojego Navbara
+
 const Wrapper = styled.div({
   width: "100%",
   display: "flex",
@@ -26,17 +28,21 @@ const Wrapper = styled.div({
 const Content = styled.div({
   display: "flex",
   maxWidth: "1600px",
+  zIndex: "100000",
   width: "100%",
   flex: 1,
   minHeight: 0,
   flexDirection: "row",
   padding: "0 2rem",
-  alignItems: "flex-start",
-  paddingTop: "8rem",
+  alignItems: "center",
+
+  // KLUCZ: przesuwamy całość do góry, żeby nachodziła na placeholder
+  marginTop: `-${NAVBAR_HEIGHT}`,
+
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
-    marginTop: "2rem",
+    marginTop: "2rem", // na mobile możesz chcieć normalny odstęp
   },
 });
 
@@ -44,7 +50,7 @@ const LeftContent = styled.div({
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-start",
-  paddingRight: "10rem",
+  paddingRight: "8rem",
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -61,9 +67,10 @@ const RightContent = styled.div({
   minHeight: 0,
   overflowY: "auto",
   overflowX: "hidden",
-
+  zIndex: "100000",
   scrollbarWidth: "none",
   msOverflowStyle: "none",
+  transform: "translateZ(0)",
   "&::-webkit-scrollbar": {
     display: "none",
   },
@@ -75,9 +82,11 @@ const RightContent = styled.div({
   },
 });
 
+// Tu zmiana – zamiast paddingu tylko wysokość
 const NavbarPlaceholder = styled.div(() => ({
   width: "100%",
-  padding: "3rem",
+  height: NAVBAR_HEIGHT,
+  zIndex: "-1",
 }));
 
 const SectionWrapper = styled.div({
@@ -103,29 +112,27 @@ const MainContainer = () => {
   };
 
   return (
-    <>
-      <main>
-        <Wrapper>
-          <NavbarPlaceholder />
-          <Content>
-            <LeftContent>
-              <NavbarLinksWrapper
-                variant="side"
-                align="left"
-                links={sections}
-                onLinkClick={handleLinkClick}
-                activeLink={activeSection}
-              />
-            </LeftContent>
-            <RightContent>
-              <SectionWrapper>
-                {activeSection ? sectionComponents[activeSection] : <Bio />}
-              </SectionWrapper>
-            </RightContent>
-          </Content>
-        </Wrapper>
-      </main>
-    </>
+    <main>
+      <Wrapper>
+        <NavbarPlaceholder />
+        <Content>
+          <LeftContent>
+            <NavbarLinksWrapper
+              variant="side"
+              align="left"
+              links={sections}
+              onLinkClick={handleLinkClick}
+              activeLink={activeSection}
+            />
+          </LeftContent>
+          <RightContent>
+            <SectionWrapper>
+              {activeSection ? sectionComponents[activeSection] : <Bio />}
+            </SectionWrapper>
+          </RightContent>
+        </Content>
+      </Wrapper>
+    </main>
   );
 };
 

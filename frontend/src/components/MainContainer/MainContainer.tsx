@@ -6,8 +6,10 @@ import Bio from "../../pages/Bio/Bio";
 import { Contact } from "../../pages/Contact/Contact";
 import Projects from "../../pages/Projects/Projects";
 import Awards from "../../pages/Awards/Awards";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
+
+const NAVBAR_HEIGHT = "5rem";
 
 const Wrapper = styled.div({
   width: "100%",
@@ -26,13 +28,15 @@ const Wrapper = styled.div({
 const Content = styled.div({
   display: "flex",
   maxWidth: "1600px",
+  zIndex: "100000",
   width: "100%",
   flex: 1,
   minHeight: 0,
   flexDirection: "row",
   padding: "0 2rem",
-  alignItems: "flex-start",
-  paddingTop: "8rem",
+  alignItems: "center",
+  marginTop: `-${NAVBAR_HEIGHT}`,
+
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -44,7 +48,7 @@ const LeftContent = styled.div({
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-start",
-  paddingRight: "10rem",
+  paddingRight: "8rem",
   [theme.media.tablet]: {
     padding: "0 1rem",
     flexDirection: "column",
@@ -52,32 +56,30 @@ const LeftContent = styled.div({
   },
 });
 
-const RightContent = styled.div({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  height: "100%",
-  flex: 1,
-  minHeight: 0,
-  overflowY: "auto",
-  overflowX: "hidden",
-
-  scrollbarWidth: "none",
-  msOverflowStyle: "none",
-  "&::-webkit-scrollbar": {
-    display: "none",
-  },
-
-  [theme.media.tablet]: {
-    padding: "0 1rem",
+const RightContent = styled.div<{ $isProjects?: boolean }>(
+  ({ $isProjects }) => ({
+    display: "flex",
     flexDirection: "column",
-    marginTop: "2rem",
-  },
-});
+    alignItems: "flex-start",
+    height: "100%",
+    flex: 1,
+    minHeight: 0,
+    overflowY: $isProjects ? "auto" : "auto",
+    overflowX: "hidden",
+    zIndex: 100000,
+
+    scrollbarWidth: "none",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  })
+);
 
 const NavbarPlaceholder = styled.div(() => ({
   width: "100%",
-  padding: "3rem",
+  height: NAVBAR_HEIGHT,
+  zIndex: "-1",
 }));
 
 const SectionWrapper = styled.div({
@@ -97,35 +99,70 @@ const sectionComponents: Record<string, React.ReactNode> = {
 
 const MainContainer = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [isRightHovered, setIsRightHovered] = useState(false);
+  const rightRef = useRef<HTMLDivElement | null>(null);
 
   const handleLinkClick = (linkName: string) => {
     setActiveSection(linkName);
   };
 
+  const isProjects = activeSection === "projekty";
+
+  // SCROLL FIX: prawy panel przewija się tylko, gdy event NIE pochodzi z modala
+  useEffect(() => {
+    const el = rightRef.current;
+    if (!el || !isProjects) return;
+
+    const onWheel = (event: WheelEvent) => {
+      const target = event.target as HTMLElement | null;
+
+      // 🔒 jeśli event pochodzi z modala → NIE scrollujemy RightContent
+      if (target?.closest("[data-modal-root]")) {
+        return;
+      }
+
+      // tylko gdy mycha jest nad prawą kolumną
+      if (!isRightHovered) return;
+
+      event.preventDefault();
+      el.scrollTop += event.deltaY;
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+    };
+  }, [isProjects, isRightHovered]);
+
   return (
-    <>
-      <main>
-        <Wrapper>
-          <NavbarPlaceholder />
-          <Content>
-            <LeftContent>
-              <NavbarLinksWrapper
-                variant="side"
-                align="left"
-                links={sections}
-                onLinkClick={handleLinkClick}
-                activeLink={activeSection}
-              />
-            </LeftContent>
-            <RightContent>
-              <SectionWrapper>
-                {activeSection ? sectionComponents[activeSection] : <Bio />}
-              </SectionWrapper>
-            </RightContent>
-          </Content>
-        </Wrapper>
-      </main>
-    </>
+    <main>
+      <Wrapper>
+        <NavbarPlaceholder />
+        <Content>
+          <LeftContent>
+            <NavbarLinksWrapper
+              variant="side"
+              align="left"
+              links={sections}
+              onLinkClick={handleLinkClick}
+              activeLink={activeSection}
+            />
+          </LeftContent>
+
+          <RightContent
+            ref={rightRef}
+            $isProjects={isProjects}
+            onMouseEnter={() => setIsRightHovered(true)}
+            onMouseLeave={() => setIsRightHovered(false)}
+          >
+            <SectionWrapper>
+              {activeSection ? sectionComponents[activeSection] : <Bio />}
+            </SectionWrapper>
+          </RightContent>
+        </Content>
+      </Wrapper>
+    </main>
   );
 };
 

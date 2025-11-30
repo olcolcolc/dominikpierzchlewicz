@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     hover: "#00ff00",
+    blue: "#2F0FFF",
     // hover: "#57DB0A",
     background: "#f5f5f5",
     text: "#333",
@@ -16,6 +17,7 @@ export const theme = {
     archia: "'Archia', sans-serif",
     inter: '"Inter", sans-serif',
     garamond: "'EB Garamond', Garamond, serif",
+    martian: "'Martian Mono', monospace",
   },
   media: {
     mobileS: `@media (max-width: 440px)`,

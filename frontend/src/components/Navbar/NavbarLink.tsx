@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import React from "react";
 
 const StyledLink = styled.div<{ $isActive: boolean }>(({ theme }) => ({
-  fontSize: "5rem",
+  fontSize: "4.5rem",
   display: "inline-flex",
   alignItems: "flex-end",
   gridTemplateColumns: "3.5ch 1fr",
@@ -13,7 +13,7 @@ const StyledLink = styled.div<{ $isActive: boolean }>(({ theme }) => ({
   gap: "0.75rem",
   minHeight: "44px",
   width: "100%",
-  fontFamily: theme.fonts.dmSans,
+  fontFamily: theme.fonts.martian,
   cursor: "pointer",
   position: "relative",
   transition: "color 0.3s ease, font-family 0.8s ease, outline-color 0.2s ease",
@@ -23,6 +23,8 @@ const StyledLink = styled.div<{ $isActive: boolean }>(({ theme }) => ({
 
   "&:hover [data-title], &:focus-visible [data-title], &>span.active-title": {
     fontFamily: theme.fonts.pixel,
+    fontSize: "5rem",
+
     transition: "opacity 0.8s ease",
   },
   "&:hover [data-title]::after, &:focus-visible [data-title]::after, &>span.active-title::after":

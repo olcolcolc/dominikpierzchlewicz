@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
 
@@ -123,19 +123,85 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   project,
   onClose,
 }) => {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
+    const scrollEl = scrollRef.current;
+    if (!scrollEl) return;
 
-    const prevHtmlOverflow = html.style.overflow;
-    const prevBodyOverflow = body.style.overflow;
+    const scrollBy = (delta: number) => {
+      scrollEl.scrollTop += delta;
+    };
 
-    html.style.overflow = "hidden";
-    body.style.overflow = "hidden";
+    const handleWheel = (event: WheelEvent) => {
+      event.preventDefault();
+      scrollBy(event.deltaY);
+    };
+
+    const handleTouchMove = (() => {
+      let lastY: number | null = null;
+
+      return (event: TouchEvent) => {
+        if (event.touches.length !== 1) return;
+        const currentY = event.touches[0].clientY;
+
+        if (lastY !== null) {
+          const delta = lastY - currentY;
+          scrollBy(delta);
+        }
+
+        lastY = currentY;
+        event.preventDefault();
+      };
+    })();
+
+    const handleTouchEnd = () => {};
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      const STEP = 60; // px
+      const PAGE = scrollEl.clientHeight * 0.9;
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+          scrollBy(STEP);
+          break;
+        case "ArrowUp":
+          event.preventDefault();
+          scrollBy(-STEP);
+          break;
+        case "PageDown":
+          event.preventDefault();
+          scrollBy(PAGE);
+          break;
+        case "PageUp":
+          event.preventDefault();
+          scrollBy(-PAGE);
+          break;
+        case "Home":
+          event.preventDefault();
+          scrollEl.scrollTop = 0;
+          break;
+        case "End":
+          event.preventDefault();
+          scrollEl.scrollTop = scrollEl.scrollHeight;
+          break;
+        case " ":
+          event.preventDefault();
+          scrollBy(PAGE);
+          break;
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("keydown", handleKeydown);
 
     return () => {
-      html.style.overflow = prevHtmlOverflow;
-      body.style.overflow = prevBodyOverflow;
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("keydown", handleKeydown);
     };
   }, []);
 
@@ -162,7 +228,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           )}
         </ModalTextColumn>
 
-        <ModalImagesColumn>
+        <ModalImagesColumn ref={scrollRef}>
           {project.gallery.map((src) => (
             <ModalImage key={src} src={src} alt={project.title} />
           ))}

@@ -118,8 +118,10 @@ const MainContainer = () => {
         return;
       }
 
-      // when coursor is above RightContent
-      if (!isRightHovered) return;
+      // when coursor is above RightContent - if section Project - stop scrolling
+      if (!isRightHovered || !isProjects) {
+        return;
+      }
 
       // scroll only in RightContent, not whole page
       event.preventDefault();

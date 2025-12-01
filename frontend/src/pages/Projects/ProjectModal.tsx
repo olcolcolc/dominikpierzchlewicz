@@ -99,7 +99,7 @@ const ModalImagesColumn = styled.div({
     display: "none",
   },
 });
-//
+
 const ModalImage = styled.img({
   width: "100%",
   display: "block",

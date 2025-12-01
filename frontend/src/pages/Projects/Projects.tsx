@@ -80,6 +80,15 @@ const TitleInside = styled.div({
   pointerEvents: "none",
   transition: "opacity",
   zIndex: 5,
+  "@media (max-width: 1850px)": {
+    fontSize: "3.5rem",
+  },
+  "@media (max-width: 1500px)": {
+    fontSize: "3rem",
+  },
+  "@media (max-width: 1300px)": {
+    fontSize: "2rem",
+  },
 });
 
 type Project = (typeof projectsData)[number];

@@ -10,7 +10,7 @@ import { getNavbarHeightStyles } from "../../styles/theme";
 const Wrapper = styled.nav(({ theme }) => ({
   ...getNavbarHeightStyles(theme),
   position: "fixed",
-  zIndex: 100000,
+  zIndex: 99999999,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",

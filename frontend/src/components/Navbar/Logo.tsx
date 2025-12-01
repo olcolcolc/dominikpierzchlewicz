@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const MIN_FONT_SIZE = 2; // rem
 const MAX_FONT_SIZE = 4; // rem
-const MAX_SCROLL = 1400; // px, po tylu scrolla mamy MIN_FONT_SIZE
+const MAX_SCROLL = 1400; // px, after this scroll we have MIN_FONT_SIZE
 
 const LogoLink = styled(Link)<{ $fontSize: number }>(
   ({ theme, $fontSize }) => ({
@@ -14,7 +14,7 @@ const LogoLink = styled(Link)<{ $fontSize: number }>(
     marginLeft: "-5px",
     fontFamily: theme.fonts.inter,
     color: "black",
-    zIndex: 2,
+    zIndex: 99999999,
     textDecoration: "none",
     ...theme.animations.hoverLift,
     mixBlendMode: "difference",
